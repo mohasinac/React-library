@@ -1,9 +1,9 @@
 ---
 name: Feature Request
 about: Suggest a new feature or enhancement
-title: '[FEATURE] '
+title: "[FEATURE] "
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
 ## Feature Description
@@ -24,7 +24,7 @@ Show how the feature would be used:
 
 ```typescript
 // Example code showing how the feature would work
-import { NewFeature } from '@letitrip/react-library';
+import { NewFeature } from "@letitrip/react-library";
 
 function Example() {
   return <NewFeature prop="value" />;

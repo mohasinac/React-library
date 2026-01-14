@@ -21,6 +21,7 @@ Please do not disclose security vulnerabilities publicly until we've had a chanc
 Send an email to: **security@letitrip.com**
 
 Include:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
@@ -63,7 +64,7 @@ Include:
 Our library includes sanitization utilities (`sanitizeHtml`, `sanitizeString`) to prevent XSS attacks. Always use these when displaying user-generated content:
 
 ```typescript
-import { sanitizeHtml } from '@letitrip/react-library/utils';
+import { sanitizeHtml } from "@letitrip/react-library/utils";
 
 function UserContent({ content }) {
   return <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }} />;
@@ -75,17 +76,18 @@ function UserContent({ content }) {
 Use our validation utilities to ensure data integrity:
 
 ```typescript
-import { validateEmail, validatePhone } from '@letitrip/react-library/utils';
+import { validateEmail, validatePhone } from "@letitrip/react-library/utils";
 
 // Validate before processing
 if (!validateEmail(email)) {
-  throw new Error('Invalid email');
+  throw new Error("Invalid email");
 }
 ```
 
 ### Dependency Security
 
 We regularly audit dependencies using:
+
 - `npm audit`
 - Dependabot
 - Snyk
@@ -102,6 +104,7 @@ We regularly audit dependencies using:
 ### Accessibility & Security
 
 Proper accessibility features prevent:
+
 - Clickjacking (proper ARIA roles)
 - Navigation confusion (semantic HTML)
 - Focus trapping issues (focus management)
@@ -109,12 +112,14 @@ Proper accessibility features prevent:
 ## Third-Party Dependencies
 
 We carefully vet all dependencies for:
+
 - Active maintenance
 - Security track record
 - Community trust
 - Minimal attack surface
 
 Current key dependencies:
+
 - `react` - Meta (Facebook)
 - `date-fns` - Well-maintained, security-focused
 - `libphonenumber-js` - Phone validation standard
@@ -138,6 +143,7 @@ _No reports yet - be the first!_
 ## Security Updates
 
 Subscribe to security notifications:
+
 1. Watch repository on GitHub
 2. Enable GitHub Security Advisories
 3. Follow releases for security tags
@@ -151,6 +157,7 @@ Subscribe to security notifications:
 ## Legal
 
 This security policy is provided as-is. We reserve the right to:
+
 - Update this policy at any time
 - Determine if a report qualifies as a security issue
 - Choose not to fix issues we deem low risk

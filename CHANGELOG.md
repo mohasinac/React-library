@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 
 **Components (31 total)**
+
 - **Value Display Components (20)**:
+
   - `DateDisplay` - Display dates with flexible formatting
   - `Price` - Currency display with Indian format
   - `Rating` - Star rating display with half-star support
@@ -37,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `StatsCard` - Statistics display card
 
 - **Form Components (9)**:
+
   - `FormInput` - Text input with validation
   - `FormSelect` - Dropdown select with search
   - `FormTextarea` - Multi-line text input
@@ -52,15 +55,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `Card` - Card container with sections
 
 **Hooks (18 total)**
+
 - **Debounce & Throttle (3)**:
+
   - `useDebounce` - Debounce value changes
   - `useDebouncedCallback` - Debounce function calls
   - `useThrottle` - Throttle value updates
 
 - **Storage (1)**:
+
   - `useLocalStorage` - localStorage with React state sync
 
 - **Responsive (7)**:
+
   - `useMediaQuery` - Match media queries
   - `useIsMobile` - Mobile device detection
   - `useIsTablet` - Tablet device detection
@@ -79,7 +86,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `useIsMounted` - Component mount status
 
 **Utilities (60+ functions)**
+
 - **Formatters (25+)**:
+
   - Currency formatting (INR with Indian format)
   - Date formatting (relative, absolute, range)
   - Number formatting (compact, Indian, filesize)
@@ -89,6 +98,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - And more...
 
 - **Validators (10+)**:
+
   - Email validation
   - Phone validation (Indian numbers)
   - Pincode validation (Indian)
@@ -98,6 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - And more...
 
 - **Date Utils (6)**:
+
   - Safe date parsing
   - Date comparison
   - Date range checking
@@ -105,11 +116,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Date arithmetic
 
 - **Price Utils (3)**:
+
   - Price formatting
   - Discount calculation
   - Price comparison
 
 - **Sanitization (5)**:
+
   - HTML sanitization
   - XSS prevention
   - Input cleaning
@@ -124,6 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - And more...
 
 **Design System**
+
 - 200+ CSS custom properties (design tokens)
 - Complete color palette (primary, secondary, neutral, semantic)
 - Typography scale (9 text sizes)
@@ -135,6 +149,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tailwind configuration
 
 **Build & Development**
+
 - Vite for fast builds
 - TypeScript support
 - ESM and CJS outputs
@@ -145,6 +160,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Vitest for testing
 
 **Documentation**
+
 - Comprehensive README
 - Component API documentation
 - Hook usage examples
@@ -186,12 +202,12 @@ If migrating from the workspace library:
 
 ```typescript
 // Before (workspace)
-import { formatPrice } from '@/lib/price.utils';
-import { FormInput } from '@/components/forms/FormInput';
+import { formatPrice } from "@/lib/price.utils";
+import { FormInput } from "@/components/forms/FormInput";
 
 // After (published package)
-import { formatPrice } from '@letitrip/react-library/utils';
-import { FormInput } from '@letitrip/react-library/components';
+import { formatPrice } from "@letitrip/react-library/utils";
+import { FormInput } from "@letitrip/react-library/components";
 ```
 
 [Unreleased]: https://github.com/letitrip/react-library/compare/v1.0.0...HEAD

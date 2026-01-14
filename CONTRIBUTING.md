@@ -72,15 +72,16 @@ npm run lint
 - Place tests next to the code: `MyComponent.test.tsx`
 
 Example test:
-```typescript
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { MyComponent } from './MyComponent';
 
-describe('MyComponent', () => {
-  it('renders correctly', () => {
+```typescript
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { MyComponent } from "./MyComponent";
+
+describe("MyComponent", () => {
+  it("renders correctly", () => {
     render(<MyComponent title="Test" />);
-    expect(screen.getByText('Test')).toBeInTheDocument();
+    expect(screen.getByText("Test")).toBeInTheDocument();
   });
 });
 ```
@@ -90,13 +91,13 @@ describe('MyComponent', () => {
 All components should have stories for documentation and testing.
 
 ```typescript
-import type { Meta, StoryObj } from '@storybook/react';
-import { MyComponent } from './MyComponent';
+import type { Meta, StoryObj } from "@storybook/react";
+import { MyComponent } from "./MyComponent";
 
 const meta: Meta<typeof MyComponent> = {
-  title: 'Components/MyComponent',
+  title: "Components/MyComponent",
   component: MyComponent,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -104,7 +105,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: 'Example',
+    title: "Example",
   },
 };
 ```
@@ -143,6 +144,7 @@ npm run lint && npm run type-check && npm test && npm run build
 ### PR Title Format
 
 Use conventional commit format:
+
 - `feat: Add new component`
 - `fix: Fix button styling issue`
 - `docs: Update README`
@@ -154,21 +156,26 @@ Use conventional commit format:
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix (non-breaking change fixing an issue)
 - [ ] New feature (non-breaking change adding functionality)
 - [ ] Breaking change (fix or feature causing existing functionality to break)
 - [ ] Documentation update
 
 ## Testing
+
 How has this been tested?
 
 ## Screenshots (if applicable)
+
 Add screenshots or GIFs
 
 ## Checklist
+
 - [ ] Tests added/updated
 - [ ] Documentation updated
 - [ ] Storybook stories added/updated
@@ -193,6 +200,7 @@ react-library/
 ## 🎨 Design System
 
 When adding new components or styles:
+
 - Use existing design tokens from `src/styles/tokens/`
 - Follow the color palette
 - Maintain consistency with existing components
@@ -205,7 +213,7 @@ When adding new components or styles:
 
 All exported functions, components, and utilities should have JSDoc comments:
 
-```typescript
+````typescript
 /**
  * Formats a price with currency symbol and Indian number format
  * @param amount - The price amount in rupees
@@ -220,7 +228,7 @@ All exported functions, components, and utilities should have JSDoc comments:
 export function formatPrice(amount: number, options?: PriceOptions): string {
   // Implementation
 }
-```
+````
 
 ### Component Props
 
@@ -231,9 +239,9 @@ export interface ButtonProps {
   /** Button text content */
   children: React.ReactNode;
   /** Button visual style variant */
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: "primary" | "secondary" | "outline";
   /** Button size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   /** Disabled state */
   disabled?: boolean;
   /** Click handler */
@@ -257,6 +265,7 @@ A clear description
 
 **To Reproduce**
 Steps to reproduce:
+
 1. Go to '...'
 2. Click on '...'
 3. See error
@@ -268,6 +277,7 @@ What should happen
 If applicable
 
 **Environment:**
+
 - OS: [e.g. Windows 11]
 - Browser: [e.g. Chrome 120]
 - Library Version: [e.g. 1.0.0]
@@ -277,6 +287,7 @@ If applicable
 ## 💡 Suggesting Features
 
 We welcome feature suggestions! Please:
+
 1. Check if it already exists
 2. Explain the use case
 3. Provide examples
@@ -310,6 +321,7 @@ By contributing, you agree that your contributions will be licensed under the MI
 ## 🎉 Recognition
 
 Contributors will be recognized in:
+
 - CHANGELOG.md
 - README.md (Contributors section)
 - GitHub contributors page

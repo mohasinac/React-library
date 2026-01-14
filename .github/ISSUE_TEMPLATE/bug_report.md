@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Report a bug or issue
-title: '[BUG] '
+title: "[BUG] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## Bug Description
@@ -13,6 +13,7 @@ A clear and concise description of the bug.
 ## To Reproduce
 
 Steps to reproduce the behavior:
+
 1. Import '...'
 2. Use component '...'
 3. Call function '...'
@@ -30,7 +31,7 @@ What actually happened.
 
 ```typescript
 // Minimal code example that reproduces the issue
-import { Component } from '@letitrip/react-library/components';
+import { Component } from "@letitrip/react-library/components";
 
 function Example() {
   return <Component />;

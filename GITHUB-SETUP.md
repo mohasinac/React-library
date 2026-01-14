@@ -45,11 +45,13 @@ git push -u origin main
 ### 3. Configure GitHub Repository
 
 #### Enable GitHub Pages (for Storybook)
+
 1. Go to **Settings** → **Pages**
 2. Source: **GitHub Actions**
 3. Storybook will auto-deploy on push to main
 
 #### Configure Branch Protection
+
 1. Go to **Settings** → **Branches**
 2. Add rule for `main` branch:
    - ☑ Require pull request before merging
@@ -58,6 +60,7 @@ git push -u origin main
    - ☑ Require branches to be up to date before merging
 
 #### Set up Secrets (for npm publishing)
+
 1. Go to **Settings** → **Secrets and variables** → **Actions**
 2. Add repository secret:
    - **Name**: `NPM_TOKEN`
@@ -107,11 +110,13 @@ npm publish --access public
 ## 🔧 Configuration Files Created
 
 ### CI/CD Workflows
+
 - `.github/workflows/ci.yml` - Test and build on every push/PR
 - `.github/workflows/release.yml` - Auto-publish on version tags
 - `.github/workflows/storybook.yml` - Deploy Storybook to GitHub Pages
 
 ### Documentation
+
 - `README.md` - Main documentation
 - `CONTRIBUTING.md` - Contribution guidelines
 - `CHANGELOG.md` - Version history
@@ -119,6 +124,7 @@ npm publish --access public
 - `LICENSE` - MIT License
 
 ### GitHub Templates
+
 - `.github/ISSUE_TEMPLATE/bug_report.md`
 - `.github/ISSUE_TEMPLATE/feature_request.md`
 - `.github/PULL_REQUEST_TEMPLATE.md`
@@ -161,30 +167,33 @@ Replace all imports in main project:
 
 ```typescript
 // Before (local imports)
-import { formatPrice } from '@/lib/price.utils';
-import { FormInput } from '@/components/forms/FormInput';
-import { useDebounce } from '@/hooks/useDebounce';
+import { formatPrice } from "@/lib/price.utils";
+import { FormInput } from "@/components/forms/FormInput";
+import { useDebounce } from "@/hooks/useDebounce";
 
 // After (package imports)
-import { formatPrice } from '@letitrip/react-library/utils';
-import { FormInput } from '@letitrip/react-library/components';
-import { useDebounce } from '@letitrip/react-library/hooks';
+import { formatPrice } from "@letitrip/react-library/utils";
+import { FormInput } from "@letitrip/react-library/components";
+import { useDebounce } from "@letitrip/react-library/hooks";
 ```
 
 ## 📊 Package Features
 
 ### Bundle Sizes
+
 - Total: ~180 KB minified
 - Gzipped: ~50 KB
 - Tree-shakeable exports
 
 ### Supported Environments
+
 - React 18.x and 19.x
 - TypeScript 5.3+
 - Node.js 18.x+
 - Modern browsers (ES2020+)
 
 ### Export Paths
+
 - `@letitrip/react-library` - All exports
 - `@letitrip/react-library/utils` - Utilities only
 - `@letitrip/react-library/components` - Components only
@@ -196,6 +205,7 @@ import { useDebounce } from '@letitrip/react-library/hooks';
 ## 🚀 Release Process
 
 1. **Update Version**:
+
    ```bash
    npm version patch  # 1.0.0 → 1.0.1
    npm version minor  # 1.0.0 → 1.1.0
@@ -203,10 +213,12 @@ import { useDebounce } from '@letitrip/react-library/hooks';
    ```
 
 2. **Update CHANGELOG.md**:
+
    - Document all changes
    - Follow Keep a Changelog format
 
 3. **Push Tags**:
+
    ```bash
    git push && git push --tags
    ```
@@ -227,6 +239,7 @@ import { useDebounce } from '@letitrip/react-library/hooks';
 ## 📝 Maintenance
 
 ### Regular Tasks
+
 - [ ] Review and merge dependabot PRs
 - [ ] Respond to issues within 48 hours
 - [ ] Review PRs within 5 business days
@@ -235,6 +248,7 @@ import { useDebounce } from '@letitrip/react-library/hooks';
 - [ ] Check Lighthouse scores
 
 ### Quarterly Reviews
+
 - [ ] Audit dependencies
 - [ ] Update peer dependencies
 - [ ] Review and update documentation
@@ -244,6 +258,7 @@ import { useDebounce } from '@letitrip/react-library/hooks';
 ## 🌟 Success Metrics
 
 Track these metrics:
+
 - npm downloads
 - GitHub stars
 - Open issues/PRs
@@ -261,6 +276,7 @@ Track these metrics:
 ## ✅ Final Checklist
 
 Before going public:
+
 - [ ] GitHub repository created
 - [ ] Code pushed to main branch
 - [ ] GitHub Pages enabled for Storybook

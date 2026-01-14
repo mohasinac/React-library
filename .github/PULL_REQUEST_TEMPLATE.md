@@ -31,8 +31,8 @@ Brief description of the changes in this PR.
 
 ### Test Coverage
 
-- Current coverage: __%
-- Coverage after changes: __%
+- Current coverage: \_\_%
+- Coverage after changes: \_\_%
 
 ## Screenshots/GIFs
 
@@ -59,10 +59,10 @@ If breaking changes exist, provide migration guide:
 
 ```typescript
 // Before
-import { OldAPI } from '@letitrip/react-library';
+import { OldAPI } from "@letitrip/react-library";
 
 // After
-import { NewAPI } from '@letitrip/react-library';
+import { NewAPI } from "@letitrip/react-library";
 ```
 
 ## Checklist
@@ -122,6 +122,7 @@ Any additional information or context.
 ## Reviewer Notes
 
 Specific areas to focus on during review:
+
 - Area 1
 - Area 2
 - Area 3
@@ -129,6 +130,7 @@ Specific areas to focus on during review:
 ## Deployment Notes
 
 Any special considerations for deployment:
+
 - [ ] Requires version bump
 - [ ] Requires migration script
 - [ ] Requires documentation update
