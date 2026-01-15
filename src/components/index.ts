@@ -25,3 +25,6 @@ export * from "./search";
 
 // Filter Components (Task 18.2)
 export * from "./filters";
+
+// Pagination Components (Task 18.3)
+export * from "./pagination";

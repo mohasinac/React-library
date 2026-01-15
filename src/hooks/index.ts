@@ -94,3 +94,23 @@ export type {
   FetchResourceListConfig,
   UseFetchResourceListReturn,
 } from "./useFetchResourceList";
+
+// Pagination hooks (Task 18.3)
+export { useUrlPagination } from "./useUrlPagination";
+export type {
+  UseUrlPaginationOptions,
+  UseUrlPaginationReturn,
+  UseUrlPaginationRouter,
+} from "./useUrlPagination";
+
+export { useInfiniteScroll } from "./useInfiniteScroll";
+export type {
+  UseInfiniteScrollOptions,
+  UseInfiniteScrollReturn,
+} from "./useInfiniteScroll";
+
+export { useVirtualGrid, useVirtualList } from "./useVirtualList";
+export type {
+  UseVirtualListOptions,
+  UseVirtualListReturn,
+} from "./useVirtualList";
