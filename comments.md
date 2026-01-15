@@ -291,6 +291,7 @@
 ### Associated Hooks (Partial - 2/5)
 
 1. **useBulkSelection Hook** ✅
+
    - **Status**: Complete
    - **Source**: `src/hooks/useBulkSelection.ts`
    - **Migration**: 185 lines, already framework-agnostic
@@ -320,6 +321,7 @@
    - **Main app integration**: Skipped (will be rewritten later)
 
 **Remaining Hooks (3/5)**:
+
 - [ ] useResourceList - Needs logError removed
 - [ ] useResourceListState - Depends on usePaginationState
 - [ ] useFetchResourceList - Depends on useResourceListState

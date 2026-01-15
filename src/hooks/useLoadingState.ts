@@ -167,7 +167,7 @@ export function useLoadingState<T = any>(
     async <R = T>(
       asyncFn: () => Promise<R>,
       executeOptions: { setData?: boolean; isRefresh?: boolean } = {}
-    ): Promise<R | null> {
+    ): Promise<R | null> => {
       const { setData: shouldSetData = true, isRefresh = false } =
         executeOptions;
 
