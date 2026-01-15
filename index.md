@@ -396,7 +396,7 @@ All component migration tasks completed:
 - `Button` - 5 variants (primary, secondary, outline, ghost, danger), 3 sizes, loading state, icon support
 - `Card` / `CardSection` - Container components with optional header
 
-### Table Components ✅ (Task 18.1 Started - 3 Components)
+### Table Components ✅ (Task 18.1 Started - 4 Components)
 
 - `DataTable` - Generic data table with sorting, loading states, custom rendering, row interactions
   - Sortable columns (local or controlled)
@@ -418,6 +418,13 @@ All component migration tasks completed:
   - Disabled state
   - Custom aria-labels
   - Dark mode support
+- `BulkActionBar` - Sticky action bar for bulk operations on selected items
+  - Desktop (top) and mobile (bottom) layouts
+  - Confirmation dialogs for destructive actions
+  - Action variants (default, danger, warning, success)
+  - Loading states during action execution
+  - Custom icons and error handling
+  - Framework-agnostic with dependency injection
 
 ### Upload Components ✅ (Task 17.1 Complete - 2 Components)
 

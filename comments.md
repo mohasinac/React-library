@@ -31,6 +31,7 @@
    - Removed old component from main app
 
 2. **ResponsiveTable Component Migration**
+
    - Moved from `src/components/common/ResponsiveTable.tsx` to `react-library/src/components/tables/ResponsiveTable.tsx`
    - Component is already framework-agnostic (no Next.js dependencies)
    - Features:
@@ -60,11 +61,26 @@
    - Updated main app imports: SellerResourcePage, AdminResourcePage
    - Removed old component from main app
 
+4. **BulkActionBar Component Migration**
+   - Moved from `src/components/common/BulkActionBar.tsx` to `react-library/src/components/tables/BulkActionBar.tsx`
+   - Made framework-agnostic by removing dependencies:
+     - Accepts `ConfirmDialog` as prop (not hardcoded import)
+     - Accepts `onError` callback instead of logError/toast
+     - Accepts `XIcon` and `LoaderIcon` props instead of lucide-react
+     - Inline type definitions (BulkAction, BulkActionBarProps)
+   - Features:
+     - Desktop (top) and mobile (bottom) sticky layouts
+     - Confirmation dialogs for destructive actions
+     - Action variants (default, danger, warning, success)
+     - Loading states during action execution
+     - Custom icons and error handling
+     - Custom resource names and total count display
+   - Created comprehensive tests (18 test cases, all passing)
+   - Created Storybook story with 10 variations including interactive example
+   - Main app integration: Skipped (will be rewritten later)
+
 **Pending:**
 
-- [ ] ResponsiveTable component
-- [ ] TableCheckbox component
-- [ ] BulkActionBar component
 - [ ] InlineEditRow component
 - [ ] QuickCreateRow component
 - [ ] InlineEditor component
