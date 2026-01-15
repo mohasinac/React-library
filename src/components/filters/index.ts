@@ -36,3 +36,10 @@ export type { UserFilterValues, UserFiltersProps } from "./UserFilters";
 
 export { MobileFilterSidebar } from "./MobileFilterSidebar";
 export type { MobileFilterSidebarProps } from "./MobileFilterSidebar";
+
+export { ProductFilters } from "./ProductFilters";
+export type {
+  ProductFilterValues,
+  ProductFiltersProps,
+  ProductCategory,
+} from "./ProductFilters";
