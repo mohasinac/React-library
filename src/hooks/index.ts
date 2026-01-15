@@ -79,6 +79,33 @@ export type {
 export { useNavigationGuard } from "./useNavigationGuard";
 export type { NavigationGuardOptions } from "./useNavigationGuard";
 
+// Context-based hooks (Task 19.2)
+export { useAuthState, createUseAuthState } from "./useAuthState";
+export type { User, AuthState } from "./useAuthState";
+
+export { useAuthActions, createUseAuthActions } from "./useAuthActions";
+export type {
+  LoginCredentials,
+  RegisterData,
+  AuthActions,
+} from "./useAuthActions";
+
+export { useCart } from "./useCart";
+export type {
+  CartItem,
+  Cart,
+  CartService,
+  UseCartOptions,
+  UseCartReturn,
+} from "./useCart";
+
+export { useHeaderStats } from "./useHeaderStats";
+export type {
+  HeaderStats,
+  UseHeaderStatsOptions,
+  UseHeaderStatsReturn,
+} from "./useHeaderStats";
+
 export {
   useClipboard,
   useCounter,
