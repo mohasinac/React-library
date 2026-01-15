@@ -61,3 +61,35 @@ export type { LinkInputProps } from "./LinkInput";
 
 export { PincodeInput } from "./PincodeInput";
 export type { PincodeInputProps, PincodeLookupResult } from "./PincodeInput";
+
+// Modal components
+export { FormModal } from "./FormModal";
+export type { FormModalProps } from "./FormModal";
+
+export { InlineFormModal } from "./InlineFormModal";
+export type { InlineFormModalProps } from "./InlineFormModal";
+
+// File upload
+export { FormFileUpload } from "./FormFileUpload";
+export type { FormFileUploadProps } from "./FormFileUpload";
+
+// Rich text
+export { FormRichText } from "./FormRichText";
+export type { FormRichTextProps } from "./FormRichText";
+
+export { RichTextEditor } from "./RichTextEditor";
+export type { RichTextEditorProps, ToolbarAction } from "./RichTextEditor";
+
+// Date/Time picker
+export { DateTimePicker } from "./DateTimePicker";
+export type { DateTimePickerProps } from "./DateTimePicker";
+
+// Wizard form components
+export { WizardForm } from "./WizardForm";
+export type { WizardFormProps, WizardFormStep } from "./WizardForm";
+
+export { WizardSteps } from "./WizardSteps";
+export type { WizardStepsProps, WizardStep, WizardStepState } from "./WizardSteps";
+
+export { WizardActionBar } from "./WizardActionBar";
+export type { WizardActionBarProps } from "./WizardActionBar";
