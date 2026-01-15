@@ -39,7 +39,14 @@ export type { MobileFilterSidebarProps } from "./MobileFilterSidebar";
 
 export { ProductFilters } from "./ProductFilters";
 export type {
+  ProductCategory,
   ProductFilterValues,
   ProductFiltersProps,
-  ProductCategory,
 } from "./ProductFilters";
+
+export { FilterSidebar } from "./FilterSidebar";
+export type {
+  FilterSidebarProps,
+  FilterSidebarSection,
+  FilterField,
+} from "./FilterSidebar";

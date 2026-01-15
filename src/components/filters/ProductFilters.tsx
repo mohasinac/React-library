@@ -70,7 +70,12 @@ export interface ProductFiltersProps {
 
 /** Default Filter Icon */
 const DefaultFilterIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -82,22 +87,52 @@ const DefaultFilterIcon = ({ className }: { className?: string }) => (
 
 /** Default Clear Icon */
 const DefaultClearIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
 /** Default ChevronDown Icon */
 const DefaultChevronDownIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 9l-7 7-7-7"
+    />
   </svg>
 );
 
 /** Default ChevronRight Icon */
 const DefaultChevronRightIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
 );
 
@@ -115,21 +150,23 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   ChevronDownIcon = DefaultChevronDownIcon,
   ChevronRightIcon = DefaultChevronRightIcon,
 }) => {
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set()
+  );
   const [categorySearch, setCategorySearch] = useState("");
 
   const hasActiveFilters = Object.keys(filters).length > 0;
 
   const updateFilter = <K extends keyof ProductFilterValues>(
     key: K,
-    value: ProductFilterValues[K],
+    value: ProductFilterValues[K]
   ) => {
     onChange({ ...filters, [key]: value });
   };
 
   const toggleArrayFilter = <K extends keyof ProductFilterValues>(
     key: K,
-    value: string,
+    value: string
   ) => {
     const current = (filters[key] as string[]) || [];
     const updated = current.includes(value)
@@ -219,7 +256,9 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <FilterIcon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-          <h3 className="font-semibold text-gray-900 dark:text-white">Filters</h3>
+          <h3 className="font-semibold text-gray-900 dark:text-white">
+            Filters
+          </h3>
         </div>
         {hasActiveFilters && (
           <button
@@ -236,7 +275,9 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
       {/* Categories */}
       {categories.length > 0 && (
         <div className="space-y-3">
-          <h4 className="font-medium text-gray-900 dark:text-white">Categories</h4>
+          <h4 className="font-medium text-gray-900 dark:text-white">
+            Categories
+          </h4>
           <input
             type="text"
             placeholder="Search categories..."
@@ -262,7 +303,9 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
 
       {/* Price Range */}
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-900 dark:text-white">Price Range</h4>
+        <h4 className="font-medium text-gray-900 dark:text-white">
+          Price Range
+        </h4>
         <div className="grid grid-cols-2 gap-2">
           <div>
             <label
@@ -277,7 +320,10 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
               placeholder="₹0"
               value={filters.priceMin || ""}
               onChange={(e) =>
-                updateFilter("priceMin", e.target.value ? Number(e.target.value) : undefined)
+                updateFilter(
+                  "priceMin",
+                  e.target.value ? Number(e.target.value) : undefined
+                )
               }
               className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
@@ -295,7 +341,10 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
               placeholder="₹100,000"
               value={filters.priceMax || ""}
               onChange={(e) =>
-                updateFilter("priceMax", e.target.value ? Number(e.target.value) : undefined)
+                updateFilter(
+                  "priceMax",
+                  e.target.value ? Number(e.target.value) : undefined
+                )
               }
               className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
@@ -325,14 +374,19 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
           <h4 className="font-medium text-gray-900 dark:text-white">Brand</h4>
           <div className="max-h-48 overflow-y-auto space-y-2">
             {availableBrands.map((brand) => (
-              <label key={brand} className="flex items-center gap-2 cursor-pointer">
+              <label
+                key={brand}
+                className="flex items-center gap-2 cursor-pointer"
+              >
                 <input
                   type="checkbox"
                   checked={(filters.brands || []).includes(brand)}
                   onChange={() => toggleArrayFilter("brands", brand)}
                   className="h-4 w-4 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
                 />
-                <span className="text-sm text-gray-700 dark:text-gray-300">{brand}</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  {brand}
+                </span>
               </label>
             ))}
           </div>
@@ -341,14 +395,19 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
 
       {/* Stock Status */}
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-900 dark:text-white">Stock Status</h4>
+        <h4 className="font-medium text-gray-900 dark:text-white">
+          Stock Status
+        </h4>
         <div className="space-y-2">
           {[
             { label: "In Stock", value: "in_stock" },
             { label: "Out of Stock", value: "out_of_stock" },
             { label: "Low Stock", value: "low_stock" },
           ].map((option) => (
-            <label key={option.value} className="flex items-center gap-2 cursor-pointer">
+            <label
+              key={option.value}
+              className="flex items-center gap-2 cursor-pointer"
+            >
               <input
                 type="radio"
                 name="stock"
@@ -356,7 +415,9 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                 onChange={() => updateFilter("stock", option.value as any)}
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">{option.label}</span>
+              <span className="text-sm text-gray-700 dark:text-gray-300">
+                {option.label}
+              </span>
             </label>
           ))}
         </div>
@@ -372,14 +433,21 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
             { label: "Good", value: "good" },
             { label: "Fair", value: "fair" },
           ].map((option) => (
-            <label key={option.value} className="flex items-center gap-2 cursor-pointer">
+            <label
+              key={option.value}
+              className="flex items-center gap-2 cursor-pointer"
+            >
               <input
                 type="checkbox"
-                checked={(filters.condition || []).includes(option.value as any)}
+                checked={(filters.condition || []).includes(
+                  option.value as any
+                )}
                 onChange={() => toggleArrayFilter("condition", option.value)}
                 className="h-4 w-4 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">{option.label}</span>
+              <span className="text-sm text-gray-700 dark:text-gray-300">
+                {option.label}
+              </span>
             </label>
           ))}
         </div>
@@ -387,10 +455,15 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
 
       {/* Rating */}
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-900 dark:text-white">Minimum Rating</h4>
+        <h4 className="font-medium text-gray-900 dark:text-white">
+          Minimum Rating
+        </h4>
         <div className="space-y-2">
           {[4, 3, 2, 1].map((rating) => (
-            <label key={rating} className="flex items-center gap-2 cursor-pointer">
+            <label
+              key={rating}
+              className="flex items-center gap-2 cursor-pointer"
+            >
               <input
                 type="radio"
                 name="rating"
@@ -409,25 +482,35 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
 
       {/* Additional Options */}
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-900 dark:text-white">Additional Options</h4>
+        <h4 className="font-medium text-gray-900 dark:text-white">
+          Additional Options
+        </h4>
         <div className="space-y-2">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
               checked={filters.featured || false}
-              onChange={(e) => updateFilter("featured", e.target.checked || undefined)}
+              onChange={(e) =>
+                updateFilter("featured", e.target.checked || undefined)
+              }
               className="h-4 w-4 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
             />
-            <span className="text-sm text-gray-700 dark:text-gray-300">Featured Only</span>
+            <span className="text-sm text-gray-700 dark:text-gray-300">
+              Featured Only
+            </span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
               checked={filters.returnable || false}
-              onChange={(e) => updateFilter("returnable", e.target.checked || undefined)}
+              onChange={(e) =>
+                updateFilter("returnable", e.target.checked || undefined)
+              }
               className="h-4 w-4 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
             />
-            <span className="text-sm text-gray-700 dark:text-gray-300">Returnable</span>
+            <span className="text-sm text-gray-700 dark:text-gray-300">
+              Returnable
+            </span>
           </label>
         </div>
       </div>
