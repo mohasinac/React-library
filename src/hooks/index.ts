@@ -40,7 +40,26 @@ export {
   useViewport,
 } from "./useMediaQuery";
 
-// Utility hooks
+// Utility hooks (Task 19.2)
+export { useSafeLoad } from "./useSafeLoad";
+export type { UseSafeLoadOptions, UseSafeLoadReturn } from "./useSafeLoad";
+
+export { useWindowResize } from "./useWindowResize";
+export type {
+  UseWindowResizeOptions,
+  UseWindowResizeReturn,
+  WindowSize,
+} from "./useWindowResize";
+
+// Mobile detection utilities from useMobile (additional utilities)
+export {
+  useDeviceType,
+  isIOS,
+  isAndroid,
+  getDeviceType,
+  breakpoints,
+} from "./useMobile";
+
 export {
   useClipboard,
   useCounter,

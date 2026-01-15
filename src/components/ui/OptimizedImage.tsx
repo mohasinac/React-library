@@ -17,7 +17,7 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export interface OptimizedImageProps {
   /** Image source URL */
