@@ -59,3 +59,6 @@ export type { FilterSectionProps } from "./FilterSectionComponent";
 
 export { PriceRangeFilter } from "./PriceRangeFilter";
 export type { PriceRangeFilterProps } from "./PriceRangeFilter";
+
+export { SearchBar } from "./SearchBar";
+export type { SearchBarProps, SearchSuggestion } from "./SearchBar";

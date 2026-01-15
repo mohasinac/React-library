@@ -37,7 +37,9 @@ export interface FilterSectionProps {
   /** Callback when field value changes */
   onFieldChange: (key: string, value: any) => void;
   /** Function to render a field */
-  renderField: (field: FilterField & { _highlighted?: boolean }) => React.ReactNode;
+  renderField: (
+    field: FilterField & { _highlighted?: boolean }
+  ) => React.ReactNode;
   /** Function to highlight text (for search) */
   highlightText: (text: string) => React.ReactNode;
   /** External collapsed state (for centralized control) */
@@ -50,8 +52,18 @@ export interface FilterSectionProps {
 
 /** Default ChevronDown Icon */
 const DefaultChevronDownIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 9l-7 7-7-7"
+    />
   </svg>
 );
 
@@ -125,7 +137,9 @@ export const FilterSectionComponent: React.FC<FilterSectionProps> = ({
                 }`}
               >
                 {field.icon && (
-                  <span className="text-gray-400 dark:text-gray-500">{field.icon}</span>
+                  <span className="text-gray-400 dark:text-gray-500">
+                    {field.icon}
+                  </span>
                 )}
                 {highlightText(field.label)}
               </label>

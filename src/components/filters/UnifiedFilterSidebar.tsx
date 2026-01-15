@@ -30,8 +30,8 @@
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { FilterField, FilterSidebarSection } from "./FilterSidebar";
 import { FilterSectionComponent } from "./FilterSectionComponent";
+import { FilterField, FilterSidebarSection } from "./FilterSidebar";
 import { PriceRangeFilter } from "./PriceRangeFilter";
 
 export interface UnifiedFilterSidebarProps {
@@ -75,7 +75,12 @@ export interface UnifiedFilterSidebarProps {
 
 /** Default Search Icon */
 const DefaultSearchIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -87,8 +92,18 @@ const DefaultSearchIcon = ({ className }: { className?: string }) => (
 
 /** Default X Icon */
 const DefaultXIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
@@ -113,21 +128,24 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
   XIcon = DefaultXIcon,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [pendingValues, setPendingValues] = useState<Record<string, any>>(values);
-  const [collapsedState, setCollapsedState] = useState<Record<string, boolean>>(() => {
-    // Load from localStorage on mount
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("filter-expanded-state");
-      if (stored) {
-        try {
-          return JSON.parse(stored);
-        } catch (e) {
-          return {};
+  const [pendingValues, setPendingValues] =
+    useState<Record<string, any>>(values);
+  const [collapsedState, setCollapsedState] = useState<Record<string, boolean>>(
+    () => {
+      // Load from localStorage on mount
+      if (typeof window !== "undefined") {
+        const stored = localStorage.getItem("filter-expanded-state");
+        if (stored) {
+          try {
+            return JSON.parse(stored);
+          } catch (e) {
+            return {};
+          }
         }
       }
+      return {};
     }
-    return {};
-  });
+  );
 
   useEffect(() => {
     setPendingValues(values);
@@ -161,7 +179,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
   }, [onReset]);
 
   const hasPendingChanges = useMemo(() => {
-    const currentKeys = new Set([...Object.keys(values), ...Object.keys(pendingValues)]);
+    const currentKeys = new Set([
+      ...Object.keys(values),
+      ...Object.keys(pendingValues),
+    ]);
     for (const key of currentKeys) {
       if (JSON.stringify(values[key]) !== JSON.stringify(pendingValues[key])) {
         return true;
@@ -172,7 +193,8 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
 
   const hasActiveFilters = Object.values(pendingValues).some((value) => {
     if (Array.isArray(value)) return value.length > 0;
-    if (typeof value === "object" && value !== null) return Object.keys(value).length > 0;
+    if (typeof value === "object" && value !== null)
+      return Object.keys(value).length > 0;
     return value !== null && value !== undefined && value !== "";
   });
 
@@ -190,10 +212,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
           </mark>
         ) : (
           part
-        ),
+        )
       );
     },
-    [searchQuery, searchable],
+    [searchQuery, searchable]
   );
 
   const handleCheckboxChange = useCallback(
@@ -204,7 +226,7 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
         : currentValues.filter((v: any) => v !== optionValue);
       handlePendingChange(key, newValues);
     },
-    [pendingValues, handlePendingChange],
+    [pendingValues, handlePendingChange]
   );
 
   const renderField = useCallback(
@@ -279,7 +301,11 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                     type="checkbox"
                     checked={(value || []).includes(option.value)}
                     onChange={(e) =>
-                      handleCheckboxChange(field.key, option.value, e.target.checked)
+                      handleCheckboxChange(
+                        field.key,
+                        option.value,
+                        e.target.checked
+                      )
                     }
                     className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500"
                   />
@@ -309,7 +335,9 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                     name={field.key}
                     value={option.value}
                     checked={value === option.value}
-                    onChange={(e) => handlePendingChange(field.key, e.target.value)}
+                    onChange={(e) =>
+                      handlePendingChange(field.key, e.target.value)
+                    }
                     className="w-4 h-4 text-blue-600 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300 flex-1">
@@ -342,7 +370,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                 type="date"
                 value={value?.from || ""}
                 onChange={(e) =>
-                  handlePendingChange(field.key, { ...value, from: e.target.value })
+                  handlePendingChange(field.key, {
+                    ...value,
+                    from: e.target.value,
+                  })
                 }
                 placeholder="From"
                 className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -351,7 +382,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                 type="date"
                 value={value?.to || ""}
                 onChange={(e) =>
-                  handlePendingChange(field.key, { ...value, to: e.target.value })
+                  handlePendingChange(field.key, {
+                    ...value,
+                    to: e.target.value,
+                  })
                 }
                 placeholder="To"
                 className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -367,7 +401,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                   type="number"
                   value={value?.min || ""}
                   onChange={(e) =>
-                    handlePendingChange(field.key, { ...value, min: e.target.value })
+                    handlePendingChange(field.key, {
+                      ...value,
+                      min: e.target.value,
+                    })
                   }
                   placeholder="Min"
                   min={field.min}
@@ -380,7 +417,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                   type="number"
                   value={value?.max || ""}
                   onChange={(e) =>
-                    handlePendingChange(field.key, { ...value, max: e.target.value })
+                    handlePendingChange(field.key, {
+                      ...value,
+                      max: e.target.value,
+                    })
                   }
                   placeholder="Max"
                   min={field.min}
@@ -396,7 +436,7 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
           return null;
       }
     },
-    [pendingValues, handlePendingChange, handleCheckboxChange, highlightText],
+    [pendingValues, handlePendingChange, handleCheckboxChange, highlightText]
   );
 
   const filteredSections = useMemo(() => {
@@ -412,7 +452,7 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
             const fieldMatches = field.label.toLowerCase().includes(query);
             if (field.options) {
               const filteredOptions = field.options.filter((option) =>
-                option.label.toLowerCase().includes(query),
+                option.label.toLowerCase().includes(query)
               );
               if (filteredOptions.length > 0) {
                 return {
@@ -460,15 +500,19 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
           mobile
             ? "fixed inset-y-0 left-0 z-50 w-80 transform transition-transform duration-300"
             : isOpen
-              ? "w-72 shrink-0"
-              : "w-0 overflow-hidden"
-        } ${mobile && !isOpen ? "-translate-x-full" : "translate-x-0"} bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col transition-all duration-300 ${className}`}
+            ? "w-72 shrink-0"
+            : "w-0 overflow-hidden"
+        } ${
+          mobile && !isOpen ? "-translate-x-full" : "translate-x-0"
+        } bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col transition-all duration-300 ${className}`}
       >
         {/* Header */}
         <div className="flex-shrink-0 p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Filters
+              </h2>
               {resultCount !== undefined && (
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {resultCount} result{resultCount !== 1 ? "s" : ""}
@@ -498,7 +542,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                   });
                   setCollapsedState(allExpanded);
                   if (typeof window !== "undefined") {
-                    localStorage.setItem("filter-expanded-state", JSON.stringify(allExpanded));
+                    localStorage.setItem(
+                      "filter-expanded-state",
+                      JSON.stringify(allExpanded)
+                    );
                   }
                 }}
                 className="flex-1 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors"
@@ -514,7 +561,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                   });
                   setCollapsedState(allCollapsed);
                   if (typeof window !== "undefined") {
-                    localStorage.setItem("filter-expanded-state", JSON.stringify(allCollapsed));
+                    localStorage.setItem(
+                      "filter-expanded-state",
+                      JSON.stringify(allCollapsed)
+                    );
                   }
                 }}
                 className="flex-1 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors"
@@ -540,8 +590,8 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                 {isLoading
                   ? "Applying..."
                   : hasPendingChanges
-                    ? "Apply Filters"
-                    : "Filters Applied"}
+                  ? "Apply Filters"
+                  : "Filters Applied"}
               </button>
               {hasActiveFilters && (
                 <button
@@ -638,7 +688,10 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
                   const newState = { ...collapsedState, [title]: collapsed };
                   setCollapsedState(newState);
                   if (typeof window !== "undefined") {
-                    localStorage.setItem("filter-expanded-state", JSON.stringify(newState));
+                    localStorage.setItem(
+                      "filter-expanded-state",
+                      JSON.stringify(newState)
+                    );
                   }
                 }}
               />
@@ -665,8 +718,8 @@ export const UnifiedFilterSidebar: React.FC<UnifiedFilterSidebarProps> = ({
               {isLoading
                 ? "Applying..."
                 : hasPendingChanges
-                  ? "Apply Filters"
-                  : "Filters Applied"}
+                ? "Apply Filters"
+                : "Filters Applied"}
             </button>
             {hasActiveFilters && (
               <button

@@ -102,8 +102,8 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
           {localValue.min && localValue.max
             ? `${currency}${localValue.min} - ${currency}${localValue.max}`
             : localValue.min
-              ? `From ${currency}${localValue.min}`
-              : `Up to ${currency}${localValue.max}`}
+            ? `From ${currency}${localValue.min}`
+            : `Up to ${currency}${localValue.max}`}
         </p>
       )}
     </div>
