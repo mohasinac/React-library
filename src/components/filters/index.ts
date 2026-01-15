@@ -46,7 +46,16 @@ export type {
 
 export { FilterSidebar } from "./FilterSidebar";
 export type {
+  FilterField,
   FilterSidebarProps,
   FilterSidebarSection,
-  FilterField,
 } from "./FilterSidebar";
+
+export { UnifiedFilterSidebar } from "./UnifiedFilterSidebar";
+export type { UnifiedFilterSidebarProps } from "./UnifiedFilterSidebar";
+
+export { FilterSectionComponent } from "./FilterSectionComponent";
+export type { FilterSectionProps } from "./FilterSectionComponent";
+
+export { PriceRangeFilter } from "./PriceRangeFilter";
+export type { PriceRangeFilterProps } from "./PriceRangeFilter";

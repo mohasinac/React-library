@@ -15,7 +15,7 @@
  *     ]
  *   }
  * ];
- * 
+ *
  * <FilterSidebar
  *   sections={sections}
  *   values={filterValues}
@@ -29,7 +29,7 @@
  * ```
  */
 
-import { useState, useEffect, ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export interface FilterField {
   /** Unique key for the filter field */
@@ -101,15 +101,35 @@ export interface FilterSidebarProps {
 
 /** Default Close Icon */
 const DefaultCloseIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
   </svg>
 );
 
 /** Default ChevronDown Icon */
 const DefaultChevronDownIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 9l-7 7-7-7"
+    />
   </svg>
 );
 
@@ -127,7 +147,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   CloseIcon = DefaultCloseIcon,
   ChevronDownIcon = DefaultChevronDownIcon,
 }) => {
-  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set());
+  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
+    new Set()
+  );
 
   useEffect(() => {
     // Initialize collapsed sections
@@ -162,7 +184,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   const handleCheckboxChange = (
     key: string,
     optionValue: string | number,
-    checked: boolean,
+    checked: boolean
   ) => {
     const currentValues = values[key] || [];
     const newValues = checked
@@ -230,7 +252,11 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   type="checkbox"
                   checked={(value || []).includes(option.value)}
                   onChange={(e) =>
-                    handleCheckboxChange(field.key, option.value, e.target.checked)
+                    handleCheckboxChange(
+                      field.key,
+                      option.value,
+                      e.target.checked
+                    )
                   }
                   className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -292,14 +318,18 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <input
               type="date"
               value={value?.from || ""}
-              onChange={(e) => onChange(field.key, { ...value, from: e.target.value })}
+              onChange={(e) =>
+                onChange(field.key, { ...value, from: e.target.value })
+              }
               placeholder="From"
               className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
             <input
               type="date"
               value={value?.to || ""}
-              onChange={(e) => onChange(field.key, { ...value, to: e.target.value })}
+              onChange={(e) =>
+                onChange(field.key, { ...value, to: e.target.value })
+              }
               placeholder="To"
               className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
@@ -313,7 +343,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="number"
                 value={value?.min || ""}
-                onChange={(e) => onChange(field.key, { ...value, min: e.target.value })}
+                onChange={(e) =>
+                  onChange(field.key, { ...value, min: e.target.value })
+                }
                 placeholder="Min"
                 min={field.min}
                 max={field.max}
@@ -324,7 +356,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <input
                 type="number"
                 value={value?.max || ""}
-                onChange={(e) => onChange(field.key, { ...value, max: e.target.value })}
+                onChange={(e) =>
+                  onChange(field.key, { ...value, max: e.target.value })
+                }
                 placeholder="Max"
                 min={field.min}
                 max={field.max}
@@ -364,7 +398,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Filters
+            </h2>
             {resultCount !== undefined && (
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {resultCount} result{resultCount !== 1 ? "s" : ""}
@@ -391,7 +427,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <div key={section.title} className="space-y-3">
                 {/* Section Header */}
                 <button
-                  onClick={() => section.collapsible && toggleSection(section.title)}
+                  onClick={() =>
+                    section.collapsible && toggleSection(section.title)
+                  }
                   className={`flex items-center justify-between w-full text-left ${
                     section.collapsible ? "cursor-pointer" : "cursor-default"
                   }`}
