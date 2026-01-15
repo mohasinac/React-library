@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { ActionMenu } from "../tables/ActionMenu";
+import { describe, expect, it, vi } from "vitest";
 import type { ActionMenuItem } from "../tables/ActionMenu";
+import { ActionMenu } from "../tables/ActionMenu";
 
 describe("ActionMenu", () => {
   const defaultItems: ActionMenuItem[] = [
@@ -12,7 +12,9 @@ describe("ActionMenu", () => {
 
   it("renders trigger button with label", () => {
     render(<ActionMenu items={defaultItems} label="Actions" />);
-    expect(screen.getByRole("button", { name: /actions/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /actions/i })
+    ).toBeInTheDocument();
   });
 
   it("menu is closed by default", () => {
@@ -34,7 +36,9 @@ describe("ActionMenu", () => {
 
     await user.click(screen.getByRole("button", { name: /actions/i }));
     expect(screen.getByRole("menuitem", { name: /edit/i })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: /delete/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: /delete/i })
+    ).toBeInTheDocument();
   });
 
   it("calls onClick handler when menu item is clicked", async () => {
@@ -291,7 +295,9 @@ describe("ActionMenu", () => {
 
   it("handles empty items array", () => {
     render(<ActionMenu items={[]} />);
-    expect(screen.getByRole("button", { name: /actions/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /actions/i })
+    ).toBeInTheDocument();
   });
 
   it("displays empty menu when opened with no items", async () => {

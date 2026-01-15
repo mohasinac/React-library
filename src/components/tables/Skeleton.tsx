@@ -5,7 +5,7 @@ interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
    * Additional CSS classes
    */
   className?: string;
-  
+
   /**
    * Enable/disable pulse animation
    * @default true
@@ -23,24 +23,24 @@ const cn = (...classes: (string | boolean | undefined)[]) => {
 
 /**
  * Skeleton - Base skeleton component for loading states
- * 
+ *
  * A simple, flexible skeleton component that displays a placeholder while content is loading.
  * Uses Tailwind CSS for styling and animations.
- * 
+ *
  * Features:
  * - Pulse animation (optional)
  * - Fully customizable via className
  * - Accepts all standard div attributes
  * - Framework-agnostic design
- * 
+ *
  * @example
  * ```tsx
  * // Simple skeleton
  * <Skeleton className="h-4 w-full" />
- * 
+ *
  * // Card skeleton
  * <Skeleton className="h-64 w-full rounded-lg" />
- * 
+ *
  * // Without animation
  * <Skeleton className="h-4 w-24" animate={false} />
  * ```
@@ -58,7 +58,7 @@ export function Skeleton({
       className={cn(
         "bg-gray-200 dark:bg-gray-700 rounded",
         animate && "animate-pulse",
-        className,
+        className
       )}
       {...props}
     />
@@ -67,10 +67,10 @@ export function Skeleton({
 
 /**
  * SkeletonText - Skeleton for text lines
- * 
+ *
  * Renders multiple skeleton lines simulating text content.
  * The last line is automatically shorter (75% width) for a more realistic appearance.
- * 
+ *
  * @example
  * ```tsx
  * <SkeletonText lines={3} />
@@ -91,7 +91,7 @@ export function SkeletonText({
           key={i}
           className={cn(
             "h-4",
-            i === lines - 1 ? "w-3/4" : "w-full", // Last line shorter
+            i === lines - 1 ? "w-3/4" : "w-full" // Last line shorter
           )}
         />
       ))}
@@ -101,9 +101,9 @@ export function SkeletonText({
 
 /**
  * SkeletonAvatar - Skeleton for avatar/profile picture
- * 
+ *
  * Circular skeleton optimized for avatar placeholders.
- * 
+ *
  * @example
  * ```tsx
  * <SkeletonAvatar size="md" />
@@ -131,9 +131,9 @@ export function SkeletonAvatar({
 
 /**
  * SkeletonButton - Skeleton for button
- * 
+ *
  * Rectangular skeleton optimized for button placeholders.
- * 
+ *
  * @example
  * ```tsx
  * <SkeletonButton variant="default" />
@@ -162,9 +162,9 @@ export function SkeletonButton({
 
 /**
  * SkeletonImage - Skeleton for image
- * 
+ *
  * Skeleton with aspect ratio presets for image placeholders.
- * 
+ *
  * @example
  * ```tsx
  * <SkeletonImage aspectRatio="video" />
@@ -199,13 +199,13 @@ export interface LoadingSkeletonProps {
    * @default "card"
    */
   type?: "card" | "list" | "detail" | "grid" | "table";
-  
+
   /**
    * Number of skeleton items to render
    * @default 1
    */
   count?: number;
-  
+
   /**
    * Additional CSS classes
    */
@@ -214,24 +214,24 @@ export interface LoadingSkeletonProps {
 
 /**
  * LoadingSkeleton - Complex skeleton layouts for different content types
- * 
+ *
  * Pre-built skeleton layouts optimized for common UI patterns.
  * Provides consistent loading states across the application.
- * 
+ *
  * Features:
  * - Multiple layout types (card, list, detail, grid, table)
  * - Configurable item count
  * - Dark mode support
  * - Pulse animations
- * 
+ *
  * @example
  * ```tsx
  * // Card grid loading
  * <LoadingSkeleton type="grid" count={6} />
- * 
+ *
  * // List loading
  * <LoadingSkeleton type="list" count={3} />
- * 
+ *
  * // Product detail loading
  * <LoadingSkeleton type="detail" />
  * ```
@@ -276,7 +276,7 @@ export function LoadingSkeleton({
             key={i}
             className={cn(
               "animate-pulse flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg",
-              className,
+              className
             )}
           >
             {/* Image skeleton */}
@@ -342,7 +342,7 @@ export function LoadingSkeleton({
       <div
         className={cn(
           "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
-          className,
+          className
         )}
       >
         {skeletons.map((i) => (
@@ -378,7 +378,10 @@ export function LoadingSkeleton({
 
         {/* Table rows skeleton */}
         {skeletons.map((i) => (
-          <div key={i} className="flex gap-4 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div
+            key={i}
+            className="flex gap-4 py-4 border-b border-gray-200 dark:border-gray-700"
+          >
             <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/6" />
             <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/4" />
             <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/5" />

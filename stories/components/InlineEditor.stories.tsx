@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { InlineEditor } from "../../src/components/tables/InlineEditor";
 import { useState } from "react";
+import { InlineEditor } from "../../src/components/tables/InlineEditor";
 
 /**
  * InlineEditor allows users to edit values directly inline without navigating to a separate form.
@@ -271,8 +271,8 @@ export const Interactive: Story = {
             <strong>Total saves:</strong> {saveCount}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-            Click any value to edit. Press Enter to save, Escape to cancel.
-            For textarea, use Ctrl+Enter to save.
+            Click any value to edit. Press Enter to save, Escape to cancel. For
+            textarea, use Ctrl+Enter to save.
           </p>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
+  LoadingSkeleton,
   Skeleton,
-  SkeletonText,
   SkeletonAvatar,
   SkeletonButton,
   SkeletonImage,
-  LoadingSkeleton,
+  SkeletonText,
 } from "../src/components/tables/Skeleton";
 
 const meta = {
@@ -37,7 +37,8 @@ export const BaseSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Base skeleton component with custom dimensions using className.",
+        story:
+          "Base skeleton component with custom dimensions using className.",
       },
     },
   },
@@ -97,19 +98,27 @@ export const AvatarSkeleton: Story = {
   render: () => (
     <div className="flex items-end gap-6">
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">Small</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">
+          Small
+        </p>
         <SkeletonAvatar size="sm" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">Medium</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">
+          Medium
+        </p>
         <SkeletonAvatar size="md" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">Large</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">
+          Large
+        </p>
         <SkeletonAvatar size="lg" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">XL</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center">
+          XL
+        </p>
         <SkeletonAvatar size="xl" />
       </div>
     </div>
@@ -139,7 +148,9 @@ export const ButtonSkeleton: Story = {
         <SkeletonButton variant="lg" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Full Width</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+          Full Width
+        </p>
         <SkeletonButton className="w-full max-w-xs" />
       </div>
     </div>
@@ -161,11 +172,15 @@ export const ImageSkeleton: Story = {
         <SkeletonImage aspectRatio="square" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Video (16:9)</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+          Video (16:9)
+        </p>
         <SkeletonImage aspectRatio="video" />
       </div>
       <div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Portrait (3:4)</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+          Portrait (3:4)
+        </p>
         <SkeletonImage aspectRatio="portrait" />
       </div>
     </div>
@@ -188,7 +203,8 @@ export const CardLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Card loading skeleton - perfect for product cards, blog posts, etc.",
+        story:
+          "Card loading skeleton - perfect for product cards, blog posts, etc.",
       },
     },
   },
@@ -247,7 +263,8 @@ export const TableLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Table loading skeleton - simulates table structure with header and rows.",
+        story:
+          "Table loading skeleton - simulates table structure with header and rows.",
       },
     },
   },
@@ -359,7 +376,8 @@ export const DarkMode: Story = {
   parameters: {
     docs: {
       description: {
-        story: "All skeleton components support dark mode with automatic color adjustments.",
+        story:
+          "All skeleton components support dark mode with automatic color adjustments.",
       },
     },
   },
@@ -445,7 +463,8 @@ export const AllComponents: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Comprehensive showcase of all skeleton components and their variations.",
+        story:
+          "Comprehensive showcase of all skeleton components and their variations.",
       },
     },
   },

@@ -21,24 +21,24 @@ export interface StatusBadgeProps {
    * The status to display. Can be a predefined StatusType or custom string
    */
   status: StatusType | string;
-  
+
   /**
    * Visual variant of the badge
    * @default "default"
    */
   variant?: "default" | "outline" | "solid";
-  
+
   /**
    * Size of the badge
    * @default "md"
    */
   size?: "sm" | "md" | "lg";
-  
+
   /**
    * Additional CSS classes to apply
    */
   className?: string;
-  
+
   /**
    * Custom status styles mapping
    * Allows overriding or adding new status styles
@@ -140,7 +140,7 @@ const sizeStyles = {
 
 /**
  * StatusBadge - Display status indicators with predefined styles
- * 
+ *
  * Features:
  * - Predefined status types with color schemes
  * - Multiple visual variants (default, outline, solid)
@@ -148,7 +148,7 @@ const sizeStyles = {
  * - Support for custom status values
  * - Customizable status styles mapping
  * - Dark mode support
- * 
+ *
  * @example
  * ```tsx
  * <StatusBadge status="active" />

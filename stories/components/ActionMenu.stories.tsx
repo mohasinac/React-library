@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ActionMenu } from "../../src/components/tables/ActionMenu";
-import type { ActionMenuItem } from "../../src/components/tables/ActionMenu";
 import { useState } from "react";
+import type { ActionMenuItem } from "../../src/components/tables/ActionMenu";
+import { ActionMenu } from "../../src/components/tables/ActionMenu";
 
 /**
  * ActionMenu provides a dropdown menu of actions, commonly used in tables and lists
@@ -46,7 +46,12 @@ const basicItems: ActionMenuItem[] = [
     label: "Edit",
     onClick: fn(),
     icon: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,7 +65,12 @@ const basicItems: ActionMenuItem[] = [
     label: "Duplicate",
     onClick: fn(),
     icon: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -74,7 +84,12 @@ const basicItems: ActionMenuItem[] = [
     label: "Archive",
     onClick: fn(),
     icon: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -89,7 +104,12 @@ const basicItems: ActionMenuItem[] = [
     onClick: fn(),
     variant: "danger",
     icon: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -158,7 +178,12 @@ export const IconOnly: Story = {
     items: basicItems,
     label: "",
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"

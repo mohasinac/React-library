@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Props for InlineEditor component
@@ -60,7 +60,12 @@ const DefaultEditIcon = () => (
 );
 
 const DefaultSaveIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -71,7 +76,12 @@ const DefaultSaveIcon = () => (
 );
 
 const DefaultCancelIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -151,7 +161,8 @@ export function InlineEditor({
       await onSave(editValue);
       setIsEditing(false);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to save";
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to save";
       setError(errorMessage);
       if (onError) {
         onError(
@@ -193,9 +204,7 @@ export function InlineEditor({
         tabIndex={disabled ? -1 : 0}
         aria-label="Click to edit"
         className={`inline-flex items-center gap-2 ${
-          disabled
-            ? "cursor-not-allowed opacity-50"
-            : displayClassName
+          disabled ? "cursor-not-allowed opacity-50" : displayClassName
         } px-2 py-1 rounded transition-colors ${className}`}
       >
         <span className="text-gray-900 dark:text-gray-100">

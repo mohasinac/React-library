@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 import { InlineEditor } from "../tables/InlineEditor";
 
 describe("InlineEditor", () => {
@@ -37,7 +37,9 @@ describe("InlineEditor", () => {
     const onSave = vi.fn();
     render(<InlineEditor value="Test Value" onSave={onSave} />);
 
-    const displayButton = screen.getByRole("button", { name: /click to edit/i });
+    const displayButton = screen.getByRole("button", {
+      name: /click to edit/i,
+    });
     displayButton.focus();
     await user.keyboard("{Enter}");
 
@@ -284,7 +286,12 @@ describe("InlineEditor", () => {
       { label: "Option 2", value: "opt2" },
     ];
     render(
-      <InlineEditor value="opt1" onSave={onSave} type="select" options={options} />
+      <InlineEditor
+        value="opt1"
+        onSave={onSave}
+        type="select"
+        options={options}
+      />
     );
 
     await user.click(screen.getByRole("button", { name: /click to edit/i }));
@@ -301,7 +308,9 @@ describe("InlineEditor", () => {
     const onSave = vi.fn();
     render(<InlineEditor value="Test Value" onSave={onSave} disabled />);
 
-    const displayButton = screen.getByRole("button", { name: /click to edit/i });
+    const displayButton = screen.getByRole("button", {
+      name: /click to edit/i,
+    });
     expect(displayButton).toHaveAttribute("tabindex", "-1");
     expect(displayButton).toHaveClass("cursor-not-allowed", "opacity-50");
   });
@@ -322,7 +331,11 @@ describe("InlineEditor", () => {
     const onSave = vi.fn();
     const displayRenderer = (value: string) => <strong>Custom: {value}</strong>;
     render(
-      <InlineEditor value="Test" onSave={onSave} displayRenderer={displayRenderer} />
+      <InlineEditor
+        value="Test"
+        onSave={onSave}
+        displayRenderer={displayRenderer}
+      />
     );
 
     expect(screen.getByText("Custom: Test")).toBeInTheDocument();
@@ -364,7 +377,9 @@ describe("InlineEditor", () => {
       />
     );
 
-    const displayButton = screen.getByRole("button", { name: /click to edit/i });
+    const displayButton = screen.getByRole("button", {
+      name: /click to edit/i,
+    });
     expect(displayButton).toHaveClass("custom-display");
   });
 });

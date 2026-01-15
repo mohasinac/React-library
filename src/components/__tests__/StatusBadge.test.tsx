@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import { StatusBadge } from "../tables/StatusBadge";
 
 describe("StatusBadge", () => {
@@ -148,7 +148,9 @@ describe("StatusBadge", () => {
 
   describe("Variants", () => {
     it("renders default variant", () => {
-      const { container } = render(<StatusBadge status="active" variant="default" />);
+      const { container } = render(
+        <StatusBadge status="active" variant="default" />
+      );
       const badge = container.querySelector("span");
       expect(badge).toHaveClass("bg-green-100");
       expect(badge).toHaveClass("text-green-800");
@@ -156,7 +158,9 @@ describe("StatusBadge", () => {
     });
 
     it("renders outline variant", () => {
-      const { container } = render(<StatusBadge status="active" variant="outline" />);
+      const { container } = render(
+        <StatusBadge status="active" variant="outline" />
+      );
       const badge = container.querySelector("span");
       expect(badge).toHaveClass("bg-transparent");
       expect(badge).toHaveClass("text-green-800");
@@ -165,7 +169,9 @@ describe("StatusBadge", () => {
     });
 
     it("renders solid variant", () => {
-      const { container } = render(<StatusBadge status="active" variant="solid" />);
+      const { container } = render(
+        <StatusBadge status="active" variant="solid" />
+      );
       const badge = container.querySelector("span");
       expect(badge).toHaveClass("bg-green-100");
       expect(badge).toHaveClass("text-green-800");
@@ -257,10 +263,10 @@ describe("StatusBadge", () => {
     it("normalizes status to lowercase for style matching", () => {
       const { container: container1 } = render(<StatusBadge status="ACTIVE" />);
       const { container: container2 } = render(<StatusBadge status="active" />);
-      
+
       const badge1 = container1.querySelector("span");
       const badge2 = container2.querySelector("span");
-      
+
       // Both should have same styles (normalized to lowercase)
       expect(badge1?.className).toContain("bg-green-100");
       expect(badge2?.className).toContain("bg-green-100");

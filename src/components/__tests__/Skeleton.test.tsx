@@ -1,12 +1,12 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import {
+  LoadingSkeleton,
   Skeleton,
-  SkeletonText,
   SkeletonAvatar,
   SkeletonButton,
   SkeletonImage,
-  LoadingSkeleton,
+  SkeletonText,
 } from "../tables/Skeleton";
 
 describe("Skeleton Components", () => {
@@ -32,7 +32,9 @@ describe("Skeleton Components", () => {
     });
 
     it("applies custom className", () => {
-      const { container } = render(<Skeleton className="custom-class h-8 w-24" />);
+      const { container } = render(
+        <Skeleton className="custom-class h-8 w-24" />
+      );
       const skeleton = container.firstChild;
       expect(skeleton).toHaveClass("custom-class");
       expect(skeleton).toHaveClass("h-8");
@@ -126,7 +128,9 @@ describe("Skeleton Components", () => {
     });
 
     it("applies custom className", () => {
-      const { container } = render(<SkeletonAvatar className="custom-avatar" />);
+      const { container } = render(
+        <SkeletonAvatar className="custom-avatar" />
+      );
       const skeleton = container.querySelector('[role="status"]');
       expect(skeleton).toHaveClass("custom-avatar");
     });
@@ -213,7 +217,9 @@ describe("Skeleton Components", () => {
       });
 
       it("applies custom className", () => {
-        const { container } = render(<LoadingSkeleton type="card" className="custom-card" />);
+        const { container } = render(
+          <LoadingSkeleton type="card" className="custom-card" />
+        );
         const card = container.querySelector(".animate-pulse");
         expect(card).toHaveClass("custom-card");
       });
@@ -235,7 +241,9 @@ describe("Skeleton Components", () => {
       });
 
       it("applies custom className", () => {
-        const { container } = render(<LoadingSkeleton type="list" className="custom-list" />);
+        const { container } = render(
+          <LoadingSkeleton type="list" className="custom-list" />
+        );
         const listItem = container.querySelector(".animate-pulse");
         expect(listItem).toHaveClass("custom-list");
       });
@@ -262,7 +270,9 @@ describe("Skeleton Components", () => {
       });
 
       it("applies custom className", () => {
-        const { container } = render(<LoadingSkeleton type="detail" className="custom-detail" />);
+        const { container } = render(
+          <LoadingSkeleton type="detail" className="custom-detail" />
+        );
         const wrapper = container.querySelector(".animate-pulse");
         expect(wrapper).toHaveClass("custom-detail");
       });
@@ -283,7 +293,9 @@ describe("Skeleton Components", () => {
       });
 
       it("applies custom className to grid", () => {
-        const { container } = render(<LoadingSkeleton type="grid" className="custom-grid" />);
+        const { container } = render(
+          <LoadingSkeleton type="grid" className="custom-grid" />
+        );
         const grid = container.querySelector(".grid");
         expect(grid).toHaveClass("custom-grid");
       });
@@ -291,7 +303,9 @@ describe("Skeleton Components", () => {
 
     describe("Table Type", () => {
       it("renders table skeleton", () => {
-        const { container } = render(<LoadingSkeleton type="table" count={5} />);
+        const { container } = render(
+          <LoadingSkeleton type="table" count={5} />
+        );
         const wrapper = container.querySelector(".animate-pulse");
         expect(wrapper).toBeInTheDocument();
       });
@@ -303,13 +317,17 @@ describe("Skeleton Components", () => {
       });
 
       it("renders correct number of data rows", () => {
-        const { container } = render(<LoadingSkeleton type="table" count={3} />);
+        const { container } = render(
+          <LoadingSkeleton type="table" count={3} />
+        );
         const rows = container.querySelectorAll(".py-4.border-b");
         expect(rows).toHaveLength(3);
       });
 
       it("applies custom className", () => {
-        const { container } = render(<LoadingSkeleton type="table" className="custom-table" />);
+        const { container } = render(
+          <LoadingSkeleton type="table" className="custom-table" />
+        );
         const wrapper = container.querySelector(".animate-pulse");
         expect(wrapper).toHaveClass("custom-table");
       });
@@ -317,7 +335,9 @@ describe("Skeleton Components", () => {
 
     describe("Default Export", () => {
       it("can be imported as default export", async () => {
-        const { default: DefaultLoadingSkeleton } = await import("../tables/Skeleton");
+        const { default: DefaultLoadingSkeleton } = await import(
+          "../tables/Skeleton"
+        );
         const { container } = render(<DefaultLoadingSkeleton type="card" />);
         expect(container.querySelector(".animate-pulse")).toBeInTheDocument();
       });
@@ -326,7 +346,9 @@ describe("Skeleton Components", () => {
     describe("Dark Mode", () => {
       it("includes dark mode classes", () => {
         const { container } = render(<LoadingSkeleton type="card" />);
-        const darkModeElements = container.querySelectorAll(".dark\\:bg-gray-700, .dark\\:bg-gray-600");
+        const darkModeElements = container.querySelectorAll(
+          ".dark\\:bg-gray-700, .dark\\:bg-gray-600"
+        );
         expect(darkModeElements.length).toBeGreaterThan(0);
       });
     });
@@ -345,7 +367,9 @@ describe("Skeleton Components", () => {
       });
 
       it("handles large count values", () => {
-        const { container } = render(<LoadingSkeleton type="grid" count={20} />);
+        const { container } = render(
+          <LoadingSkeleton type="grid" count={20} />
+        );
         const items = container.querySelectorAll(".animate-pulse");
         expect(items).toHaveLength(20);
       });
