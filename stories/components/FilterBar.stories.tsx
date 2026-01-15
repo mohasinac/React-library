@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { FilterBar } from "../../src/components/search/FilterBar";
 import type { QuickFilter } from "../../src/components/search/FilterBar";
+import { FilterBar } from "../../src/components/search/FilterBar";
 
 const meta: Meta<typeof FilterBar> = {
   title: "Components/Search/FilterBar",
@@ -275,7 +275,11 @@ export const InteractiveDemo: Story = {
             Current State:
           </h4>
           <pre className="text-xs bg-gray-100 p-4 rounded-lg overflow-auto">
-            {JSON.stringify({ values, resultCount: calculateResults() }, null, 2)}
+            {JSON.stringify(
+              { values, resultCount: calculateResults() },
+              null,
+              2
+            )}
           </pre>
         </div>
       </div>

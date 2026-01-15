@@ -16,7 +16,7 @@
  * ```
  */
 
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 // ============================================================================
 // Types
@@ -183,7 +183,7 @@ const DefaultBlogIcon = ({ className }: { className?: string }) => (
  * Get content type options with icons
  */
 function getContentTypeOptions(
-  customIcons?: ContentTypeIcons,
+  customIcons?: ContentTypeIcons
 ): ContentTypeOption[] {
   const iconMap = {
     all: customIcons?.all || DefaultAllIcon,
@@ -239,7 +239,7 @@ function getContentTypeOptions(
  */
 export function getContentTypePlaceholder(
   type: ContentType,
-  customIcons?: ContentTypeIcons,
+  customIcons?: ContentTypeIcons
 ): string {
   const options = getContentTypeOptions(customIcons);
   const option = options.find((o) => o.value === type);
@@ -353,8 +353,7 @@ function DropdownVariant({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const options = getContentTypeOptions(customIcons);
 
-  const selectedOption =
-    options.find((o) => o.value === value) || options[0];
+  const selectedOption = options.find((o) => o.value === value) || options[0];
 
   // Close on click outside
   useEffect(() => {

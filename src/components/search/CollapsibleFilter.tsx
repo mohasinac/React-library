@@ -27,7 +27,7 @@
  * ```
  */
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export interface FilterOption {
   label: string;
@@ -213,7 +213,7 @@ export function CollapsibleFilter({
   const handleCheckboxChange = (
     sectionId: string,
     optionValue: string | number,
-    checked: boolean,
+    checked: boolean
   ) => {
     const currentValues = activeFilters[sectionId] || [];
     const newValues = checked
@@ -228,7 +228,7 @@ export function CollapsibleFilter({
 
   const handleRadioChange = (
     sectionId: string,
-    optionValue: string | number,
+    optionValue: string | number
   ) => {
     onFilterChange({
       ...activeFilters,
@@ -248,13 +248,13 @@ export function CollapsibleFilter({
 
   const filterOptions = (
     options: FilterOption[],
-    sectionId: string,
+    sectionId: string
   ): FilterOption[] => {
     const searchTerm = searchTerms[sectionId];
     if (!searchTerm) return options;
 
     return options.filter((option) =>
-      option.label.toLowerCase().includes(searchTerm.toLowerCase()),
+      option.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
@@ -387,7 +387,7 @@ export function CollapsibleFilter({
                                 handleCheckboxChange(
                                   section.id,
                                   option.value,
-                                  e.target.checked,
+                                  e.target.checked
                                 )
                               }
                               className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
@@ -408,7 +408,9 @@ export function CollapsibleFilter({
                             />
                           )}
 
-                          {option.icon && <span className="w-5 h-5">{option.icon}</span>}
+                          {option.icon && (
+                            <span className="w-5 h-5">{option.icon}</span>
+                          )}
 
                           <span className="flex-1 text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                             {option.label}

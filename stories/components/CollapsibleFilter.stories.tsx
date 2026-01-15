@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import type {
+  FilterSection,
+  StorageAdapter,
+} from "../../src/components/search/CollapsibleFilter";
 import { CollapsibleFilter } from "../../src/components/search/CollapsibleFilter";
-import type { FilterSection, StorageAdapter } from "../../src/components/search/CollapsibleFilter";
 
 const meta: Meta<typeof CollapsibleFilter> = {
   title: "Components/Search/CollapsibleFilter",
@@ -370,7 +373,7 @@ export const InteractiveDemo: Story = {
                       ${(Math.random() * 200).toFixed(2)}
                     </p>
                   </div>
-                ),
+                )
               )}
             </div>
           </div>
