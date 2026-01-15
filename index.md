@@ -396,7 +396,7 @@ All component migration tasks completed:
 - `Button` - 5 variants (primary, secondary, outline, ghost, danger), 3 sizes, loading state, icon support
 - `Card` / `CardSection` - Container components with optional header
 
-### Table Components ✅ (Task 18.1 Started - 4 Components)
+### Table Components ✅ (Task 18.1 Started - 5 Components)
 
 - `DataTable` - Generic data table with sorting, loading states, custom rendering, row interactions
   - Sortable columns (local or controlled)
@@ -424,6 +424,13 @@ All component migration tasks completed:
   - Action variants (default, danger, warning, success)
   - Loading states during action execution
   - Custom icons and error handling
+  - Framework-agnostic with dependency injection
+- `InlineEditRow` - Editable table row for inline editing with validation
+  - Multiple field types (text, number, select, checkbox, date, textarea, custom)
+  - Real-time validation with error messages
+  - Keyboard shortcuts (Enter to save, Escape to cancel)
+  - Custom render functions for complex fields
+  - Loading states and disabled fields
   - Framework-agnostic with dependency injection
 
 ### Upload Components ✅ (Task 17.1 Complete - 2 Components)

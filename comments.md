@@ -47,6 +47,7 @@
    - Removed old component from main app
 
 3. **TableCheckbox Component Migration**
+
    - Moved from `src/components/common/TableCheckbox.tsx` to `react-library/src/components/tables/TableCheckbox.tsx`
    - Component is already framework-agnostic (no Next.js dependencies)
    - Features:
@@ -77,6 +78,27 @@
      - Custom resource names and total count display
    - Created comprehensive tests (18 test cases, all passing)
    - Created Storybook story with 10 variations including interactive example
+   - Main app integration: Skipped (will be rewritten later)
+
+5. **InlineEditRow Component Migration**
+   - Moved from `src/components/common/InlineEditRow.tsx` to `react-library/src/components/tables/InlineEditRow.tsx`
+   - Made framework-agnostic by removing dependencies:
+     - Removed InlineCategorySelectorWithCreate (app-specific, use custom render)
+     - Removed InlineImageUpload (app-specific, use custom render)
+     - Removed logError (use onError callback)
+     - Removed lucide-react icons (injectable via props)
+     - Added custom render function support for complex fields
+   - Features:
+     - Multiple field types (text, number, select, checkbox, date, textarea, custom)
+     - Real-time validation with error messages
+     - Keyboard shortcuts (Enter to save, Escape to cancel)
+     - Custom validation functions (per-field and cross-field)
+     - Number constraints (min/max)
+     - Custom render functions for complex fields
+     - Loading states and disabled fields
+     - Custom row and cell styling
+   - Created comprehensive tests (24 test cases, all passing)
+   - Created Storybook story with 6 variations including interactive example
    - Main app integration: Skipped (will be rewritten later)
 
 **Pending:**

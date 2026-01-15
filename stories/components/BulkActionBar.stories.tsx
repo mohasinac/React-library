@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { BulkActionBar, type BulkAction } from "../../src/components/tables/BulkActionBar";
+import {
+  BulkActionBar,
+  type BulkAction,
+} from "../../src/components/tables/BulkActionBar";
 
 /**
  * BulkActionBar provides a sticky action bar for bulk operations on selected items.
  * It offers both desktop (top) and mobile (bottom) layouts with confirmation dialogs.
- * 
+ *
  * ## Features
  * - Desktop and mobile responsive layouts
  * - Confirmation dialogs for destructive actions
@@ -29,52 +32,107 @@ type Story = StoryObj<typeof BulkActionBar>;
 // Mock icons for stories
 const XIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M4 4l8 8m0-8l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <path
+      d="M4 4l8 8m0-8l-8 8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const LoaderIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="animate-spin">
-    <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.25" />
-    <path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" strokeWidth="2" fill="none" />
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    className="animate-spin"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="6"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      opacity="0.25"
+    />
+    <path
+      d="M8 2a6 6 0 0 1 6 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+    />
   </svg>
 );
 
 const TrashIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M3 4h10M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M6 7v4M10 7v4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+    <path
+      d="M3 4h10M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M6 7v4M10 7v4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M3 8l3 3 7-7" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M3 8l3 3 7-7"
+      stroke="currentColor"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const ArchiveIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    <path d="M6 7h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <rect
+      x="2"
+      y="3"
+      width="12"
+      height="10"
+      rx="1"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+    />
+    <path
+      d="M6 7h4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 // Simple mock ConfirmDialog
-const MockConfirmDialog = ({ 
-  isOpen, 
-  onClose, 
-  onConfirm, 
-  title, 
-  message, 
-  confirmText 
+const MockConfirmDialog = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  message,
+  confirmText,
 }: any) => {
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
-        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">{message}</p>
+        <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+          {title}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+          {message}
+        </p>
         <div className="flex gap-2 justify-end">
           <button
             onClick={onClose}
@@ -109,7 +167,7 @@ export const Default: Story = {
     actions: basicActions,
     onAction: async (actionId) => {
       console.log("Action triggered:", actionId);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     },
     onClearSelection: () => console.log("Clear selection"),
     XIcon,
@@ -124,7 +182,7 @@ export const WithTotalCount: Story = {
     actions: basicActions,
     onAction: async (actionId) => {
       console.log("Action triggered:", actionId);
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
     },
     onClearSelection: () => console.log("Clear selection"),
     XIcon,
@@ -150,21 +208,27 @@ export const WithConfirmation: Story = {
   args: {
     selectedCount: 8,
     actions: [
-      { 
-        id: "delete", 
-        label: "Delete", 
+      {
+        id: "delete",
+        label: "Delete",
         variant: "danger",
         icon: TrashIcon,
         confirm: true,
         confirmTitle: "Delete Items",
-        confirmMessage: "Are you sure you want to delete 8 items? This action cannot be undone.",
-        confirmText: "Delete"
+        confirmMessage:
+          "Are you sure you want to delete 8 items? This action cannot be undone.",
+        confirmText: "Delete",
       },
-      { id: "archive", label: "Archive", variant: "default", icon: ArchiveIcon },
+      {
+        id: "archive",
+        label: "Archive",
+        variant: "default",
+        icon: ArchiveIcon,
+      },
     ],
     onAction: async (actionId) => {
       console.log("Action confirmed:", actionId);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     },
     onClearSelection: () => console.log("Clear selection"),
     ConfirmDialog: MockConfirmDialog,
@@ -177,9 +241,21 @@ export const WithDisabledActions: Story = {
   args: {
     selectedCount: 2,
     actions: [
-      { id: "delete", label: "Delete", variant: "danger", icon: TrashIcon, disabled: true },
+      {
+        id: "delete",
+        label: "Delete",
+        variant: "danger",
+        icon: TrashIcon,
+        disabled: true,
+      },
       { id: "publish", label: "Publish", variant: "success", icon: CheckIcon },
-      { id: "archive", label: "Archive", variant: "default", icon: ArchiveIcon, disabled: true },
+      {
+        id: "archive",
+        label: "Archive",
+        variant: "default",
+        icon: ArchiveIcon,
+        disabled: true,
+      },
     ],
     onAction: async (actionId) => {
       console.log("Action triggered:", actionId);
@@ -225,7 +301,12 @@ export const ManyActions: Story = {
       { id: "delete", label: "Delete", variant: "danger", icon: TrashIcon },
       { id: "publish", label: "Publish", variant: "success", icon: CheckIcon },
       { id: "unpublish", label: "Unpublish", variant: "warning" },
-      { id: "archive", label: "Archive", variant: "default", icon: ArchiveIcon },
+      {
+        id: "archive",
+        label: "Archive",
+        variant: "default",
+        icon: ArchiveIcon,
+      },
       { id: "duplicate", label: "Duplicate", variant: "default" },
       { id: "export", label: "Export", variant: "default" },
     ],
@@ -242,13 +323,18 @@ export const WithErrorHandling: Story = {
   args: {
     selectedCount: 4,
     actions: [
-      { 
-        id: "delete", 
-        label: "Delete (will fail)", 
+      {
+        id: "delete",
+        label: "Delete (will fail)",
         variant: "danger",
-        icon: TrashIcon
+        icon: TrashIcon,
       },
-      { id: "archive", label: "Archive", variant: "default", icon: ArchiveIcon },
+      {
+        id: "archive",
+        label: "Archive",
+        variant: "default",
+        icon: ArchiveIcon,
+      },
     ],
     onAction: async (actionId) => {
       console.log("Action triggered:", actionId);
@@ -275,7 +361,7 @@ export const Interactive: Story = {
     const handleAction = async (actionId: string) => {
       setIsLoading(true);
       console.log("Action:", actionId, "on", selectedCount, "items");
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setIsLoading(false);
       setSelectedCount(0); // Clear selection after action
     };
@@ -286,12 +372,12 @@ export const Interactive: Story = {
           <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
             Interactive Example
           </h2>
-          
+
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 mb-4 shadow">
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
               Select items below to see the BulkActionBar in action:
             </p>
-            
+
             <div className="space-y-2">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                 <label
@@ -310,7 +396,9 @@ export const Interactive: Story = {
                     }}
                     className="w-5 h-5"
                   />
-                  <span className="text-gray-900 dark:text-white">Item {num}</span>
+                  <span className="text-gray-900 dark:text-white">
+                    Item {num}
+                  </span>
                 </label>
               ))}
             </div>
@@ -328,11 +416,23 @@ export const Interactive: Story = {
                 icon: TrashIcon,
                 confirm: true,
                 confirmTitle: "Delete Items",
-                confirmMessage: `Delete ${selectedCount} item${selectedCount !== 1 ? 's' : ''}?`,
+                confirmMessage: `Delete ${selectedCount} item${
+                  selectedCount !== 1 ? "s" : ""
+                }?`,
                 confirmText: "Delete",
               },
-              { id: "publish", label: "Publish", variant: "success", icon: CheckIcon },
-              { id: "archive", label: "Archive", variant: "default", icon: ArchiveIcon },
+              {
+                id: "publish",
+                label: "Publish",
+                variant: "success",
+                icon: CheckIcon,
+              },
+              {
+                id: "archive",
+                label: "Archive",
+                variant: "default",
+                icon: ArchiveIcon,
+              },
             ]}
             onAction={handleAction}
             onClearSelection={() => setSelectedCount(0)}
