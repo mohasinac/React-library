@@ -6,7 +6,7 @@
 
 **Started**: January 15, 2026
 
-### Implementation Progress (7/13 Completed - 54%)
+### Implementation Progress (8/13 Completed - 62%)
 
 **Completed:**
 
@@ -145,6 +145,24 @@
      - Loading states during save
    - Created comprehensive tests (26 test cases, all passing)
    - Created Storybook story with 12 variations including interactive examples
+   - Main app integration: Skipped (will be rewritten later)
+
+8. **ActionMenu Component Migration**
+   - Moved from `src/components/common/ActionMenu.tsx` to `react-library/src/components/tables/ActionMenu.tsx`
+   - Made framework-agnostic by removing dependencies:
+     - Removed hardcoded SVG icons (injectable via props: DefaultIcon, ChevronIcon)
+     - Added custom className props (triggerClassName, menuClassName)
+   - Features:
+     - Dropdown menu with click-to-open/close
+     - Keyboard support (Escape to close)
+     - Click outside to close
+     - Variant styles for items (default, danger, success)
+     - Disabled item states
+     - Custom icons for items and trigger button
+     - Left/right menu alignment
+     - Accessible with ARIA attributes
+   - Created comprehensive tests (26 test cases, all passing)
+   - Created Storybook story with 7 variations including table context example
    - Main app integration: Skipped (will be rewritten later)
 
 **Pending:**

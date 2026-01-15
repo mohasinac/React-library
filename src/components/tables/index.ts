@@ -1,3 +1,5 @@
+export { ActionMenu } from "./ActionMenu";
+export type { ActionMenuItem, ActionMenuProps } from "./ActionMenu";
 export { BulkActionBar } from "./BulkActionBar";
 export type { BulkAction, BulkActionBarProps } from "./BulkActionBar";
 export { DataTable } from "./DataTable";
