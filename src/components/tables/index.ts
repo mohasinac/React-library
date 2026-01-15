@@ -16,6 +16,8 @@ export type { InlineEditorProps } from "./InlineEditor";
 export { QuickCreateRow } from "./QuickCreateRow";
 export type { QuickCreateRowProps } from "./QuickCreateRow";
 export { ResponsiveTable } from "./ResponsiveTable";
+export { Skeleton, SkeletonText, SkeletonAvatar, SkeletonButton, SkeletonImage, LoadingSkeleton } from "./Skeleton";
+export type { LoadingSkeletonProps } from "./Skeleton";
 export { StatusBadge } from "./StatusBadge";
 export type { StatusBadgeProps, StatusType } from "./StatusBadge";
 export { TableCheckbox } from "./TableCheckbox";
