@@ -69,11 +69,13 @@ export interface UseUrlFiltersRouter {
   /** Current pathname */
   pathname: string;
   /** Current search params */
-  searchParams: URLSearchParams | {
-    get: (key: string) => string | null;
-    getAll: (key: string) => string[];
-    forEach: (callback: (value: string, key: string) => void) => void;
-  };
+  searchParams:
+    | URLSearchParams
+    | {
+        get: (key: string) => string | null;
+        getAll: (key: string) => string[];
+        forEach: (callback: (value: string, key: string) => void) => void;
+      };
 }
 
 export interface UseUrlFiltersOptions {
@@ -186,9 +188,9 @@ export function useUrlFilters(
   });
 
   // Debounce timer
-  const [debounceTimer, setDebounceTimer] = useState<ReturnType<typeof setTimeout> | null>(
-    null
-  );
+  const [debounceTimer, setDebounceTimer] = useState<ReturnType<
+    typeof setTimeout
+  > | null>(null);
 
   // Cleanup debounce timer on unmount
   useEffect(() => {
@@ -239,7 +241,9 @@ export function useUrlFilters(
 
     const timer = setTimeout(() => {
       const queryString = buildQueryString();
-      const newUrl = queryString ? `${router.pathname}?${queryString}` : router.pathname;
+      const newUrl = queryString
+        ? `${router.pathname}?${queryString}`
+        : router.pathname;
       router.push(newUrl, { scroll: false });
     }, debounceMs);
 

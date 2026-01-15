@@ -58,7 +58,9 @@ export interface UseFiltersRouter {
   /** Current pathname */
   pathname: string;
   /** Current search params (URLSearchParams or similar) */
-  searchParams: URLSearchParams | { forEach: (callback: (value: string, key: string) => void) => void };
+  searchParams:
+    | URLSearchParams
+    | { forEach: (callback: (value: string, key: string) => void) => void };
 }
 
 export interface UseFiltersOptions<T> {
