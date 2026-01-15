@@ -7,6 +7,23 @@
 // Debounce and throttle hooks
 export { useDebounce, useDebouncedCallback, useThrottle } from "./useDebounce";
 
+// Filter hooks (Task 18.2)
+export { useFilters } from "./useFilters";
+export type {
+  UseFiltersOptions,
+  UseFiltersReturn,
+  UseFiltersRouter,
+} from "./useFilters";
+
+export { useUrlFilters } from "./useUrlFilters";
+export type {
+  FilterState,
+  SortState,
+  UseUrlFiltersOptions,
+  UseUrlFiltersReturn,
+  UseUrlFiltersRouter,
+} from "./useUrlFilters";
+
 // Storage hooks
 export { useLocalStorage } from "./useLocalStorage";
 export type { UseLocalStorageOptions } from "./useLocalStorage";
