@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { QuickCreateRow } from "../../src/components/tables/QuickCreateRow";
-import type { InlineField } from "../../src/components/tables/InlineEditRow";
 import { useState } from "react";
+import type { InlineField } from "../../src/components/tables/InlineEditRow";
+import { QuickCreateRow } from "../../src/components/tables/QuickCreateRow";
 
 /**
  * QuickCreateRow is a collapsible table row component for quickly creating new items.

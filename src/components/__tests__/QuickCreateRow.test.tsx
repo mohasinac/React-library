@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { QuickCreateRow } from "../tables/QuickCreateRow";
+import { describe, expect, it, vi } from "vitest";
 import type { InlineField } from "../tables/InlineEditRow";
+import { QuickCreateRow } from "../tables/QuickCreateRow";
 
 describe("QuickCreateRow", () => {
   const defaultFields: InlineField[] = [
@@ -20,7 +20,9 @@ describe("QuickCreateRow", () => {
       </table>
     );
 
-    expect(screen.getByRole("button", { name: /add new item/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add new item/i })
+    ).toBeInTheDocument();
     expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
   });
 
@@ -56,10 +58,14 @@ describe("QuickCreateRow", () => {
       </table>
     );
 
-    expect(screen.getByRole("button", { name: /add new product/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add new product/i })
+    ).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /add new product/i }));
-    expect(screen.getByRole("button", { name: /create product/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /create product/i })
+    ).toBeInTheDocument();
   });
 
   it("handles text field input", async () => {
@@ -138,7 +144,9 @@ describe("QuickCreateRow", () => {
     await user.click(screen.getByRole("button", { name: /create item/i }));
 
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: /add new item/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /add new item/i })
+      ).toBeInTheDocument();
       expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
     });
   });
@@ -156,11 +164,11 @@ describe("QuickCreateRow", () => {
 
     await user.click(screen.getByRole("button", { name: /add new item/i }));
     const nameInput = screen.getByLabelText("Name");
-    
+
     // Touch the field by typing and clearing
     await user.type(nameInput, "test");
     await user.clear(nameInput);
-    
+
     await user.click(screen.getByRole("button", { name: /create item/i }));
 
     expect(onSave).not.toHaveBeenCalled();
@@ -180,7 +188,7 @@ describe("QuickCreateRow", () => {
 
     await user.click(screen.getByRole("button", { name: /add new item/i }));
     await user.type(screen.getByLabelText("Name"), "Test");
-    
+
     const priceInput = screen.getByLabelText("Price");
     await user.type(priceInput, "-10");
     await user.click(screen.getByRole("button", { name: /create item/i }));
@@ -204,7 +212,9 @@ describe("QuickCreateRow", () => {
     await user.type(screen.getByLabelText("Name"), "Test Product");
     await user.click(screen.getByRole("button", { name: /cancel/i }));
 
-    expect(screen.getByRole("button", { name: /add new item/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add new item/i })
+    ).toBeInTheDocument();
     expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
   });
 
@@ -244,7 +254,9 @@ describe("QuickCreateRow", () => {
     await user.type(screen.getByLabelText("Name"), "Test Product");
     await user.keyboard("{Escape}");
 
-    expect(screen.getByRole("button", { name: /add new item/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add new item/i })
+    ).toBeInTheDocument();
     expect(screen.queryByLabelText("Name")).not.toBeInTheDocument();
   });
 

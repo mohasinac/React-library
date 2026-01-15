@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InlineField, FieldType, SelectOption } from "./InlineEditRow";
+import { InlineField } from "./InlineEditRow";
 
 /**
  * Props for QuickCreateRow component

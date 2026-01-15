@@ -9,6 +9,8 @@ export type {
   InlineField,
   SelectOption,
 } from "./InlineEditRow";
+export { InlineEditor } from "./InlineEditor";
+export type { InlineEditorProps } from "./InlineEditor";
 export { QuickCreateRow } from "./QuickCreateRow";
 export type { QuickCreateRowProps } from "./QuickCreateRow";
 export { ResponsiveTable } from "./ResponsiveTable";
