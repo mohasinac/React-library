@@ -51,7 +51,7 @@ export function useFetchResourceList<T extends { id: string }>({
   ...listConfig
 }: FetchResourceListConfig<T>): UseFetchResourceListReturn<T> {
   const list = useResourceListState<T>(listConfig);
-  const { isLoading, error, execute } = useLoadingState({
+  const { isLoading, execute } = useLoadingState({
     onLoadError: onError,
   });
 

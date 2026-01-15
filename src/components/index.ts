@@ -19,3 +19,6 @@ export { VideoUploadWithThumbnail } from "./VideoUploadWithThumbnail";
 
 // Table Components (Task 18.1)
 export * from "./tables";
+
+// Search Components (Task 18.2)
+export * from "./search";

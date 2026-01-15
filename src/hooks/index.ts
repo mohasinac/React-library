@@ -59,10 +59,10 @@ export type {
 
 export { useResourceList } from "./useResourceList";
 export type {
-  ResourceListOptions,
+  FilterConfig,
   SievePagination,
   SortField,
-  FilterConfig,
+  UseResourceListOptions,
   UseResourceListReturn,
 } from "./useResourceList";
 
