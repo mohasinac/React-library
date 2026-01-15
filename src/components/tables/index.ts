@@ -5,15 +5,16 @@ export type { BulkAction, BulkActionBarProps } from "./BulkActionBar";
 export { DataTable } from "./DataTable";
 export type { Column, DataTableProps } from "./DataTable";
 export { EmptyState } from "./EmptyState";
-export type { EmptyStateProps } from "./EmptyState";export { ErrorState } from "./ErrorState";
+export type { EmptyStateProps } from "./EmptyState";
+export { ErrorState } from "./ErrorState";
 export type { ErrorStateProps } from "./ErrorState";
 
 export { PageState } from "./PageState";
 export type {
-  LoadingProps as PageStateLoadingProps,
-  ErrorProps as PageStateErrorProps,
   EmptyProps as PageStateEmptyProps,
+  ErrorProps as PageStateErrorProps,
   FullPageWrapperProps as PageStateFullPageWrapperProps,
+  LoadingProps as PageStateLoadingProps,
 } from "./PageState";
 
 export { InlineEditor } from "./InlineEditor";

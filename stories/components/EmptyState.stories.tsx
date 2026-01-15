@@ -74,7 +74,8 @@ export const WithTwoActions: Story = {
   args: {
     icon: <PackageIcon />,
     title: "No orders yet",
-    description: "You haven't placed any orders. Start shopping to see your order history here.",
+    description:
+      "You haven't placed any orders. Start shopping to see your order history here.",
     action: {
       label: "Start Shopping",
       onClick: () => alert("Navigate to shop"),

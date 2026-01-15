@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { ErrorState } from "../tables/ErrorState";
 
 describe("ErrorState", () => {
@@ -114,11 +114,11 @@ describe("ErrorState", () => {
       const handleRetry = vi.fn();
       render(<ErrorState onRetry={handleRetry} />);
       const button = screen.getByText("Try Again");
-      
+
       fireEvent.click(button);
       fireEvent.click(button);
       fireEvent.click(button);
-      
+
       expect(handleRetry).toHaveBeenCalledTimes(3);
     });
 
@@ -136,7 +136,9 @@ describe("ErrorState", () => {
     });
 
     it("renders custom retry icon", () => {
-      const CustomRetryIcon = () => <span data-testid="custom-retry-icon">🔄</span>;
+      const CustomRetryIcon = () => (
+        <span data-testid="custom-retry-icon">🔄</span>
+      );
       render(<ErrorState onRetry={vi.fn()} retryIcon={<CustomRetryIcon />} />);
       expect(screen.getByTestId("custom-retry-icon")).toBeInTheDocument();
     });
@@ -176,7 +178,9 @@ describe("ErrorState", () => {
 
     it("applies custom messageClassName", () => {
       render(<ErrorState messageClassName="custom-message" />);
-      const message = screen.getByText("Something went wrong. Please try again");
+      const message = screen.getByText(
+        "Something went wrong. Please try again"
+      );
       expect(message).toHaveClass("custom-message");
       expect(message).not.toHaveClass("text-gray-600");
     });
@@ -239,7 +243,9 @@ describe("ErrorState", () => {
 
     it("includes dark mode classes for message", () => {
       render(<ErrorState />);
-      const message = screen.getByText("Something went wrong. Please try again");
+      const message = screen.getByText(
+        "Something went wrong. Please try again"
+      );
       expect(message).toHaveClass("dark:text-gray-400");
     });
 
@@ -270,7 +276,9 @@ describe("ErrorState", () => {
 
       expect(screen.getByTestId("icon")).toBeInTheDocument();
       expect(screen.getByText("Custom Error Title")).toBeInTheDocument();
-      expect(screen.getByText("This is a custom error message")).toBeInTheDocument();
+      expect(
+        screen.getByText("This is a custom error message")
+      ).toBeInTheDocument();
       expect(screen.getByText("Reload")).toBeInTheDocument();
       expect(screen.getByTestId("retry-icon")).toBeInTheDocument();
 
@@ -307,14 +315,18 @@ describe("ErrorState", () => {
 
     it("message uses paragraph element", () => {
       render(<ErrorState />);
-      const message = screen.getByText("Something went wrong. Please try again");
+      const message = screen.getByText(
+        "Something went wrong. Please try again"
+      );
       expect(message.tagName).toBe("P");
     });
   });
 
   describe("Default Export", () => {
     it("can be imported as default export", async () => {
-      const { default: DefaultErrorState } = await import("../tables/ErrorState");
+      const { default: DefaultErrorState } = await import(
+        "../tables/ErrorState"
+      );
       const { container } = render(<DefaultErrorState />);
       expect(container.querySelector(".flex")).toBeInTheDocument();
     });
@@ -328,7 +340,9 @@ describe("ErrorState", () => {
 
     it("handles undefined message gracefully", () => {
       render(<ErrorState message={undefined} />);
-      expect(screen.getByText("Something went wrong. Please try again")).toBeInTheDocument();
+      expect(
+        screen.getByText("Something went wrong. Please try again")
+      ).toBeInTheDocument();
     });
 
     it("handles undefined title gracefully", () => {

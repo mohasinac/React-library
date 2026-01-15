@@ -36,3 +36,17 @@ export {
 // Upload hooks (Task 17.2)
 export { useMediaUpload } from "./useMediaUpload";
 export type { MediaUploadOptions, MediaUploadReturn } from "./useMediaUpload";
+
+// Table and data hooks (Task 18.1)
+export { useBulkSelection } from "./useBulkSelection";
+export type {
+  UseBulkSelectionOptions,
+  UseBulkSelectionReturn,
+} from "./useBulkSelection";
+
+export { useLoadingState, useMultiLoadingState } from "./useLoadingState";
+export type {
+  LoadingState,
+  UseLoadingStateOptions,
+  UseLoadingStateReturn,
+} from "./useLoadingState";

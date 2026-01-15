@@ -6,59 +6,59 @@ export interface ErrorStateProps {
    * @default "Something went wrong"
    */
   message?: string;
-  
+
   /**
    * Callback function when retry button is clicked
    */
   onRetry?: () => void;
-  
+
   /**
    * Type of error for default messages and styling
    * @default "error"
    */
   type?: "error" | "not-found" | "network" | "unauthorized" | "server";
-  
+
   /**
    * Additional CSS classes for root element
    */
   className?: string;
-  
+
   /**
    * Custom icon to display (overrides default icon)
    */
   icon?: ReactNode;
-  
+
   /**
    * Custom title (overrides type-based title)
    */
   title?: string;
-  
+
   /**
    * Custom retry button label
    * @default "Try Again"
    */
   retryLabel?: string;
-  
+
   /**
    * Custom icon container className
    */
   iconClassName?: string;
-  
+
   /**
    * Custom title className
    */
   titleClassName?: string;
-  
+
   /**
    * Custom message className
    */
   messageClassName?: string;
-  
+
   /**
    * Custom retry button className
    */
   retryButtonClassName?: string;
-  
+
   /**
    * Optional retry icon (displayed before retry button text)
    */
@@ -105,10 +105,10 @@ const RefreshIcon = () => (
 
 /**
  * ErrorState - Display error states with optional retry functionality
- * 
+ *
  * A comprehensive error state component for handling various error scenarios.
  * Provides default messages and icons for common error types, with full customization support.
- * 
+ *
  * Features:
  * - Multiple error types with default messages (error, not-found, network, unauthorized, server)
  * - Optional retry button with callback
@@ -116,18 +116,18 @@ const RefreshIcon = () => (
  * - Fully customizable styling for all sub-elements
  * - Dark mode support
  * - Framework-agnostic (injectable icons with sensible defaults)
- * 
+ *
  * @example
  * ```tsx
  * // Basic error
  * <ErrorState />
- * 
+ *
  * // With retry
  * <ErrorState onRetry={() => refetch()} />
- * 
+ *
  * // Custom type
  * <ErrorState type="not-found" />
- * 
+ *
  * // Fully custom
  * <ErrorState
  *   icon={<CustomIcon />}

@@ -49,7 +49,8 @@ export const WithRetry: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Error state with retry button. Click to trigger retry callback.",
+        story:
+          "Error state with retry button. Click to trigger retry callback.",
       },
     },
   },
@@ -57,10 +58,7 @@ export const WithRetry: Story = {
 
 export const GenericError: Story = {
   render: () => (
-    <ErrorState
-      type="error"
-      onRetry={() => alert("Retrying operation...")}
-    />
+    <ErrorState type="error" onRetry={() => alert("Retrying operation...")} />
   ),
   parameters: {
     docs: {
@@ -124,10 +122,7 @@ export const Unauthorized: Story = {
 
 export const ServerError: Story = {
   render: () => (
-    <ErrorState
-      type="server"
-      onRetry={() => alert("Retrying request...")}
-    />
+    <ErrorState type="server" onRetry={() => alert("Retrying request...")} />
   ),
   parameters: {
     docs: {
@@ -230,7 +225,8 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Demonstrates full customization with custom classes for all elements.",
+        story:
+          "Demonstrates full customization with custom classes for all elements.",
       },
     },
   },
@@ -283,7 +279,11 @@ export const AllErrorTypes: Story = {
           Not Found (404)
         </h3>
         <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
-          <ErrorState type="not-found" onRetry={() => {}} retryLabel="Go Back" />
+          <ErrorState
+            type="not-found"
+            onRetry={() => {}}
+            retryLabel="Go Back"
+          />
         </div>
       </div>
 
@@ -301,7 +301,11 @@ export const AllErrorTypes: Story = {
           Unauthorized (401)
         </h3>
         <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
-          <ErrorState type="unauthorized" onRetry={() => {}} retryLabel="Login" />
+          <ErrorState
+            type="unauthorized"
+            onRetry={() => {}}
+            retryLabel="Login"
+          />
         </div>
       </div>
 
@@ -318,7 +322,8 @@ export const AllErrorTypes: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Showcase of all available error types with their default messages.",
+        story:
+          "Showcase of all available error types with their default messages.",
       },
     },
   },

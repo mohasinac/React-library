@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 import { PageState } from "../tables/PageState";
 
 describe("PageState", () => {
@@ -87,7 +87,9 @@ describe("PageState", () => {
     it("renders retry button when onRetry is provided", () => {
       const onRetry = vi.fn();
       render(<PageState.Error onRetry={onRetry} />);
-      expect(screen.getByRole("button", { name: /retry/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /retry/i })
+      ).toBeInTheDocument();
     });
 
     it("does not render retry button when onRetry is not provided", () => {
@@ -426,9 +428,7 @@ describe("PageState", () => {
 
       // Transition to error
       state = "error";
-      rerender(
-        <PageState.Error message="Failed to load" onRetry={onRetry} />
-      );
+      rerender(<PageState.Error message="Failed to load" onRetry={onRetry} />);
       expect(screen.getByText("Failed to load")).toBeInTheDocument();
 
       // Click retry
@@ -444,7 +444,9 @@ describe("PageState", () => {
   describe("Dark Mode", () => {
     it("applies dark mode classes to Loading", () => {
       const { container } = render(<PageState.Loading />);
-      expect(container.querySelector(".dark\\:bg-gray-900")).toBeInTheDocument();
+      expect(
+        container.querySelector(".dark\\:bg-gray-900")
+      ).toBeInTheDocument();
       expect(
         container.querySelector(".dark\\:text-gray-400")
       ).toBeInTheDocument();
@@ -452,7 +454,9 @@ describe("PageState", () => {
 
     it("applies dark mode classes to Error", () => {
       const { container } = render(<PageState.Error />);
-      expect(container.querySelector(".dark\\:bg-gray-900")).toBeInTheDocument();
+      expect(
+        container.querySelector(".dark\\:bg-gray-900")
+      ).toBeInTheDocument();
       expect(
         container.querySelector(".dark\\:text-gray-400")
       ).toBeInTheDocument();
@@ -516,9 +520,7 @@ describe("PageState", () => {
 
   describe("Edge Cases", () => {
     it("handles empty strings", () => {
-      render(
-        <PageState.Loading message="" />
-      );
+      render(<PageState.Loading message="" />);
       expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
     });
 
