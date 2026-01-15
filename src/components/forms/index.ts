@@ -49,3 +49,9 @@ export type { FormKeyValueInputProps } from "./FormKeyValueInput";
 
 export { FormListInput } from "./FormListInput";
 export type { FormListInputProps } from "./FormListInput";
+
+export { TagInput } from "./TagInput";
+export type { TagInputProps } from "./TagInput";
+
+export { SlugInput } from "./SlugInput";
+export type { SlugInputProps } from "./SlugInput";
