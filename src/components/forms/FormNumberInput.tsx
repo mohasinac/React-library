@@ -156,8 +156,8 @@ export const FormNumberInput = forwardRef<
               error
                 ? `${inputId}-error`
                 : helperText
-                  ? `${inputId}-helper`
-                  : undefined
+                ? `${inputId}-helper`
+                : undefined
             }
             {...props}
           />

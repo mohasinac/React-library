@@ -8,15 +8,11 @@ export type { FormFieldProps } from "./FormField";
 export { FormFieldset } from "./FormFieldset";
 export type { FormFieldsetProps } from "./FormFieldset";
 
-export {
-  FormSection,
-  FormRow,
-  FormActions,
-} from "./FormSection";
+export { FormActions, FormRow, FormSection } from "./FormSection";
 export type {
-  FormSectionProps,
-  FormRowProps,
   FormActionsProps,
+  FormRowProps,
+  FormSectionProps,
 } from "./FormSection";
 
 // Base form inputs
@@ -33,7 +29,7 @@ export { FormCheckbox } from "./FormCheckbox";
 export type { FormCheckboxProps } from "./FormCheckbox";
 
 export { FormRadio, FormRadioGroup } from "./FormRadio";
-export type { FormRadioProps, FormRadioGroupProps } from "./FormRadio";
+export type { FormRadioGroupProps, FormRadioProps } from "./FormRadio";
 
 // Specialized form inputs
 export { FormPhoneInput } from "./FormPhoneInput";
@@ -47,3 +43,9 @@ export type { FormDatePickerProps } from "./FormDatePicker";
 
 export { FormNumberInput } from "./FormNumberInput";
 export type { FormNumberInputProps } from "./FormNumberInput";
+
+export { FormKeyValueInput } from "./FormKeyValueInput";
+export type { FormKeyValueInputProps } from "./FormKeyValueInput";
+
+export { FormListInput } from "./FormListInput";
+export type { FormListInputProps } from "./FormListInput";

@@ -128,7 +128,9 @@ export const NoMorePages: Story = {
         />
       </div>
       <div>
-        <div className="text-sm font-medium mb-2">Only Page (No Navigation)</div>
+        <div className="text-sm font-medium mb-2">
+          Only Page (No Navigation)
+        </div>
         <CursorPagination
           hasNextPage={false}
           hasPreviousPage={false}
@@ -193,7 +195,9 @@ export const WithCustomIcons: Story = {
 
 export const InfiniteScrollUseCase: Story = {
   render: () => {
-    const [items, setItems] = useState<number[]>(Array.from({ length: 20 }, (_, i) => i + 1));
+    const [items, setItems] = useState<number[]>(
+      Array.from({ length: 20 }, (_, i) => i + 1)
+    );
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
 
@@ -201,15 +205,15 @@ export const InfiniteScrollUseCase: Story = {
       setIsLoading(true);
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      
+
       const nextItems = Array.from(
         { length: 20 },
         (_, i) => items.length + i + 1
       );
-      
+
       setItems([...items, ...nextItems]);
       setIsLoading(false);
-      
+
       // Stop after 100 items
       if (items.length + nextItems.length >= 100) {
         setHasMore(false);

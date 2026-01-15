@@ -201,7 +201,9 @@ export const DisabledStates: Story = {
     return (
       <div className="space-y-8">
         <div>
-          <div className="text-sm font-medium mb-2">First Page (Previous Disabled)</div>
+          <div className="text-sm font-medium mb-2">
+            First Page (Previous Disabled)
+          </div>
           <SimplePagination
             currentPage={1}
             totalPages={10}
@@ -210,7 +212,9 @@ export const DisabledStates: Story = {
           />
         </div>
         <div>
-          <div className="text-sm font-medium mb-2">Last Page (Next Disabled)</div>
+          <div className="text-sm font-medium mb-2">
+            Last Page (Next Disabled)
+          </div>
           <SimplePagination
             currentPage={10}
             totalPages={10}
