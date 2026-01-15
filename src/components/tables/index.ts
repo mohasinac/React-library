@@ -5,8 +5,8 @@ export type { BulkAction, BulkActionBarProps } from "./BulkActionBar";
 export { DataTable } from "./DataTable";
 export type { Column, DataTableProps } from "./DataTable";
 export { EmptyState } from "./EmptyState";
-export type { EmptyStateProps } from "./EmptyState";
-export { InlineEditor } from "./InlineEditor";
+export type { EmptyStateProps } from "./EmptyState";export { ErrorState } from "./ErrorState";
+export type { ErrorStateProps } from "./ErrorState";export { InlineEditor } from "./InlineEditor";
 export type { InlineEditorProps } from "./InlineEditor";
 export { InlineEditRow } from "./InlineEditRow";
 export type {
