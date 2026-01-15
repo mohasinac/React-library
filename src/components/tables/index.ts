@@ -16,5 +16,7 @@ export type { InlineEditorProps } from "./InlineEditor";
 export { QuickCreateRow } from "./QuickCreateRow";
 export type { QuickCreateRowProps } from "./QuickCreateRow";
 export { ResponsiveTable } from "./ResponsiveTable";
+export { StatusBadge } from "./StatusBadge";
+export type { StatusBadgeProps, StatusType } from "./StatusBadge";
 export { TableCheckbox } from "./TableCheckbox";
 export type { TableCheckboxProps } from "./TableCheckbox";
