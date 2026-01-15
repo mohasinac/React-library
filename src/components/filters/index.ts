@@ -33,3 +33,6 @@ export type { ReviewFilterValues, ReviewFiltersProps } from "./ReviewFilters";
 
 export { UserFilters } from "./UserFilters";
 export type { UserFilterValues, UserFiltersProps } from "./UserFilters";
+
+export { MobileFilterSidebar } from "./MobileFilterSidebar";
+export type { MobileFilterSidebarProps } from "./MobileFilterSidebar";
