@@ -60,6 +60,25 @@ export {
   breakpoints,
 } from "./useMobile";
 
+// State management hooks (Task 19.2)
+export { useCheckoutState } from "./useCheckoutState";
+export type {
+  CheckoutStep,
+  Address,
+  UseCheckoutStateReturn,
+} from "./useCheckoutState";
+
+export { useConversationState } from "./useConversationState";
+export type {
+  Message,
+  Conversation,
+  ConversationStateOptions,
+  UseConversationStateReturn,
+} from "./useConversationState";
+
+export { useNavigationGuard } from "./useNavigationGuard";
+export type { NavigationGuardOptions } from "./useNavigationGuard";
+
 export {
   useClipboard,
   useCounter,
