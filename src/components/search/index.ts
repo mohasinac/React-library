@@ -18,3 +18,13 @@ export type {
   StorageAdapter,
   CollapsibleFilterProps,
 } from "./CollapsibleFilter";
+export { MobileFilterDrawer } from "./MobileFilterDrawer";
+export type { MobileFilterDrawerProps } from "./MobileFilterDrawer";
+export { ContentTypeFilter, getContentTypePlaceholder } from "./ContentTypeFilter";
+export type {
+  ContentType,
+  ContentTypeOption,
+  ContentTypeFacets,
+  ContentTypeIcons,
+  ContentTypeFilterProps,
+} from "./ContentTypeFilter";
