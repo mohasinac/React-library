@@ -55,3 +55,9 @@ export type { TagInputProps } from "./TagInput";
 
 export { SlugInput } from "./SlugInput";
 export type { SlugInputProps } from "./SlugInput";
+
+export { LinkInput } from "./LinkInput";
+export type { LinkInputProps } from "./LinkInput";
+
+export { PincodeInput } from "./PincodeInput";
+export type { PincodeInputProps, PincodeLookupResult } from "./PincodeInput";
