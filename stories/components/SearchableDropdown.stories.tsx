@@ -85,10 +85,7 @@ const DropdownWrapper = (props: any) => {
 
 export const Default: Story = {
   render: () => (
-    <DropdownWrapper
-      options={fruitOptions}
-      placeholder="Select a fruit..."
-    />
+    <DropdownWrapper options={fruitOptions} placeholder="Select a fruit..." />
   ),
 };
 
@@ -137,11 +134,7 @@ export const MultiSelect: Story = {
 
 export const MultiSelectWithChips: Story = {
   render: () => {
-    const [value, setValue] = useState<string[]>([
-      "apple",
-      "banana",
-      "orange",
-    ]);
+    const [value, setValue] = useState<string[]>(["apple", "banana", "orange"]);
     return (
       <div className="w-96">
         <SearchableDropdown
@@ -205,11 +198,7 @@ export const Disabled: Story = {
 
 export const Loading: Story = {
   render: () => (
-    <DropdownWrapper
-      options={fruitOptions}
-      loading
-      placeholder="Loading..."
-    />
+    <DropdownWrapper options={fruitOptions} loading placeholder="Loading..." />
   ),
 };
 
@@ -271,7 +260,7 @@ export const AsyncSearch: Story = {
     const [value, setValue] = useState<string | null>(null);
 
     const handleSearch = async (
-      query: string,
+      query: string
     ): Promise<DropdownOption<string>[]> => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -284,11 +273,15 @@ export const AsyncSearch: Story = {
           label: "Angular",
           description: "Platform for web apps",
         },
-        { value: "svelte", label: "Svelte", description: "Cybernetically enhanced" },
+        {
+          value: "svelte",
+          label: "Svelte",
+          description: "Cybernetically enhanced",
+        },
       ];
 
       return allOptions.filter((opt) =>
-        opt.label.toLowerCase().includes(query.toLowerCase()),
+        opt.label.toLowerCase().includes(query.toLowerCase())
       );
     };
 
@@ -312,10 +305,7 @@ export const AsyncSearch: Story = {
 
 export const DarkMode: Story = {
   render: () => (
-    <DropdownWrapper
-      options={fruitOptions}
-      placeholder="Select a fruit..."
-    />
+    <DropdownWrapper options={fruitOptions} placeholder="Select a fruit..." />
   ),
   parameters: {
     backgrounds: { default: "dark" },
