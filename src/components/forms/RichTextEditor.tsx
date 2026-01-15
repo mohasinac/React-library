@@ -9,7 +9,7 @@
  * @example Basic Usage
  * ```tsx
  * const [content, setContent] = useState('');
- * 
+ *
  * <RichTextEditor
  *   value={content}
  *   onChange={setContent}
@@ -213,8 +213,11 @@ export function RichTextEditor({
           "bg-white dark:bg-gray-900 text-gray-900 dark:text-white",
           "prose dark:prose-invert max-w-none",
           isFocused && "ring-2 ring-blue-500 ring-inset",
-          disabled && "bg-gray-50 dark:bg-gray-800 cursor-not-allowed opacity-60",
-          !value && !disabled && "before:content-[attr(data-placeholder)] before:text-gray-400 dark:before:text-gray-500"
+          disabled &&
+            "bg-gray-50 dark:bg-gray-800 cursor-not-allowed opacity-60",
+          !value &&
+            !disabled &&
+            "before:content-[attr(data-placeholder)] before:text-gray-400 dark:before:text-gray-500"
         )}
         style={{ minHeight }}
         data-placeholder={placeholder}

@@ -1,5 +1,5 @@
 /**
- * FormRichText Component  
+ * FormRichText Component
  * Framework-agnostic wrapper for rich text editors
  *
  * Purpose: Form field wrapper for any rich text editor (Quill, TinyMCE, etc.)
@@ -8,7 +8,7 @@
  * @example With Custom Editor
  * ```tsx
  * import ReactQuill from 'react-quill';
- * 
+ *
  * <FormRichText
  *   label="Description"
  *   helperText="Supports bold, italic, lists"
@@ -117,7 +117,9 @@ export function FormRichText({
         style={{ minHeight }}
         aria-label={label}
         aria-invalid={!!error}
-        aria-describedby={error ? "error-text" : helperText ? "helper-text" : undefined}
+        aria-describedby={
+          error ? "error-text" : helperText ? "helper-text" : undefined
+        }
       />
     );
   };
@@ -134,7 +136,10 @@ export function FormRichText({
       {renderEditor()}
 
       {helperText && !error && (
-        <p id="helper-text" className="text-sm text-gray-500 dark:text-gray-400">
+        <p
+          id="helper-text"
+          className="text-sm text-gray-500 dark:text-gray-400"
+        >
           {helperText}
         </p>
       )}

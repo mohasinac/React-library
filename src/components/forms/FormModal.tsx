@@ -8,7 +8,7 @@
  * @example Basic Usage
  * ```tsx
  * const dialog = useDialogState();
- * 
+ *
  * <button onClick={dialog.open}>Open Form</button>
  * <FormModal
  *   isOpen={dialog.isOpen}

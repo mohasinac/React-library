@@ -89,7 +89,11 @@ export { WizardForm } from "./WizardForm";
 export type { WizardFormProps, WizardFormStep } from "./WizardForm";
 
 export { WizardSteps } from "./WizardSteps";
-export type { WizardStepsProps, WizardStep, WizardStepState } from "./WizardSteps";
+export type {
+  WizardStep,
+  WizardStepState,
+  WizardStepsProps,
+} from "./WizardSteps";
 
 export { WizardActionBar } from "./WizardActionBar";
 export type { WizardActionBarProps } from "./WizardActionBar";

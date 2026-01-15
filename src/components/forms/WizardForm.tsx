@@ -12,7 +12,7 @@
  *   { label: 'Contact', content: <ContactForm /> },
  *   { label: 'Review', content: <ReviewForm /> }
  * ];
- * 
+ *
  * <WizardForm
  *   steps={steps}
  *   onSubmit={handleSubmit}
@@ -29,13 +29,13 @@
  *   },
  *   validateBeforeNext: true
  * });
- * 
+ *
  * const formSteps = [
  *   { label: 'Email', content: <EmailForm wizard={wizard} /> },
  *   { label: 'Password', content: <PasswordForm wizard={wizard} /> },
  *   { label: 'Profile', content: <ProfileForm wizard={wizard} /> }
  * ];
- * 
+ *
  * <WizardForm
  *   steps={formSteps}
  *   currentStep={wizard.currentStep}

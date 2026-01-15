@@ -8,7 +8,7 @@
  * @example Basic Usage
  * ```tsx
  * const dialog = useDialogState();
- * 
+ *
  * <button onClick={dialog.open}>Quick Edit</button>
  * <InlineFormModal
  *   isOpen={dialog.isOpen}

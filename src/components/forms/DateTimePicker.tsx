@@ -9,7 +9,7 @@
  * @example Date Only
  * ```tsx
  * const [date, setDate] = useState('');
- * 
+ *
  * <DateTimePicker
  *   label="Select Date"
  *   type="date"
@@ -179,7 +179,10 @@ export function DateTimePicker({
       </div>
 
       {helperText && !error && (
-        <p id="helper-text" className="text-sm text-gray-500 dark:text-gray-400">
+        <p
+          id="helper-text"
+          className="text-sm text-gray-500 dark:text-gray-400"
+        >
           {helperText}
         </p>
       )}

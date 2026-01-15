@@ -8,7 +8,7 @@
  * @example Basic Usage
  * ```tsx
  * const [files, setFiles] = useState<File[]>([]);
- * 
+ *
  * <FormFileUpload
  *   label="Upload Images"
  *   accept="image/*"
@@ -164,7 +164,7 @@ export function FormFileUpload({
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + " " + sizes[i];
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
   };
 
   const validateFile = (file: File): string | null => {
@@ -177,7 +177,7 @@ export function FormFileUpload({
   const handleFiles = useCallback(
     (newFiles: FileList | File[]) => {
       const filesArray = Array.from(newFiles);
-      
+
       // Validate max files
       if (maxFiles && value.length + filesArray.length > maxFiles) {
         // Just take what we can fit
@@ -197,7 +197,7 @@ export function FormFileUpload({
       if (validFiles.length > 0) {
         const updatedFiles = multiple ? [...value, ...validFiles] : validFiles;
         onChange?.(updatedFiles);
-        
+
         // Upload files if handler provided
         validFiles.forEach((file) => {
           onUpload?.(file);
@@ -274,9 +274,14 @@ export function FormFileUpload({
         onDrop={handleDrop}
         className={cn(
           "border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors",
-          isDragging && !disabled && "border-blue-500 bg-blue-50 dark:bg-blue-900/20",
-          !isDragging && !disabled && "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500",
-          disabled && "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-not-allowed",
+          isDragging &&
+            !disabled &&
+            "border-blue-500 bg-blue-50 dark:bg-blue-900/20",
+          !isDragging &&
+            !disabled &&
+            "border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500",
+          disabled &&
+            "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-not-allowed",
           !!error && "border-red-300 dark:border-red-700"
         )}
       >
@@ -294,9 +299,7 @@ export function FormFileUpload({
         <UploadIconProp className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" />
 
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          {isDragging
-            ? "Drop files here"
-            : "Click to upload or drag and drop"}
+          {isDragging ? "Drop files here" : "Click to upload or drag and drop"}
         </p>
 
         {helperText && !error && (

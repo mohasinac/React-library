@@ -28,3 +28,6 @@ export * from "./filters";
 
 // Pagination Components (Task 18.3)
 export * from "./pagination";
+
+// Selector Components (Task 18.5)
+export * from "./selectors";

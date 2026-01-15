@@ -12,7 +12,7 @@
  *   { label: 'Contact' },
  *   { label: 'Review' }
  * ];
- * 
+ *
  * <WizardSteps
  *   steps={steps}
  *   currentStep={currentStep}
@@ -22,7 +22,7 @@
  * ```
  */
 
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -31,16 +31,36 @@ function cn(...classes: (string | boolean | undefined)[]) {
 // Default icons
 function CheckIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 13l4 4L19 7"
+      />
     </svg>
   );
 }
 
 function AlertIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <svg
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
     </svg>
   );
 }
@@ -107,7 +127,9 @@ export function WizardSteps({
     }
   }, [currentStep]);
 
-  const getStepState = (index: number): "current" | "completed" | "error" | "pending" => {
+  const getStepState = (
+    index: number
+  ): "current" | "completed" | "error" | "pending" => {
     if (stepStates && stepStates[index]) {
       const state = stepStates[index];
       if (state.hasErrors) return "error";
@@ -148,14 +170,30 @@ export function WizardSteps({
                 variant === "pills"
                   ? "px-4 py-2 rounded-full text-sm font-medium"
                   : "flex items-center gap-2 px-3 py-2 rounded-lg text-sm",
-                state === "current" && variant === "pills" && "bg-blue-600 text-white shadow-md",
-                state === "current" && variant !== "pills" && "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-2 border-blue-500",
-                state === "completed" && variant === "pills" && "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300",
-                state === "completed" && variant !== "pills" && "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-300 dark:border-green-700",
-                state === "error" && variant === "pills" && "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300",
-                state === "error" && variant !== "pills" && "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-300 dark:border-red-700",
-                state === "pending" && variant === "pills" && "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400",
-                state === "pending" && variant !== "pills" && "bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700",
+                state === "current" &&
+                  variant === "pills" &&
+                  "bg-blue-600 text-white shadow-md",
+                state === "current" &&
+                  variant !== "pills" &&
+                  "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-2 border-blue-500",
+                state === "completed" &&
+                  variant === "pills" &&
+                  "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300",
+                state === "completed" &&
+                  variant !== "pills" &&
+                  "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-300 dark:border-green-700",
+                state === "error" &&
+                  variant === "pills" &&
+                  "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300",
+                state === "error" &&
+                  variant !== "pills" &&
+                  "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-300 dark:border-red-700",
+                state === "pending" &&
+                  variant === "pills" &&
+                  "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400",
+                state === "pending" &&
+                  variant !== "pills" &&
+                  "bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700",
                 onStepClick && "cursor-pointer hover:scale-105"
               )}
             >
@@ -167,7 +205,8 @@ export function WizardSteps({
                     state === "current" && "bg-blue-600 text-white",
                     state === "completed" && "bg-green-500 text-white",
                     state === "error" && "bg-red-500 text-white",
-                    state === "pending" && "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300"
+                    state === "pending" &&
+                      "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300"
                   )}
                 >
                   {state === "completed" ? (
