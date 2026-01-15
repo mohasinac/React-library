@@ -1,87 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { InlineField, FieldType, SelectOption } from "./InlineEditRow";
 
 /**
- * Field types supported by InlineEditRow
+ * Props for QuickCreateRow component
  */
-export type FieldType =
-  | "text"
-  | "number"
-  | "select"
-  | "checkbox"
-  | "image"
-  | "date"
-  | "textarea"
-  | "url"
-  | "email"
-  | "custom";
-
-/**
- * Option for select fields
- */
-export interface SelectOption {
-  value: string | number;
-  label: string;
-  disabled?: boolean;
-}
-
-/**
- * Field configuration for inline editing
- */
-export interface InlineField {
-  key: string;
-  type: FieldType;
-  label: string;
-  required?: boolean;
-  options?: SelectOption[];
-  validate?: (value: any, formData?: Record<string, any>) => string | null;
-  placeholder?: string;
-  disabled?: boolean;
-  min?: number;
-  max?: number;
-  step?: number;
-  accept?: string; // For image type
-  rows?: number; // For textarea
-  render?: (props: {
-    value: any;
-    onChange: (value: any) => void;
-    disabled?: boolean;
-    error?: string;
-    onKeyDown?: (e: React.KeyboardEvent) => void;
-  }) => React.ReactNode; // Custom render function
-}
-
-/**
- * Props for InlineEditRow component
- */
-export interface InlineEditRowProps {
+export interface QuickCreateRowProps {
   /** Field configurations */
   fields: InlineField[];
-  /** Initial values for the fields */
-  initialValues: Record<string, any>;
-  /** Callback when save is triggered */
+  /** Callback when save/create is triggered */
   onSave: (values: Record<string, any>) => Promise<void>;
-  /** Callback when cancel is triggered */
-  onCancel: () => void;
   /** Loading state */
   loading?: boolean;
-  /** Resource name for accessibility (e.g., "product", "category") */
+  /** Resource name for UI text (e.g., "product", "category") */
   resourceName?: string;
-  /** Check icon component (default: SVG checkmark) */
-  CheckIcon?: React.ComponentType<any>;
+  /** Default values for the fields */
+  defaultValues?: Record<string, any>;
+  /** Plus/add icon component (default: SVG plus) */
+  PlusIcon?: React.ComponentType<any>;
   /** X/close icon component (default: SVG X) */
   XIcon?: React.ComponentType<any>;
   /** Loader icon component (default: SVG spinner) */
   LoaderIcon?: React.ComponentType<any>;
   /** Error handler callback */
   onError?: (error: Error, context?: string) => void;
-  /** Custom row className */
-  rowClassName?: string;
+  /** Custom collapsed row className */
+  collapsedRowClassName?: string;
+  /** Custom expanded row className */
+  expandedRowClassName?: string;
   /** Custom cell className */
   cellClassName?: string;
 }
 
 // Default icons
-const DefaultCheckIcon = () => (
+const DefaultPlusIcon = () => (
   <svg
     width="16"
     height="16"
@@ -90,11 +41,10 @@ const DefaultCheckIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M3 8l3 3 7-7"
+      d="M8 3v10M3 8h10"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round"
     />
   </svg>
 );
@@ -144,64 +94,53 @@ const DefaultLoaderIcon = () => (
 );
 
 /**
- * InlineEditRow - Editable table row for inline editing
+ * QuickCreateRow - Collapsible table row for quick item creation
  *
- * A table row component that allows inline editing of multiple fields with validation,
- * keyboard shortcuts, and error handling.
+ * A table row component that starts collapsed and expands to show form fields
+ * for creating new items. Includes validation and keyboard shortcuts.
  *
  * @example
  * ```tsx
- * <InlineEditRow
+ * <QuickCreateRow
  *   fields={[
  *     { key: 'name', type: 'text', label: 'Name', required: true },
- *     { key: 'price', type: 'number', label: 'Price', min: 0 },
- *     { key: 'status', type: 'select', label: 'Status', options: [...] }
+ *     { key: 'price', type: 'number', label: 'Price', min: 0 }
  *   ]}
- *   initialValues={{ name: 'Product', price: 99.99, status: 'active' }}
- *   onSave={async (values) => { await saveProduct(values); }}
- *   onCancel={() => setEditing(false)}
+ *   onSave={async (values) => { await createProduct(values); }}
+ *   resourceName="product"
  * />
  * ```
  */
-export function InlineEditRow({
+export function QuickCreateRow({
   fields,
-  initialValues,
   onSave,
-  onCancel,
   loading,
   resourceName = "item",
-  CheckIcon = DefaultCheckIcon,
+  defaultValues = {},
+  PlusIcon = DefaultPlusIcon,
   XIcon = DefaultXIcon,
   LoaderIcon = DefaultLoaderIcon,
   onError,
-  rowClassName = "bg-blue-50 border-t-2 border-blue-200",
+  collapsedRowClassName = "bg-green-50 border-t-2 border-green-200",
+  expandedRowClassName = "bg-green-50 border-t-2 border-green-200",
   cellClassName = "px-4 py-2",
-}: InlineEditRowProps) {
-  const [values, setValues] = useState<Record<string, any>>(initialValues);
+}: QuickCreateRowProps) {
+  const [values, setValues] = useState<Record<string, any>>(defaultValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    setValues(initialValues);
-  }, [initialValues]);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleChange = (key: string, value: any) => {
     setValues((prev) => ({ ...prev, [key]: value }));
     setTouched((prev) => ({ ...prev, [key]: true }));
 
-    // Validate field on change for immediate feedback
-    const field = fields.find((f) => f.key === key);
-    if (field) {
-      const error = validateField(field);
-      if (error) {
-        setErrors((prev) => ({ ...prev, [key]: error }));
-      } else {
-        setErrors((prev) => {
-          const newErrors = { ...prev };
-          delete newErrors[key];
-          return newErrors;
-        });
-      }
+    // Clear error when value changes
+    if (errors[key]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[key];
+        return newErrors;
+      });
     }
   };
 
@@ -216,7 +155,7 @@ export function InlineEditRow({
       return `${field.label} is required`;
     }
 
-    // Custom validation (pass entire form data for cross-field validation)
+    // Custom validation
     if (field.validate) {
       return field.validate(value, values);
     }
@@ -255,13 +194,29 @@ export function InlineEditRow({
 
     try {
       await onSave(values);
+
+      // Reset form after successful save
+      setValues(defaultValues);
+      setErrors({});
+      setTouched({});
+      setIsExpanded(false);
     } catch (error) {
       if (onError) {
-        onError(error as Error, `InlineEditRow.handleSave for ${resourceName}`);
+        onError(
+          error as Error,
+          `QuickCreateRow.handleCreate for ${resourceName}`
+        );
       } else {
-        console.error("InlineEditRow save error:", error);
+        console.error("QuickCreateRow save error:", error);
       }
     }
+  };
+
+  const handleCancel = () => {
+    setValues(defaultValues);
+    setErrors({});
+    setTouched({});
+    setIsExpanded(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -270,7 +225,7 @@ export function InlineEditRow({
       handleSave();
     } else if (e.key === "Escape") {
       e.preventDefault();
-      onCancel();
+      handleCancel();
     }
   };
 
@@ -462,8 +417,27 @@ export function InlineEditRow({
     }
   };
 
+  if (!isExpanded) {
+    return (
+      <tr className={collapsedRowClassName}>
+        <td colSpan={fields.length + 1} className="px-4 py-3">
+          <button
+            onClick={() => setIsExpanded(true)}
+            disabled={loading}
+            className="flex items-center gap-2 text-sm font-medium text-green-700 hover:text-green-800 disabled:opacity-50"
+            type="button"
+            aria-label={`Add new ${resourceName}`}
+          >
+            <PlusIcon />
+            Add {resourceName}
+          </button>
+        </td>
+      </tr>
+    );
+  }
+
   return (
-    <tr className={rowClassName}>
+    <tr className={expandedRowClassName}>
       {fields.map((field) => (
         <td key={field.key} className={cellClassName}>
           {renderField(field)}
@@ -474,20 +448,20 @@ export function InlineEditRow({
           <button
             onClick={handleSave}
             disabled={loading}
-            className="p-1.5 text-green-600 hover:bg-green-100 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-            title={`Save ${resourceName}`}
+            className="p-1.5 text-green-600 hover:bg-green-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            title={`Create ${resourceName}`}
             type="button"
-            aria-label={`Save ${resourceName}`}
+            aria-label={`Create ${resourceName}`}
           >
-            {loading ? <LoaderIcon /> : <CheckIcon />}
+            {loading ? <LoaderIcon /> : <PlusIcon />}
           </button>
           <button
-            onClick={onCancel}
+            onClick={handleCancel}
             disabled={loading}
-            className="p-1.5 text-red-600 hover:bg-red-100 rounded disabled:opacity-50"
+            className="p-1.5 text-gray-600 hover:bg-gray-200 rounded disabled:opacity-50"
             title="Cancel"
             type="button"
-            aria-label="Cancel edit"
+            aria-label="Cancel"
           >
             <XIcon />
           </button>

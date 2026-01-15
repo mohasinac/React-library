@@ -396,7 +396,7 @@ All component migration tasks completed:
 - `Button` - 5 variants (primary, secondary, outline, ghost, danger), 3 sizes, loading state, icon support
 - `Card` / `CardSection` - Container components with optional header
 
-### Table Components ✅ (Task 18.1 Started - 5 Components)
+### Table Components ✅ (Task 18.1 Started - 6 Components)
 
 - `DataTable` - Generic data table with sorting, loading states, custom rendering, row interactions
   - Sortable columns (local or controlled)
@@ -431,6 +431,15 @@ All component migration tasks completed:
   - Keyboard shortcuts (Enter to save, Escape to cancel)
   - Custom render functions for complex fields
   - Loading states and disabled fields
+  - Framework-agnostic with dependency injection
+- `QuickCreateRow` - Collapsible table row for quick item creation
+  - Starts collapsed with "Add item" button
+  - Expands to show form fields when clicked
+  - Same field types as InlineEditRow
+  - Real-time validation
+  - Keyboard shortcuts (Enter to save, Escape to cancel)
+  - Auto-reset and collapse after successful save
+  - Custom render functions for complex fields
   - Framework-agnostic with dependency injection
 
 ### Upload Components ✅ (Task 17.1 Complete - 2 Components)

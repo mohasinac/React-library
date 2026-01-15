@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { InlineEditRow, type InlineField } from "../../src/components/tables/InlineEditRow";
+import {
+  InlineEditRow,
+  type InlineField,
+} from "../../src/components/tables/InlineEditRow";
 
 /**
  * InlineEditRow provides an editable table row for inline editing with validation.
- * 
+ *
  * ## Features
  * - Multiple field types (text, number, select, checkbox, date, textarea)
  * - Real-time validation with error messages
@@ -54,7 +57,11 @@ export const Default: Story = {
         <tbody>
           <InlineEditRow
             fields={basicFields}
-            initialValues={{ name: "Product 1", price: 99.99, status: "active" }}
+            initialValues={{
+              name: "Product 1",
+              price: 99.99,
+              status: "active",
+            }}
             onSave={async (values) => {
               console.log("Saved:", values);
               await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -153,7 +160,8 @@ export const WithValidation: Story = {
     return (
       <div className="bg-white dark:bg-gray-900 p-4">
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-          Try clearing fields or entering invalid values to see validation errors
+          Try clearing fields or entering invalid values to see validation
+          errors
         </p>
         <table className="w-full border-collapse">
           <thead>
@@ -167,7 +175,11 @@ export const WithValidation: Story = {
           <tbody>
             <InlineEditRow
               fields={fields}
-              initialValues={{ username: "user123", email: "user@example.com", age: 25 }}
+              initialValues={{
+                username: "user123",
+                email: "user@example.com",
+                age: 25,
+              }}
               onSave={async (values) => console.log("Saved:", values)}
               onCancel={() => console.log("Cancelled")}
             />
@@ -193,7 +205,11 @@ export const LoadingState: Story = {
         <tbody>
           <InlineEditRow
             fields={basicFields}
-            initialValues={{ name: "Product 1", price: 99.99, status: "active" }}
+            initialValues={{
+              name: "Product 1",
+              price: 99.99,
+              status: "active",
+            }}
             onSave={async (values) => console.log("Saved:", values)}
             onCancel={() => console.log("Cancelled")}
             loading={true}

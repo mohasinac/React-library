@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 import {
   InlineEditRow,
   type InlineField,
@@ -27,7 +27,11 @@ describe("InlineEditRow", () => {
         <tbody>
           <InlineEditRow
             fields={mockFields}
-            initialValues={{ name: "Product 1", price: 99.99, status: "active" }}
+            initialValues={{
+              name: "Product 1",
+              price: 99.99,
+              status: "active",
+            }}
             onSave={vi.fn()}
             onCancel={vi.fn()}
           />
@@ -120,10 +124,10 @@ describe("InlineEditRow", () => {
     );
 
     const nameInput = screen.getByLabelText("Name");
-    
+
     // Field should start with normal styling
     expect(nameInput).not.toHaveClass("border-red-300");
-    
+
     // Change to valid value - should not have error styling
     await user.clear(nameInput);
     await user.type(nameInput, "Valid Name");
@@ -270,7 +274,9 @@ describe("InlineEditRow", () => {
   });
 
   it("shows loader icon when loading", () => {
-    const MockLoaderIcon = () => <span data-testid="custom-loader">Loading</span>;
+    const MockLoaderIcon = () => (
+      <span data-testid="custom-loader">Loading</span>
+    );
 
     render(
       <table>
@@ -434,7 +440,10 @@ describe("InlineEditRow", () => {
         type: "custom",
         label: "Custom Field",
         render: ({ value, onChange }) => (
-          <button onClick={() => onChange("clicked")} data-testid="custom-field">
+          <button
+            onClick={() => onChange("clicked")}
+            data-testid="custom-field"
+          >
             {value || "Click me"}
           </button>
         ),
