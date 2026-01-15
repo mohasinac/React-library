@@ -114,3 +114,34 @@ export type {
   UseVirtualListOptions,
   UseVirtualListReturn,
 } from "./useVirtualList";
+
+// Form hooks (Task 18.4)
+export { useFormState } from "./useFormState";
+export type {
+  AsyncValidator,
+  UseFormStateOptions,
+  UseFormStateReturn,
+} from "./useFormState";
+
+export { useDialogState, useMultipleDialogs } from "./useDialogState";
+export type {
+  DialogStateConfig,
+  UseDialogStateReturn,
+  UseMultipleDialogsReturn,
+} from "./useDialogState";
+
+export { usePasswordFieldState } from "./usePasswordFieldState";
+export type { UsePasswordFieldStateReturn } from "./usePasswordFieldState";
+
+export { useSlugValidation } from "./useSlugValidation";
+export type {
+  UseSlugValidationOptions,
+  UseSlugValidationReturn,
+} from "./useSlugValidation";
+
+export { useWizardFormState } from "./useWizardFormState";
+export type {
+  StepState,
+  UseWizardFormStateConfig,
+  UseWizardFormStateReturn,
+} from "./useWizardFormState";

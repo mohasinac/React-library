@@ -21,7 +21,7 @@
  * ```
  */
 
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function cn(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -47,7 +47,12 @@ function generateSlug(text: string, prefix = "", suffix = ""): string {
 
 // Copy icon component
 const CopyIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -59,7 +64,12 @@ const CopyIcon = () => (
 
 // Check icon component
 const CheckIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -71,7 +81,12 @@ const CheckIcon = () => (
 
 // X icon component
 const XIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -238,7 +253,9 @@ export function SlugInput({
         <div
           className={cn(
             "flex items-center gap-2 border rounded-lg overflow-hidden",
-            disabled ? "bg-gray-100 dark:bg-gray-900" : "bg-white dark:bg-gray-800",
+            disabled
+              ? "bg-gray-100 dark:bg-gray-900"
+              : "bg-white dark:bg-gray-800",
             displayError
               ? "border-red-500 dark:border-red-400"
               : "border-gray-300 dark:border-gray-600",

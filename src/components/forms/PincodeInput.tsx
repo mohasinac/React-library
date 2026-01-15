@@ -23,7 +23,7 @@
  * ```
  */
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function cn(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -31,11 +31,7 @@ function cn(...classes: (string | boolean | undefined)[]): string {
 
 // Spinner icon
 const SpinnerIcon = () => (
-  <svg
-    className="w-4 h-4 animate-spin"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
+  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
     <circle
       className="opacity-25"
       cx="12"
@@ -54,7 +50,12 @@ const SpinnerIcon = () => (
 
 // Check icon
 const CheckIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -66,7 +67,12 @@ const CheckIcon = () => (
 
 // X icon
 const XIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -78,7 +84,12 @@ const XIcon = () => (
 
 // MapPin icon
 const MapPinIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -270,7 +281,10 @@ export function PincodeInput({
             loading && "text-gray-400 dark:text-gray-500",
             !!displayError && "text-red-500 dark:text-red-400",
             lookupResult?.isValid && "text-green-500 dark:text-green-400",
-            !loading && !displayError && !lookupResult && "text-gray-400 dark:text-gray-500"
+            !loading &&
+              !displayError &&
+              !lookupResult &&
+              "text-gray-400 dark:text-gray-500"
           )}
         >
           {getStatusIcon()}
@@ -302,7 +316,8 @@ export function PincodeInput({
               "focus:outline-none focus:ring-2",
               "border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500",
               "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
-              disabled && "bg-gray-100 dark:bg-gray-900 cursor-not-allowed opacity-60"
+              disabled &&
+                "bg-gray-100 dark:bg-gray-900 cursor-not-allowed opacity-60"
             )}
           >
             <option value="">Select Area</option>

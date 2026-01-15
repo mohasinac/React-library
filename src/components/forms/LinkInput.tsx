@@ -205,7 +205,9 @@ export function LinkInput({
           <a
             href={linkInfo.resolvedUrl}
             target={linkInfo.type === "external" ? "_blank" : undefined}
-            rel={linkInfo.type === "external" ? "noopener noreferrer" : undefined}
+            rel={
+              linkInfo.type === "external" ? "noopener noreferrer" : undefined
+            }
             className="text-blue-600 dark:text-blue-400 hover:underline truncate"
           >
             {linkInfo.resolvedUrl}
