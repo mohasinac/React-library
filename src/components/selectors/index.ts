@@ -1,4 +1,10 @@
 // Selector Components
+export { AddressSelectorWithCreate } from './AddressSelectorWithCreate';
+export type { 
+  Address as SelectorAddress,
+  AddressSelectorWithCreateProps
+} from './AddressSelectorWithCreate';
+
 export { CategorySelector } from './CategorySelector';
 export type { Category, CategorySelectorProps } from './CategorySelector';
 
