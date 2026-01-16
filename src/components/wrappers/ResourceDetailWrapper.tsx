@@ -1,9 +1,9 @@
 /**
  * ResourceDetailWrapper Component
- * 
+ *
  * Framework-agnostic wrapper for resource detail pages.
  * Provides consistent layout with breadcrumbs, header, tabs, and content sections.
- * 
+ *
  * @example
  * ```tsx
  * <ResourceDetailWrapper
@@ -55,10 +55,10 @@ interface ResourceDetailWrapperProps {
 
   /** Page title */
   title: string;
-  
+
   /** Optional subtitle text */
   subtitle?: string;
-  
+
   /** Badge component */
   badge?: ReactNode;
 
@@ -67,10 +67,10 @@ interface ResourceDetailWrapperProps {
 
   /** Tab configuration */
   tabs?: Tab[];
-  
+
   /** Active tab ID */
   activeTab?: string;
-  
+
   /** Tab change handler */
   onTabChange?: (tabId: string) => void;
 
@@ -94,13 +94,23 @@ interface ResourceDetailWrapperProps {
 }
 
 function cn(...classes: (string | undefined | null | false)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default chevron icon
 const defaultChevronIcon = (
-  <svg className="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  <svg
+    className="w-4 h-4 text-gray-400 dark:text-gray-500"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
 );
 
@@ -252,9 +262,7 @@ export function ResourceDetailWrapper({
             )}
 
             {/* Comments/Reviews Section */}
-            {commentsSection && (
-              <div className="mt-6">{commentsSection}</div>
-            )}
+            {commentsSection && <div className="mt-6">{commentsSection}</div>}
           </div>
 
           {/* Sidebar */}

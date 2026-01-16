@@ -1,9 +1,9 @@
 /**
  * ResourceListWrapper Component
- * 
+ *
  * Framework-agnostic wrapper for resource list pages.
  * Provides consistent layout with header, stats, filters, and controls.
- * 
+ *
  * @example
  * ```tsx
  * <ResourceListWrapper
@@ -38,10 +38,10 @@ interface ResourceListWrapperProps {
 
   /** Page title */
   title: string;
-  
+
   /** Optional description text */
   description?: string;
-  
+
   /** Create/Add button component */
   createButton?: ReactNode;
 
@@ -50,25 +50,25 @@ interface ResourceListWrapperProps {
 
   /** Filter sidebar component (injectable) */
   filterSidebar?: ReactNode;
-  
+
   /** Whether to show filter sidebar */
   showFilterSidebar?: boolean;
 
   /** Search input placeholder */
   searchPlaceholder?: string;
-  
+
   /** Current search value */
   searchValue?: string;
-  
+
   /** Search change handler */
   onSearchChange?: (value: string) => void;
 
   /** Current view mode */
   viewMode?: "grid" | "table";
-  
+
   /** View mode change handler */
   onViewModeChange?: (mode: "grid" | "table") => void;
-  
+
   /** Whether to show view toggle */
   showViewToggle?: boolean;
 
@@ -77,7 +77,7 @@ interface ResourceListWrapperProps {
 
   /** Export handler */
   onExport?: () => void;
-  
+
   /** Whether to show export button */
   showExport?: boolean;
 
@@ -89,10 +89,10 @@ interface ResourceListWrapperProps {
 
   /** Mobile filter component (injectable) */
   mobileFilterSidebar?: ReactNode;
-  
+
   /** Mobile filter open state */
   mobileFilterOpen?: boolean;
-  
+
   /** Mobile filter toggle handler */
   onMobileFilterToggle?: () => void;
 
@@ -106,29 +106,69 @@ interface ResourceListWrapperProps {
 }
 
 function cn(...classes: (string | undefined | null | false)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default icons (inline SVG)
 const defaultIcons = {
   grid: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+      />
     </svg>
   ),
   list: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 6h16M4 12h16M4 18h16"
+      />
     </svg>
   ),
   download: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+      />
     </svg>
   ),
   filter: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+      />
     </svg>
   ),
 };

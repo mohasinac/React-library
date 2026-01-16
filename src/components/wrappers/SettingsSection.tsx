@@ -1,14 +1,14 @@
 /**
  * Settings Components
- * 
+ *
  * Framework-agnostic components for settings pages.
  * Provides consistent styling and layout for settings sections.
- * 
+ *
  * Components:
  * - SettingsSection: Main wrapper for a settings section
  * - SettingsGroup: Groups related sections with heading
  * - SettingsRow: Single row with label and control
- * 
+ *
  * @example
  * ```tsx
  * <SettingsSection
@@ -18,7 +18,7 @@
  * >
  *   <form>...</form>
  * </SettingsSection>
- * 
+ *
  * <SettingsGroup title="Notifications" description="Configure your notification preferences">
  *   <SettingsSection title="Email Notifications">
  *     <SettingsRow label="Marketing emails" description="Receive promotional emails">
@@ -80,7 +80,7 @@ export function SettingsSection({
 
 /**
  * SettingsGroup Component
- * 
+ *
  * Groups related settings sections together with a heading.
  */
 interface SettingsGroupProps {
@@ -121,7 +121,7 @@ export function SettingsGroup({
 
 /**
  * SettingsRow Component
- * 
+ *
  * A single row in a settings section with label, description, and control.
  */
 interface SettingsRowProps {

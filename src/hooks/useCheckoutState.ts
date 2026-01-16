@@ -88,7 +88,8 @@ const CHECKOUT_STEPS: CheckoutStep[] = ["address", "payment", "review"];
 export function useCheckoutState(): UseCheckoutStateReturn {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>("address");
   const [shippingAddressId, setShippingAddressId] = useState("");
-  const [shippingAddress, setShippingAddress] = useState<CheckoutAddress | null>(null);
+  const [shippingAddress, setShippingAddress] =
+    useState<CheckoutAddress | null>(null);
   const [billingAddressId, setBillingAddressId] = useState("");
   const [useSameAddress, setUseSameAddress] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState<

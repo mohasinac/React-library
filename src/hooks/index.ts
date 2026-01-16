@@ -210,3 +210,10 @@ export type {
   UseWizardFormStateConfig,
   UseWizardFormStateReturn,
 } from "./useWizardFormState";
+
+// Data fetching hooks (Task 19.4)
+export { useQuery } from "./useQuery";
+export type { UseQueryOptions, UseQueryResult } from "./useQuery";
+
+export { useMutation } from "./useMutation";
+export type { UseMutationOptions, UseMutationResult } from "./useMutation";
