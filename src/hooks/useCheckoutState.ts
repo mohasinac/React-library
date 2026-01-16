@@ -18,7 +18,7 @@ import { useCallback, useState } from "react";
 
 export type CheckoutStep = "address" | "payment" | "review";
 
-export interface Address {
+export interface CheckoutAddress {
   id: string;
   [key: string]: any;
 }
@@ -36,8 +36,8 @@ export interface UseCheckoutStateReturn {
   // Address
   shippingAddressId: string;
   setShippingAddressId: (id: string) => void;
-  shippingAddress: Address | null;
-  setShippingAddress: (address: Address | null) => void;
+  shippingAddress: CheckoutAddress | null;
+  setShippingAddress: (address: CheckoutAddress | null) => void;
   billingAddressId: string;
   setBillingAddressId: (id: string) => void;
   useSameAddress: boolean;
@@ -88,7 +88,7 @@ const CHECKOUT_STEPS: CheckoutStep[] = ["address", "payment", "review"];
 export function useCheckoutState(): UseCheckoutStateReturn {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>("address");
   const [shippingAddressId, setShippingAddressId] = useState("");
-  const [shippingAddress, setShippingAddress] = useState<Address | null>(null);
+  const [shippingAddress, setShippingAddress] = useState<CheckoutAddress | null>(null);
   const [billingAddressId, setBillingAddressId] = useState("");
   const [useSameAddress, setUseSameAddress] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState<

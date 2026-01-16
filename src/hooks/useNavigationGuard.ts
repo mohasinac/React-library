@@ -86,7 +86,7 @@ export function useNavigationGuard(options: NavigationGuardOptions): void {
 
       // Show confirmation dialog
       const confirmFn = customConfirm || ((msg: string) => window.confirm(msg));
-      const confirmed = await confirmConfirm(message);
+      const confirmed = await confirmFn(message);
 
       if (confirmed) {
         isNavigatingRef.current = true;

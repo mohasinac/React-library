@@ -18,10 +18,9 @@ export {
 // Forms
 export { SmartAddressForm } from "./SmartAddressForm";
 export type {
-  GeoCoordinates,
-  PincodeLookupResult,
   AddressFormData,
   PincodeService,
   GPSService,
   SmartAddressFormProps,
 } from "./SmartAddressForm";
+// Note: GeoCoordinates and PincodeLookupResult are already exported from ui and forms

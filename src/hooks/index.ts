@@ -63,7 +63,7 @@ export {
 // State management hooks (Task 19.2)
 export { useCheckoutState } from "./useCheckoutState";
 export type {
-  Address,
+  CheckoutAddress,
   CheckoutStep,
   UseCheckoutStateReturn,
 } from "./useCheckoutState";
