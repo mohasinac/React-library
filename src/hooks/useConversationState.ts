@@ -1,9 +1,9 @@
 /**
  * useConversationState Hook
- * 
+ *
  * Framework-agnostic conversation/messaging state management.
  * Manages conversation list, messages, and UI state for messaging features.
- * 
+ *
  * @example
  * ```tsx
  * const {
@@ -70,7 +70,10 @@ export interface UseConversationStateReturn {
   // Helper methods
   selectConversation: (conversation: Conversation) => void;
   addMessage: (message: Message) => void;
-  updateConversationLastMessage: (conversationId: string, message: Message) => void;
+  updateConversationLastMessage: (
+    conversationId: string,
+    message: Message
+  ) => void;
   clearMessages: () => void;
 }
 
@@ -79,7 +82,8 @@ export function useConversationState(
 ): UseConversationStateReturn {
   // Conversation list state
   const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+  const [selectedConversation, setSelectedConversation] =
+    useState<Conversation | null>(null);
 
   // Messages state
   const [messages, setMessages] = useState<Message[]>([]);
@@ -115,9 +119,7 @@ export function useConversationState(
     (conversationId: string, message: Message) => {
       setConversations((prev) =>
         prev.map((conv) =>
-          conv.id === conversationId
-            ? { ...conv, lastMessage: message }
-            : conv
+          conv.id === conversationId ? { ...conv, lastMessage: message } : conv
         )
       );
     },

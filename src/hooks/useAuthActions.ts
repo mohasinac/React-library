@@ -1,14 +1,14 @@
 /**
  * Generic Auth Actions Hook
- * 
+ *
  * Framework-agnostic hook for accessing authentication actions.
  * Requires an AuthActionsContext to be provided by the consumer.
- * 
+ *
  * @example
  * ```tsx
  * // In your app, create and provide context:
  * const AuthActionsContext = createContext<AuthActions | undefined>(undefined);
- * 
+ *
  * // Then use the hook:
  * const { login, logout, register } = useAuthActions(AuthActionsContext);
  * ```

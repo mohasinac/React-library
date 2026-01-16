@@ -1,9 +1,9 @@
 /**
  * HorizontalScrollContainer Component
- * 
+ *
  * Framework-agnostic horizontal scrollable container with navigation arrows.
  * Calculates visible items and provides smooth scrolling.
- * 
+ *
  * @example
  * ```tsx
  * <HorizontalScrollContainer
@@ -16,7 +16,7 @@
  * ```
  */
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 export interface HorizontalScrollContainerProps {
   /** Section title */
@@ -36,9 +36,9 @@ export interface HorizontalScrollContainerProps {
   /** Show navigation arrows */
   showArrows?: boolean;
   /** Heading level for accessibility */
-  headingLevel?: 'h2' | 'h3' | 'h4';
+  headingLevel?: "h2" | "h3" | "h4";
   /** Arrow style variant */
-  arrowStyle?: 'compact' | 'full-height';
+  arrowStyle?: "compact" | "full-height";
   /** Additional CSS classes */
   className?: string;
   /** Custom ChevronLeft icon */
@@ -51,7 +51,7 @@ export interface HorizontalScrollContainerProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -117,15 +117,15 @@ function DefaultExternalLinkIcon({ className }: { className?: string }) {
 export function HorizontalScrollContainer({
   title,
   viewAllHref,
-  viewAllText = 'View All',
+  viewAllText = "View All",
   onViewAllClick,
   children,
-  itemWidth = '280px',
-  gap = '1rem',
+  itemWidth = "280px",
+  gap = "1rem",
   showArrows = true,
-  headingLevel = 'h2',
-  arrowStyle = 'full-height',
-  className = '',
+  headingLevel = "h2",
+  arrowStyle = "full-height",
+  className = "",
   ChevronLeftIcon = DefaultChevronLeftIcon,
   ChevronRightIcon = DefaultChevronRightIcon,
   ExternalLinkIcon = DefaultExternalLinkIcon,
@@ -141,7 +141,7 @@ export function HorizontalScrollContainer({
       const totalWidth = containerRef.current.clientWidth;
       const itemWidthNum = parseInt(itemWidth);
       const gapNum = parseInt(gap) * 16;
-      const arrowWidth = showArrows && arrowStyle === 'full-height' ? 48 : 0;
+      const arrowWidth = showArrows && arrowStyle === "full-height" ? 48 : 0;
       const availableWidth = totalWidth - arrowWidth * 2;
       const itemsPerRow = Math.floor(availableWidth / (itemWidthNum + gapNum));
       const actualItems = Math.max(1, itemsPerRow);
@@ -168,27 +168,28 @@ export function HorizontalScrollContainer({
     };
 
     if (scrollElement) {
-      scrollElement.addEventListener('scroll', checkScroll);
-      window.addEventListener('resize', handleResize);
+      scrollElement.addEventListener("scroll", checkScroll);
+      window.addEventListener("resize", handleResize);
 
       return () => {
-        scrollElement.removeEventListener('scroll', checkScroll);
-        window.removeEventListener('resize', handleResize);
+        scrollElement.removeEventListener("scroll", checkScroll);
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, [children, itemWidth, gap, showArrows, arrowStyle]);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const itemWidthNum = parseInt(itemWidth);
       const gapNum = parseInt(gap) * 16;
       const scrollAmount = (itemWidthNum + gapNum) * visibleItems;
       const newScrollLeft =
-        scrollRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
+        scrollRef.current.scrollLeft +
+        (direction === "right" ? scrollAmount : -scrollAmount);
 
       scrollRef.current.scrollTo({
         left: newScrollLeft,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
@@ -214,7 +215,7 @@ export function HorizontalScrollContainer({
   ) : null;
 
   return (
-    <div ref={containerRef} className={cn('relative', className)}>
+    <div ref={containerRef} className={cn("relative", className)}>
       {/* Header */}
       {(title || viewAllLink) && (
         <div className="flex items-center justify-between mb-4">
@@ -232,15 +233,15 @@ export function HorizontalScrollContainer({
         {/* Left Arrow */}
         {showArrows && showLeftArrow && (
           <button
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             className={cn(
-              'absolute left-0 z-10 bg-white dark:bg-gray-800',
-              'border border-gray-300 dark:border-gray-600 rounded-full',
-              'hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500',
-              arrowStyle === 'full-height'
-                ? 'top-0 bottom-0 w-10'
-                : 'top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center'
+              "absolute left-0 z-10 bg-white dark:bg-gray-800",
+              "border border-gray-300 dark:border-gray-600 rounded-full",
+              "hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors",
+              "focus:outline-none focus:ring-2 focus:ring-blue-500",
+              arrowStyle === "full-height"
+                ? "top-0 bottom-0 w-10"
+                : "top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center"
             )}
             aria-label="Scroll left"
           >
@@ -253,9 +254,9 @@ export function HorizontalScrollContainer({
           ref={scrollRef}
           className="overflow-x-auto scrollbar-hide"
           style={{
-            display: 'flex',
+            display: "flex",
             gap,
-            scrollSnapType: 'x mandatory',
+            scrollSnapType: "x mandatory",
           }}
         >
           {React.Children.map(children, (child, index) => (
@@ -263,7 +264,7 @@ export function HorizontalScrollContainer({
               key={index}
               style={{
                 minWidth: itemWidth,
-                scrollSnapAlign: 'start',
+                scrollSnapAlign: "start",
               }}
             >
               {child}
@@ -274,15 +275,15 @@ export function HorizontalScrollContainer({
         {/* Right Arrow */}
         {showArrows && showRightArrow && (
           <button
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             className={cn(
-              'absolute right-0 z-10 bg-white dark:bg-gray-800',
-              'border border-gray-300 dark:border-gray-600 rounded-full',
-              'hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500',
-              arrowStyle === 'full-height'
-                ? 'top-0 bottom-0 w-10'
-                : 'top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center'
+              "absolute right-0 z-10 bg-white dark:bg-gray-800",
+              "border border-gray-300 dark:border-gray-600 rounded-full",
+              "hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors",
+              "focus:outline-none focus:ring-2 focus:ring-blue-500",
+              arrowStyle === "full-height"
+                ? "top-0 bottom-0 w-10"
+                : "top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center"
             )}
             aria-label="Scroll right"
           >

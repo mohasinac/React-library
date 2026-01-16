@@ -53,26 +53,26 @@ export type {
 
 // Mobile detection utilities from useMobile (additional utilities)
 export {
-  useDeviceType,
-  isIOS,
-  isAndroid,
-  getDeviceType,
   breakpoints,
+  getDeviceType,
+  isAndroid,
+  isIOS,
+  useDeviceType,
 } from "./useMobile";
 
 // State management hooks (Task 19.2)
 export { useCheckoutState } from "./useCheckoutState";
 export type {
-  CheckoutStep,
   Address,
+  CheckoutStep,
   UseCheckoutStateReturn,
 } from "./useCheckoutState";
 
 export { useConversationState } from "./useConversationState";
 export type {
-  Message,
   Conversation,
   ConversationStateOptions,
+  Message,
   UseConversationStateReturn,
 } from "./useConversationState";
 
@@ -80,20 +80,20 @@ export { useNavigationGuard } from "./useNavigationGuard";
 export type { NavigationGuardOptions } from "./useNavigationGuard";
 
 // Context-based hooks (Task 19.2)
-export { useAuthState, createUseAuthState } from "./useAuthState";
-export type { User, AuthState } from "./useAuthState";
+export { createUseAuthState, useAuthState } from "./useAuthState";
+export type { AuthState, User } from "./useAuthState";
 
-export { useAuthActions, createUseAuthActions } from "./useAuthActions";
+export { createUseAuthActions, useAuthActions } from "./useAuthActions";
 export type {
+  AuthActions,
   LoginCredentials,
   RegisterData,
-  AuthActions,
 } from "./useAuthActions";
 
 export { useCart } from "./useCart";
 export type {
-  CartItem,
   Cart,
+  CartItem,
   CartService,
   UseCartOptions,
   UseCartReturn,

@@ -1,16 +1,16 @@
 /**
  * useSafeLoad Hook
- * 
+ *
  * Framework-agnostic hook to prevent infinite API calls.
  * Provides safe way to call load functions with proper dependency tracking.
- * 
+ *
  * @example
  * ```tsx
  * const loadData = async () => {
  *   const data = await fetchData();
  *   setData(data);
  * };
- * 
+ *
  * useSafeLoad(loadData, {
  *   enabled: !!user && isAdmin,
  *   deps: [user?.id, isAdmin, filter],
@@ -18,7 +18,7 @@
  * ```
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface UseSafeLoadOptions {
   /** Whether the load should execute */

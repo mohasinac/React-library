@@ -1,9 +1,9 @@
 /**
  * useCart Hook
- * 
+ *
  * Framework-agnostic cart management hook with injectable services.
  * Supports both authenticated and guest carts.
- * 
+ *
  * @example
  * ```tsx
  * const {
@@ -57,7 +57,7 @@ export interface Cart {
 
 export interface CartService {
   get: () => Promise<Cart>;
-  addItem: (item: Omit<CartItem, 'id'>) => Promise<Cart>;
+  addItem: (item: Omit<CartItem, "id">) => Promise<Cart>;
   removeItem: (itemId: string) => Promise<Cart>;
   updateQuantity: (itemId: string, quantity: number) => Promise<Cart>;
   clear: () => Promise<void>;
@@ -78,7 +78,7 @@ export interface UseCartReturn {
   cart: Cart | null;
   loading: boolean;
   error: string | null;
-  addItem: (item: Omit<CartItem, 'id'>) => Promise<void>;
+  addItem: (item: Omit<CartItem, "id">) => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
   updateQuantity: (itemId: string, quantity: number) => Promise<void>;
   clearCart: () => Promise<void>;
@@ -99,7 +99,8 @@ export function useCart(options: UseCartOptions): UseCartReturn {
       const data = await cartService.get();
       setCart(data);
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : "Failed to load cart";
+      const errorMsg =
+        err instanceof Error ? err.message : "Failed to load cart";
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
     } finally {
@@ -108,14 +109,15 @@ export function useCart(options: UseCartOptions): UseCartReturn {
   }, [cartService, onError]);
 
   const addItem = useCallback(
-    async (item: Omit<CartItem, 'id'>) => {
+    async (item: Omit<CartItem, "id">) => {
       try {
         setLoading(true);
         setError(null);
         const updatedCart = await cartService.addItem(item);
         setCart(updatedCart);
       } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : "Failed to add item";
+        const errorMsg =
+          err instanceof Error ? err.message : "Failed to add item";
         setError(errorMsg);
         onError?.(err instanceof Error ? err : new Error(errorMsg));
         throw err;
@@ -134,7 +136,8 @@ export function useCart(options: UseCartOptions): UseCartReturn {
         const updatedCart = await cartService.removeItem(itemId);
         setCart(updatedCart);
       } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : "Failed to remove item";
+        const errorMsg =
+          err instanceof Error ? err.message : "Failed to remove item";
         setError(errorMsg);
         onError?.(err instanceof Error ? err : new Error(errorMsg));
         throw err;
@@ -153,7 +156,8 @@ export function useCart(options: UseCartOptions): UseCartReturn {
         const updatedCart = await cartService.updateQuantity(itemId, quantity);
         setCart(updatedCart);
       } catch (err) {
-        const errorMsg = err instanceof Error ? err.message : "Failed to update quantity";
+        const errorMsg =
+          err instanceof Error ? err.message : "Failed to update quantity";
         setError(errorMsg);
         onError?.(err instanceof Error ? err : new Error(errorMsg));
         throw err;
@@ -171,7 +175,8 @@ export function useCart(options: UseCartOptions): UseCartReturn {
       await cartService.clear();
       setCart(null);
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : "Failed to clear cart";
+      const errorMsg =
+        err instanceof Error ? err.message : "Failed to clear cart";
       setError(errorMsg);
       onError?.(err instanceof Error ? err : new Error(errorMsg));
       throw err;

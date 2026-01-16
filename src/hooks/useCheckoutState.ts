@@ -1,13 +1,13 @@
 /**
  * useCheckoutState Hook
- * 
+ *
  * Framework-agnostic multi-step checkout form state management.
  * Manages checkout steps, addresses, payment methods, and validation.
- * 
+ *
  * @example
  * ```tsx
  * const checkout = useCheckoutState();
- * 
+ *
  * checkout.setCurrentStep('payment');
  * checkout.setShippingAddress(address);
  * checkout.nextStep();
@@ -94,11 +94,15 @@ export function useCheckoutState(): UseCheckoutStateReturn {
   const [paymentMethod, setPaymentMethod] = useState<
     "razorpay" | "paypal" | "cod"
   >("razorpay");
-  const [currency, setCurrency] = useState<"INR" | "USD" | "EUR" | "GBP">("INR");
+  const [currency, setCurrency] = useState<"INR" | "USD" | "EUR" | "GBP">(
+    "INR"
+  );
   const [notes, setNotes] = useState("");
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string>
+  >({});
   const [shopCoupons, setShopCoupons] = useState<
     Record<string, { code: string; discountAmount: number }>
   >({});

@@ -1,9 +1,9 @@
 /**
  * AddressSelectorWithCreate Component
- * 
+ *
  * Framework-agnostic address selector with create new address functionality.
  * Displays saved addresses in card format with ability to add new ones.
- * 
+ *
  * @example
  * ```tsx
  * <AddressSelectorWithCreate
@@ -17,7 +17,7 @@
  * ```
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 
 export interface Address {
   id: string;
@@ -28,7 +28,7 @@ export interface Address {
   city: string;
   state: string;
   postalCode: string;
-  addressType: 'home' | 'work' | 'other';
+  addressType: "home" | "work" | "other";
   typeLabel: string;
   isDefault: boolean;
 }
@@ -43,7 +43,7 @@ export interface AddressSelectorWithCreateProps {
   /** Loading state */
   loading?: boolean;
   /** Filter by address type */
-  filterType?: 'home' | 'work' | 'other' | 'all';
+  filterType?: "home" | "work" | "other" | "all";
   /** Required field */
   required?: boolean;
   /** Error message */
@@ -83,7 +83,7 @@ export interface AddressSelectorWithCreateProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default Map Pin Icon
@@ -125,7 +125,9 @@ const DefaultHomeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 // Default Briefcase Icon
-const DefaultBriefcaseIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+const DefaultBriefcaseIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -204,12 +206,12 @@ export function AddressSelectorWithCreate({
   onChange,
   addresses,
   loading = false,
-  filterType = 'all',
+  filterType = "all",
   required = false,
   error,
-  label = 'Select Address',
+  label = "Select Address",
   autoSelectDefault = true,
-  className = '',
+  className = "",
   onCreateAddress,
   FormModal,
   AddressForm,
@@ -225,7 +227,7 @@ export function AddressSelectorWithCreate({
 
   // Filter addresses
   const filteredAddresses =
-    filterType === 'all'
+    filterType === "all"
       ? addresses
       : addresses.filter((addr) => addr.addressType === filterType);
 
@@ -253,9 +255,9 @@ export function AddressSelectorWithCreate({
 
   const getAddressIcon = (type: string) => {
     switch (type) {
-      case 'home':
+      case "home":
         return <HomeIcon className="w-4 h-4" />;
-      case 'work':
+      case "work":
         return <BriefcaseIcon className="w-4 h-4" />;
       default:
         return <MapPinIcon className="w-4 h-4" />;
@@ -264,7 +266,7 @@ export function AddressSelectorWithCreate({
 
   if (loading) {
     return (
-      <div className={cn('space-y-2', className)}>
+      <div className={cn("space-y-2", className)}>
         {label && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             {label}
@@ -282,7 +284,7 @@ export function AddressSelectorWithCreate({
   }
 
   return (
-    <div className={cn('space-y-3', className)}>
+    <div className={cn("space-y-3", className)}>
       {label && (
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           {label}
@@ -314,10 +316,10 @@ export function AddressSelectorWithCreate({
                 type="button"
                 onClick={() => handleSelect(address)}
                 className={cn(
-                  'w-full text-left p-4 rounded-lg border-2 transition-all',
+                  "w-full text-left p-4 rounded-lg border-2 transition-all",
                   selectedId === address.id
-                    ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50'
+                    ? "border-primary bg-primary/5 dark:bg-primary/10"
+                    : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50"
                 )}
               >
                 <div className="flex items-start gap-3">

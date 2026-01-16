@@ -1,9 +1,9 @@
 /**
  * PendingUploadsWarning Component
- * 
+ *
  * Framework-agnostic warning before navigation with pending uploads.
  * Prevents data loss from unfinished uploads.
- * 
+ *
  * @example
  * ```tsx
  * <PendingUploadsWarning
@@ -15,7 +15,7 @@
  * ```
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export interface PendingUploadsWarningProps {
   /** Has pending uploads */
@@ -44,7 +44,7 @@ export interface PendingUploadsWarningProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -118,7 +118,7 @@ export function PendingUploadsWarning({
   onStay,
   onLeave,
   onNavigationAttempt,
-  className = '',
+  className = "",
   AlertIcon = DefaultAlertIcon,
   UploadIcon = DefaultUploadIcon,
   XIcon = DefaultXIcon,
@@ -132,17 +132,17 @@ export function PendingUploadsWarning({
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasPendingUploads) {
         e.preventDefault();
-        e.returnValue = '';
+        e.returnValue = "";
       }
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('beforeunload', handleBeforeUnload);
+    if (typeof window !== "undefined") {
+      window.addEventListener("beforeunload", handleBeforeUnload);
     }
 
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
       }
     };
   }, [enabled, hasPendingUploads]);
@@ -177,8 +177,8 @@ export function PendingUploadsWarning({
           <div className="flex min-h-full items-center justify-center p-4">
             <div
               className={cn(
-                'relative bg-white dark:bg-gray-800 rounded-lg shadow-xl',
-                'max-w-md w-full p-6',
+                "relative bg-white dark:bg-gray-800 rounded-lg shadow-xl",
+                "max-w-md w-full p-6",
                 className
               )}
             >
@@ -195,13 +195,16 @@ export function PendingUploadsWarning({
               {/* Description */}
               <div className="text-center mb-6">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                  You have {uploadingCount > 0 ? uploadingCount : pendingCount} file(s) currently uploading.
-                  Leaving this page will cancel the uploads.
+                  You have {uploadingCount > 0 ? uploadingCount : pendingCount}{" "}
+                  file(s) currently uploading. Leaving this page will cancel the
+                  uploads.
                 </p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 rounded-full">
                   <UploadIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                   <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                    {uploadingCount > 0 ? `${uploadingCount} uploading` : `${pendingCount} pending`}
+                    {uploadingCount > 0
+                      ? `${uploadingCount} uploading`
+                      : `${pendingCount} pending`}
                   </span>
                 </div>
               </div>
@@ -211,9 +214,9 @@ export function PendingUploadsWarning({
                 <button
                   onClick={handleStay}
                   className={cn(
-                    'flex-1 px-4 py-2 text-sm font-medium rounded-lg',
-                    'bg-blue-600 text-white hover:bg-blue-700',
-                    'transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    "flex-1 px-4 py-2 text-sm font-medium rounded-lg",
+                    "bg-blue-600 text-white hover:bg-blue-700",
+                    "transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                   )}
                 >
                   Stay on Page
@@ -221,10 +224,10 @@ export function PendingUploadsWarning({
                 <button
                   onClick={handleLeave}
                   className={cn(
-                    'flex-1 px-4 py-2 text-sm font-medium rounded-lg',
-                    'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300',
-                    'hover:bg-gray-200 dark:hover:bg-gray-600',
-                    'transition-colors'
+                    "flex-1 px-4 py-2 text-sm font-medium rounded-lg",
+                    "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300",
+                    "hover:bg-gray-200 dark:hover:bg-gray-600",
+                    "transition-colors"
                   )}
                 >
                   Leave Anyway
@@ -246,7 +249,9 @@ export function PendingUploadsWarning({
                   Uploads in Progress
                 </p>
                 <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
-                  {uploadingCount > 0 ? `${uploadingCount} file(s) uploading` : `${pendingCount} file(s) pending`}
+                  {uploadingCount > 0
+                    ? `${uploadingCount} file(s) uploading`
+                    : `${pendingCount} file(s) pending`}
                 </p>
               </div>
             </div>

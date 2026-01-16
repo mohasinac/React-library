@@ -1,9 +1,9 @@
 /**
  * ContactSelectorWithCreate Component
- * 
+ *
  * Framework-agnostic contact selector with create new contact functionality.
  * Displays saved contacts with ability to add new ones via injectable form.
- * 
+ *
  * @example
  * ```tsx
  * <ContactSelectorWithCreate
@@ -16,7 +16,7 @@
  * ```
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 
 export interface Contact {
   id: string;
@@ -71,7 +71,7 @@ export interface ContactSelectorWithCreateProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default Phone Icon
@@ -155,9 +155,9 @@ export function ContactSelectorWithCreate({
   loading = false,
   required = false,
   error,
-  label = 'Select Contact',
+  label = "Select Contact",
   autoSelectPrimary = true,
-  className = '',
+  className = "",
   FormModal,
   ContactForm,
   PhoneIcon = DefaultPhoneIcon,
@@ -192,7 +192,7 @@ export function ContactSelectorWithCreate({
 
   if (loading) {
     return (
-      <div className={cn('space-y-2', className)}>
+      <div className={cn("space-y-2", className)}>
         {label && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             {label}
@@ -207,7 +207,7 @@ export function ContactSelectorWithCreate({
   }
 
   return (
-    <div className={cn('space-y-3', className)}>
+    <div className={cn("space-y-3", className)}>
       {label && (
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           {label}
@@ -239,10 +239,10 @@ export function ContactSelectorWithCreate({
                 type="button"
                 onClick={() => handleSelect(contact)}
                 className={cn(
-                  'w-full text-left p-4 rounded-lg border-2 transition-all',
+                  "w-full text-left p-4 rounded-lg border-2 transition-all",
                   selectedId === contact.id
-                    ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50'
+                    ? "border-primary bg-primary/5 dark:bg-primary/10"
+                    : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50"
                 )}
               >
                 <div className="flex items-start gap-3">

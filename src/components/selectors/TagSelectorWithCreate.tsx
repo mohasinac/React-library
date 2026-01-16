@@ -1,9 +1,9 @@
 /**
  * TagSelectorWithCreate Component
- * 
+ *
  * Framework-agnostic tag selector with create new tag functionality.
  * Supports multi-select tags with drag-to-reorder and color customization.
- * 
+ *
  * @example
  * ```tsx
  * <TagSelectorWithCreate
@@ -16,14 +16,14 @@
  * ```
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 
 export interface Tag {
   id: string;
   name: string;
   slug: string;
   color: string;
-  entityType?: 'product' | 'blog' | 'shop';
+  entityType?: "product" | "blog" | "shop";
   usageCount?: number;
 }
 
@@ -45,7 +45,7 @@ export interface TagSelectorWithCreateProps {
   /** Loading state */
   loading?: boolean;
   /** Entity type filter */
-  entityType?: 'product' | 'blog' | 'shop';
+  entityType?: "product" | "blog" | "shop";
   /** Required field */
   required?: boolean;
   /** Error message */
@@ -72,52 +72,52 @@ export interface TagSelectorWithCreateProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default tag colors
 const DEFAULT_TAG_COLORS: TagColor[] = [
   {
-    name: 'Blue',
-    value: '#3B82F6',
-    bg: 'bg-blue-500',
-    text: 'text-blue-700',
-    lightBg: 'bg-blue-50 dark:bg-blue-900/20',
+    name: "Blue",
+    value: "#3B82F6",
+    bg: "bg-blue-500",
+    text: "text-blue-700",
+    lightBg: "bg-blue-50 dark:bg-blue-900/20",
   },
   {
-    name: 'Green',
-    value: '#10B981',
-    bg: 'bg-green-500',
-    text: 'text-green-700',
-    lightBg: 'bg-green-50 dark:bg-green-900/20',
+    name: "Green",
+    value: "#10B981",
+    bg: "bg-green-500",
+    text: "text-green-700",
+    lightBg: "bg-green-50 dark:bg-green-900/20",
   },
   {
-    name: 'Red',
-    value: '#EF4444',
-    bg: 'bg-red-500',
-    text: 'text-red-700',
-    lightBg: 'bg-red-50 dark:bg-red-900/20',
+    name: "Red",
+    value: "#EF4444",
+    bg: "bg-red-500",
+    text: "text-red-700",
+    lightBg: "bg-red-50 dark:bg-red-900/20",
   },
   {
-    name: 'Yellow',
-    value: '#F59E0B',
-    bg: 'bg-yellow-500',
-    text: 'text-yellow-700',
-    lightBg: 'bg-yellow-50 dark:bg-yellow-900/20',
+    name: "Yellow",
+    value: "#F59E0B",
+    bg: "bg-yellow-500",
+    text: "text-yellow-700",
+    lightBg: "bg-yellow-50 dark:bg-yellow-900/20",
   },
   {
-    name: 'Purple',
-    value: '#8B5CF6',
-    bg: 'bg-purple-500',
-    text: 'text-purple-700',
-    lightBg: 'bg-purple-50 dark:bg-purple-900/20',
+    name: "Purple",
+    value: "#8B5CF6",
+    bg: "bg-purple-500",
+    text: "text-purple-700",
+    lightBg: "bg-purple-50 dark:bg-purple-900/20",
   },
   {
-    name: 'Pink',
-    value: '#EC4899',
-    bg: 'bg-pink-500',
-    text: 'text-pink-700',
-    lightBg: 'bg-pink-50 dark:bg-pink-900/20',
+    name: "Pink",
+    value: "#EC4899",
+    bg: "bg-pink-500",
+    text: "text-pink-700",
+    lightBg: "bg-pink-50 dark:bg-pink-900/20",
   },
 ];
 
@@ -205,9 +205,9 @@ export function TagSelectorWithCreate({
   entityType,
   required = false,
   error,
-  label = 'Tags',
+  label = "Tags",
   maxTags = 10,
-  className = '',
+  className = "",
   tagColors = DEFAULT_TAG_COLORS,
   onCreateTag,
   XIcon = DefaultXIcon,
@@ -217,10 +217,10 @@ export function TagSelectorWithCreate({
 }: TagSelectorWithCreateProps) {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [newTagName, setNewTagName] = useState('');
+  const [newTagName, setNewTagName] = useState("");
   const [newTagColor, setNewTagColor] = useState(tagColors[0].value);
   const [creating, setCreating] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Filter tags by entity type if specified
   const filteredTags = entityType
@@ -239,7 +239,9 @@ export function TagSelectorWithCreate({
   const availableTags = filteredTags
     .filter((t) => !value.includes(t.id))
     .filter((t) =>
-      searchQuery ? t.name.toLowerCase().includes(searchQuery.toLowerCase()) : true
+      searchQuery
+        ? t.name.toLowerCase().includes(searchQuery.toLowerCase())
+        : true
     );
 
   const handleAddTag = (tag: Tag) => {
@@ -264,10 +266,10 @@ export function TagSelectorWithCreate({
       const newTag = await onCreateTag(newTagName.trim(), newTagColor);
       handleAddTag(newTag);
       setShowForm(false);
-      setNewTagName('');
+      setNewTagName("");
       setNewTagColor(tagColors[0].value);
     } catch (err) {
-      console.error('Failed to create tag:', err);
+      console.error("Failed to create tag:", err);
     } finally {
       setCreating(false);
     }
@@ -275,7 +277,7 @@ export function TagSelectorWithCreate({
 
   if (loading) {
     return (
-      <div className={cn('space-y-2', className)}>
+      <div className={cn("space-y-2", className)}>
         {label && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             {label}
@@ -290,7 +292,7 @@ export function TagSelectorWithCreate({
   }
 
   return (
-    <div className={cn('space-y-3', className)}>
+    <div className={cn("space-y-3", className)}>
       {label && (
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           {label}
@@ -358,14 +360,16 @@ export function TagSelectorWithCreate({
                 >
                   {tag.name}
                   {tag.usageCount !== undefined && tag.usageCount > 0 && (
-                    <span className="text-xs opacity-60">({tag.usageCount})</span>
+                    <span className="text-xs opacity-60">
+                      ({tag.usageCount})
+                    </span>
                   )}
                 </button>
               ))}
             </div>
           ) : (
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-2">
-              {searchQuery ? 'No tags found' : 'No tags available'}
+              {searchQuery ? "No tags found" : "No tags available"}
             </p>
           )}
 
@@ -389,12 +393,14 @@ export function TagSelectorWithCreate({
       {showForm && (
         <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="font-medium text-gray-900 dark:text-white">Create New Tag</h4>
+            <h4 className="font-medium text-gray-900 dark:text-white">
+              Create New Tag
+            </h4>
             <button
               type="button"
               onClick={() => {
                 setShowForm(false);
-                setNewTagName('');
+                setNewTagName("");
                 setNewTagColor(tagColors[0].value);
               }}
               className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
@@ -409,7 +415,7 @@ export function TagSelectorWithCreate({
             onChange={(e) => setNewTagName(e.target.value)}
             placeholder="Tag name"
             className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500"
-            onKeyDown={(e) => e.key === 'Enter' && handleCreateTag()}
+            onKeyDown={(e) => e.key === "Enter" && handleCreateTag()}
           />
 
           <div className="flex gap-2">
@@ -419,10 +425,10 @@ export function TagSelectorWithCreate({
                 type="button"
                 onClick={() => setNewTagColor(color.value)}
                 className={cn(
-                  'w-8 h-8 rounded-full border-2 transition-all',
+                  "w-8 h-8 rounded-full border-2 transition-all",
                   newTagColor === color.value
-                    ? 'border-gray-900 dark:border-white scale-110'
-                    : 'border-transparent hover:scale-105'
+                    ? "border-gray-900 dark:border-white scale-110"
+                    : "border-transparent hover:scale-105"
                 )}
                 style={{ backgroundColor: color.value }}
                 title={color.name}
@@ -435,13 +441,13 @@ export function TagSelectorWithCreate({
             onClick={handleCreateTag}
             disabled={!newTagName.trim() || creating}
             className={cn(
-              'w-full px-4 py-2 rounded-lg font-medium transition-colors',
+              "w-full px-4 py-2 rounded-lg font-medium transition-colors",
               !newTagName.trim() || creating
-                ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                : 'bg-primary text-white hover:bg-primary/90'
+                ? "bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
             )}
           >
-            {creating ? 'Creating...' : 'Create Tag'}
+            {creating ? "Creating..." : "Create Tag"}
           </button>
         </div>
       )}

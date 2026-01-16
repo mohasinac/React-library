@@ -1,9 +1,9 @@
 /**
  * FavoriteButton Component
- * 
+ *
  * Framework-agnostic favorite toggle button with loading state.
  * Requires injectable favorite service and auth check.
- * 
+ *
  * @example
  * ```tsx
  * <FavoriteButton
@@ -14,7 +14,7 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface FavoriteButtonProps {
   /** Current favorited state */
@@ -22,7 +22,7 @@ export interface FavoriteButtonProps {
   /** Toggle callback - receives new state */
   onToggle: (isFavorited: boolean) => void | Promise<void>;
   /** Button size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   /** Loading state (controlled) */
   isLoading?: boolean;
   /** Disabled state */
@@ -39,7 +39,7 @@ export interface FavoriteButtonProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -110,10 +110,10 @@ function DefaultLoaderIcon({ className }: { className?: string }) {
 export function FavoriteButton({
   isFavorited,
   onToggle,
-  size = 'md',
+  size = "md",
   isLoading: controlledLoading,
   disabled = false,
-  className = '',
+  className = "",
   HeartFilledIcon = DefaultHeartFilledIcon,
   HeartOutlineIcon = DefaultHeartOutlineIcon,
   LoaderIcon = DefaultLoaderIcon,
@@ -129,22 +129,22 @@ export function FavoriteButton({
     try {
       await onToggle(!isFavorited);
     } catch (error) {
-      console.error('Failed to toggle favorite:', error);
+      console.error("Failed to toggle favorite:", error);
     } finally {
       setInternalLoading(false);
     }
   };
 
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-10 h-10',
-    lg: 'w-12 h-12',
+    sm: "w-8 h-8",
+    md: "w-10 h-10",
+    lg: "w-12 h-12",
   };
 
   const iconSizes = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6',
+    sm: "w-4 h-4",
+    md: "w-5 h-5",
+    lg: "w-6 h-6",
   };
 
   return (
@@ -152,20 +152,20 @@ export function FavoriteButton({
       onClick={handleClick}
       disabled={disabled || isLoading}
       className={cn(
-        'inline-flex items-center justify-center rounded-full',
-        'transition-all duration-200',
-        'focus:outline-none focus:ring-2 focus:ring-offset-2',
+        "inline-flex items-center justify-center rounded-full",
+        "transition-all duration-200",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2",
         isFavorited
-          ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 focus:ring-red-500'
-          : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-gray-500',
-        (disabled || isLoading) && 'opacity-50 cursor-not-allowed',
+          ? "bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 focus:ring-red-500"
+          : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-gray-500",
+        (disabled || isLoading) && "opacity-50 cursor-not-allowed",
         sizeClasses[size],
         className
       )}
-      aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
     >
       {isLoading ? (
-        <LoaderIcon className={cn(iconSizes[size], 'animate-spin')} />
+        <LoaderIcon className={cn(iconSizes[size], "animate-spin")} />
       ) : isFavorited ? (
         <HeartFilledIcon className={iconSizes[size]} />
       ) : (

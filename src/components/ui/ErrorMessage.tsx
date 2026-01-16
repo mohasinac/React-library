@@ -1,9 +1,9 @@
 /**
  * ErrorMessage Component
- * 
+ *
  * User-friendly error message display with action buttons.
  * Shows technical details in development mode.
- * 
+ *
  * @example
  * ```tsx
  * <ErrorMessage
@@ -16,7 +16,7 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
 export interface ErrorMessageProps {
   /** Error title */
@@ -47,7 +47,7 @@ export interface ErrorMessageProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -134,26 +134,26 @@ function DefaultArrowLeftIcon({ className }: { className?: string }) {
 }
 
 export function ErrorMessage({
-  title = 'Something went wrong',
-  message = 'An unexpected error occurred. Please try again.',
+  title = "Something went wrong",
+  message = "An unexpected error occurred. Please try again.",
   error,
   onRetry,
   onGoHome,
   onGoBack,
   showDetails,
-  className = '',
+  className = "",
   AlertCircleIcon = DefaultAlertCircleIcon,
   RefreshIcon = DefaultRefreshIcon,
   HomeIcon = DefaultHomeIcon,
   ArrowLeftIcon = DefaultArrowLeftIcon,
 }: ErrorMessageProps) {
-  const isDev = showDetails ?? process.env.NODE_ENV === 'development';
+  const isDev = showDetails ?? process.env.NODE_ENV === "development";
 
   return (
     <div
       className={cn(
-        'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800',
-        'rounded-lg p-6 max-w-2xl mx-auto',
+        "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800",
+        "rounded-lg p-6 max-w-2xl mx-auto",
         className
       )}
     >
@@ -175,11 +175,11 @@ export function ErrorMessage({
             <button
               onClick={onRetry}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2',
-                'text-sm font-medium rounded-lg',
-                'bg-red-600 hover:bg-red-700 text-white',
-                'transition-colors focus:outline-none focus:ring-2',
-                'focus:ring-red-500 focus:ring-offset-2'
+                "inline-flex items-center gap-2 px-4 py-2",
+                "text-sm font-medium rounded-lg",
+                "bg-red-600 hover:bg-red-700 text-white",
+                "transition-colors focus:outline-none focus:ring-2",
+                "focus:ring-red-500 focus:ring-offset-2"
               )}
             >
               <RefreshIcon className="w-4 h-4" />
@@ -190,12 +190,12 @@ export function ErrorMessage({
             <button
               onClick={onGoHome}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2',
-                'text-sm font-medium rounded-lg',
-                'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-                'border border-gray-300 dark:border-gray-600',
-                'hover:bg-gray-50 dark:hover:bg-gray-700',
-                'transition-colors'
+                "inline-flex items-center gap-2 px-4 py-2",
+                "text-sm font-medium rounded-lg",
+                "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+                "border border-gray-300 dark:border-gray-600",
+                "hover:bg-gray-50 dark:hover:bg-gray-700",
+                "transition-colors"
               )}
             >
               <HomeIcon className="w-4 h-4" />
@@ -206,12 +206,12 @@ export function ErrorMessage({
             <button
               onClick={onGoBack}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2',
-                'text-sm font-medium rounded-lg',
-                'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-                'border border-gray-300 dark:border-gray-600',
-                'hover:bg-gray-50 dark:hover:bg-gray-700',
-                'transition-colors'
+                "inline-flex items-center gap-2 px-4 py-2",
+                "text-sm font-medium rounded-lg",
+                "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+                "border border-gray-300 dark:border-gray-600",
+                "hover:bg-gray-50 dark:hover:bg-gray-700",
+                "transition-colors"
               )}
             >
               <ArrowLeftIcon className="w-4 h-4" />

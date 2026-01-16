@@ -1,15 +1,15 @@
 /**
  * FieldError Component
- * 
+ *
  * Simple inline error message for form fields.
- * 
+ *
  * @example
  * ```tsx
  * <FieldError error="Email is required" />
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
 export interface FieldErrorProps {
   /** Error message */
@@ -22,7 +22,7 @@ export interface FieldErrorProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icon
@@ -49,13 +49,18 @@ function DefaultAlertCircleIcon({ className }: { className?: string }) {
 
 export function FieldError({
   error,
-  className = '',
+  className = "",
   AlertCircleIcon = DefaultAlertCircleIcon,
 }: FieldErrorProps) {
   if (!error) return null;
 
   return (
-    <div className={cn('flex items-center gap-1.5 text-sm text-red-600 dark:text-red-400 mt-1', className)}>
+    <div
+      className={cn(
+        "flex items-center gap-1.5 text-sm text-red-600 dark:text-red-400 mt-1",
+        className
+      )}
+    >
       <AlertCircleIcon className="w-4 h-4 flex-shrink-0" />
       <span>{error}</span>
     </div>

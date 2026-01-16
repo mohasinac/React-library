@@ -1,9 +1,9 @@
 /**
  * DynamicIcon Component
- * 
+ *
  * Framework-agnostic dynamic icon renderer.
  * Accepts icon name and renders corresponding icon component.
- * 
+ *
  * @example
  * ```tsx
  * <DynamicIcon name="home" size={24} />
@@ -11,7 +11,7 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
 export interface DynamicIconProps {
   /** Icon name (lowercase, kebab-case) */
@@ -23,7 +23,10 @@ export interface DynamicIconProps {
   /** Fallback icon name */
   fallback?: string;
   /** Icon registry (name -> component mapping) */
-  iconRegistry?: Record<string, React.ComponentType<{ className?: string; size?: number }>>;
+  iconRegistry?: Record<
+    string,
+    React.ComponentType<{ className?: string; size?: number }>
+  >;
 }
 
 // Default icon registry with common icons
@@ -119,16 +122,16 @@ const DEFAULT_ICON_REGISTRY: Record<
 function formatIconName(name: string): string {
   return name
     .toLowerCase()
-    .replace(/[-_]/g, '')
-    .replace(/([a-z])([A-Z])/g, '$1$2')
+    .replace(/[-_]/g, "")
+    .replace(/([a-z])([A-Z])/g, "$1$2")
     .toLowerCase();
 }
 
 export function DynamicIcon({
   name,
   size = 24,
-  className = '',
-  fallback = 'circle',
+  className = "",
+  fallback = "circle",
   iconRegistry = DEFAULT_ICON_REGISTRY,
 }: DynamicIconProps) {
   const formattedName = formatIconName(name);
@@ -147,7 +150,7 @@ export function DynamicIcon({
   }
 
   // Ultimate fallback - circle
-  const CircleIcon = iconRegistry['circle'] || DEFAULT_ICON_REGISTRY.circle;
+  const CircleIcon = iconRegistry["circle"] || DEFAULT_ICON_REGISTRY.circle;
   return <CircleIcon className={className} size={size} />;
 }
 

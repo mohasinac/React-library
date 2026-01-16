@@ -1,8 +1,8 @@
 /**
  * Accessibility Components
- * 
+ *
  * Framework-agnostic accessibility helper components for better ARIA support.
- * 
+ *
  * @example
  * ```tsx
  * <SkipToContent contentId="main" />
@@ -12,16 +12,16 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 /**
  * SkipToContent Component
- * 
+ *
  * Skip navigation link for keyboard users.
  * Hidden until focused, then appears at top-left.
  */
@@ -35,18 +35,18 @@ export interface SkipToContentProps {
 }
 
 export function SkipToContent({
-  contentId = 'main-content',
-  children = 'Skip to main content',
-  className = '',
+  contentId = "main-content",
+  children = "Skip to main content",
+  className = "",
 }: SkipToContentProps) {
   return (
     <a
       href={`#${contentId}`}
       className={cn(
-        'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4',
-        'focus:z-50 focus:px-4 focus:py-2',
-        'focus:bg-blue-600 focus:text-white focus:rounded-lg',
-        'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+        "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4",
+        "focus:z-50 focus:px-4 focus:py-2",
+        "focus:bg-blue-600 focus:text-white focus:rounded-lg",
+        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
         className
       )}
     >
@@ -57,14 +57,14 @@ export function SkipToContent({
 
 /**
  * LiveRegion Component
- * 
+ *
  * ARIA live region for announcing dynamic content changes.
  */
 export interface LiveRegionProps {
   /** Message to announce */
   message: string;
   /** Announcement priority */
-  priority?: 'polite' | 'assertive';
+  priority?: "polite" | "assertive";
   /** Atomic announcement */
   atomic?: boolean;
   /** Additional CSS classes */
@@ -73,16 +73,16 @@ export interface LiveRegionProps {
 
 export function LiveRegion({
   message,
-  priority = 'polite',
+  priority = "polite",
   atomic = true,
-  className = '',
+  className = "",
 }: LiveRegionProps) {
   return (
     <div
       role="status"
       aria-live={priority}
       aria-atomic={atomic}
-      className={cn('sr-only', className)}
+      className={cn("sr-only", className)}
     >
       {message}
     </div>
@@ -91,7 +91,7 @@ export function LiveRegion({
 
 /**
  * Announcer Component
- * 
+ *
  * Simple screen reader announcer for status updates.
  */
 export interface AnnouncerProps {
@@ -101,13 +101,13 @@ export interface AnnouncerProps {
   className?: string;
 }
 
-export function Announcer({ message, className = '' }: AnnouncerProps) {
+export function Announcer({ message, className = "" }: AnnouncerProps) {
   return (
     <div
       role="status"
       aria-live="polite"
       aria-atomic="true"
-      className={cn('sr-only', className)}
+      className={cn("sr-only", className)}
     >
       {message}
     </div>
@@ -116,7 +116,7 @@ export function Announcer({ message, className = '' }: AnnouncerProps) {
 
 /**
  * VisuallyHidden Component
- * 
+ *
  * Hide content visually but keep it accessible to screen readers.
  */
 export interface VisuallyHiddenProps {
@@ -133,14 +133,14 @@ export interface VisuallyHiddenProps {
 export function VisuallyHidden({
   children,
   focusable = false,
-  as: Element = 'span',
-  className = '',
+  as: Element = "span",
+  className = "",
 }: VisuallyHiddenProps) {
   return (
     <Element
       className={cn(
-        'sr-only',
-        focusable && 'focus:not-sr-only focus:absolute focus:z-50',
+        "sr-only",
+        focusable && "focus:not-sr-only focus:absolute focus:z-50",
         className
       )}
     >
@@ -151,7 +151,7 @@ export function VisuallyHidden({
 
 /**
  * FocusGuard Component
- * 
+ *
  * Trap focus within a container (useful for modals).
  */
 export interface FocusGuardProps {
@@ -169,7 +169,7 @@ export function FocusGuard({
   children,
   enabled = true,
   restoreFocus = true,
-  className = '',
+  className = "",
 }: FocusGuardProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const previousFocusRef = React.useRef<HTMLElement | null>(null);
@@ -190,13 +190,15 @@ export function FocusGuard({
 
     // Handle Tab key to trap focus
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || !containerRef.current) return;
+      if (e.key !== "Tab" || !containerRef.current) return;
 
       const focusableElements = containerRef.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
       const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      const lastElement = focusableElements[
+        focusableElements.length - 1
+      ] as HTMLElement;
 
       if (e.shiftKey) {
         // Shift + Tab
@@ -213,10 +215,10 @@ export function FocusGuard({
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
 
       // Restore focus
       if (restoreFocus && previousFocusRef.current) {

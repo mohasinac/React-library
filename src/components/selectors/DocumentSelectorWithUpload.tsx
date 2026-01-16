@@ -1,9 +1,9 @@
 /**
  * DocumentSelectorWithUpload Component
- * 
+ *
  * Framework-agnostic document selector with upload functionality.
  * Displays saved documents with verification status and allows new uploads.
- * 
+ *
  * @example
  * ```tsx
  * <DocumentSelectorWithUpload
@@ -15,17 +15,17 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface Document {
   id: string;
-  type: 'pan' | 'aadhaar' | 'gstin' | 'driving_license' | 'passport' | 'other';
+  type: "pan" | "aadhaar" | "gstin" | "driving_license" | "passport" | "other";
   documentNumber: string;
   fileName: string;
   fileUrl: string;
   fileSize: number;
   uploadedAt: Date;
-  verificationStatus: 'pending' | 'verified' | 'rejected';
+  verificationStatus: "pending" | "verified" | "rejected";
   verifiedAt?: Date;
   rejectionReason?: string;
 }
@@ -45,7 +45,14 @@ export interface DocumentSelectorWithUploadProps {
   /** Loading state */
   loading?: boolean;
   /** Filter by document type */
-  documentType?: 'pan' | 'aadhaar' | 'gstin' | 'driving_license' | 'passport' | 'other' | 'all';
+  documentType?:
+    | "pan"
+    | "aadhaar"
+    | "gstin"
+    | "driving_license"
+    | "passport"
+    | "other"
+    | "all";
   /** Required field */
   required?: boolean;
   /** Error message */
@@ -57,7 +64,11 @@ export interface DocumentSelectorWithUploadProps {
   /** Available document types */
   documentTypes?: DocumentType[];
   /** Callback to upload new document */
-  onUpload?: (file: File, type: string, documentNumber: string) => Promise<Document>;
+  onUpload?: (
+    file: File,
+    type: string,
+    documentNumber: string
+  ) => Promise<Document>;
   /** Max file size in MB */
   maxFileSizeMB?: number;
   /** Custom file icon */
@@ -80,17 +91,17 @@ export interface DocumentSelectorWithUploadProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default document types
 const DEFAULT_DOCUMENT_TYPES: DocumentType[] = [
-  { value: 'pan', label: 'PAN Card' },
-  { value: 'aadhaar', label: 'Aadhaar Card' },
-  { value: 'gstin', label: 'GSTIN Certificate' },
-  { value: 'driving_license', label: 'Driving License' },
-  { value: 'passport', label: 'Passport' },
-  { value: 'other', label: 'Other' },
+  { value: "pan", label: "PAN Card" },
+  { value: "aadhaar", label: "Aadhaar Card" },
+  { value: "gstin", label: "GSTIN Certificate" },
+  { value: "driving_license", label: "Driving License" },
+  { value: "passport", label: "Passport" },
+  { value: "other", label: "Other" },
 ];
 
 // Format file size
@@ -102,14 +113,32 @@ function formatFileSize(bytes: number): string {
 
 // Default icons (simplified inline SVGs)
 const DefaultFileIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="48"
+    height="48"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
     <path d="M14 2v6h6" />
   </svg>
 );
 
 const DefaultUploadIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
     <polyline points="17 8 12 3 7 8" />
     <line x1="12" x2="12" y1="3" y2="15" />
@@ -117,19 +146,46 @@ const DefaultUploadIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 const DefaultCheckIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M20 6 9 17l-5-5" />
   </svg>
 );
 
 const DefaultShieldIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 );
 
 const DefaultAlertIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <circle cx="12" cy="12" r="10" />
     <line x1="12" x2="12" y1="8" y2="12" />
     <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -137,21 +193,49 @@ const DefaultAlertIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 const DefaultEyeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
     <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
 const DefaultXIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    {...props}
+  >
     <path d="M18 6 6 18" />
     <path d="m6 6 12 12" />
   </svg>
 );
 
 const DefaultLoaderIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    className="animate-spin"
+    {...props}
+  >
     <path d="M21 12a9 9 0 1 1-6.219-8.56" />
   </svg>
 );
@@ -161,11 +245,11 @@ export function DocumentSelectorWithUpload({
   onChange,
   documents,
   loading = false,
-  documentType = 'all',
+  documentType = "all",
   required = false,
   error,
-  label = 'Select Document',
-  className = '',
+  label = "Select Document",
+  className = "",
   documentTypes = DEFAULT_DOCUMENT_TYPES,
   onUpload,
   maxFileSizeMB = 5,
@@ -180,14 +264,16 @@ export function DocumentSelectorWithUpload({
 }: DocumentSelectorWithUploadProps) {
   const [selectedId, setSelectedId] = useState<string | null>(value || null);
   const [showForm, setShowForm] = useState(false);
-  const [selectedType, setSelectedType] = useState(documentType === 'all' ? 'pan' : documentType);
-  const [documentNumber, setDocumentNumber] = useState('');
+  const [selectedType, setSelectedType] = useState(
+    documentType === "all" ? "pan" : documentType
+  );
+  const [documentNumber, setDocumentNumber] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
   // Filter documents
   const filteredDocuments =
-    documentType === 'all'
+    documentType === "all"
       ? documents
       : documents.filter((d) => d.type === documentType);
 
@@ -207,9 +293,14 @@ export function DocumentSelectorWithUpload({
     }
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+      "application/pdf",
+    ];
     if (!allowedTypes.includes(file.type)) {
-      alert('Only JPG, PNG, and PDF files are allowed');
+      alert("Only JPG, PNG, and PDF files are allowed");
       return;
     }
 
@@ -221,28 +312,32 @@ export function DocumentSelectorWithUpload({
 
     try {
       setUploading(true);
-      const newDoc = await onUpload(selectedFile, selectedType, documentNumber.trim());
+      const newDoc = await onUpload(
+        selectedFile,
+        selectedType,
+        documentNumber.trim()
+      );
       handleSelect(newDoc);
       setShowForm(false);
       setSelectedFile(null);
-      setDocumentNumber('');
+      setDocumentNumber("");
     } catch (err) {
-      console.error('Upload failed:', err);
+      console.error("Upload failed:", err);
     } finally {
       setUploading(false);
     }
   };
 
-  const getStatusBadge = (status: Document['verificationStatus']) => {
+  const getStatusBadge = (status: Document["verificationStatus"]) => {
     switch (status) {
-      case 'verified':
+      case "verified":
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
             <ShieldIcon />
             Verified
           </span>
         );
-      case 'rejected':
+      case "rejected":
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400">
             <AlertIcon />
@@ -260,7 +355,7 @@ export function DocumentSelectorWithUpload({
 
   if (loading) {
     return (
-      <div className={cn('space-y-2', className)}>
+      <div className={cn("space-y-2", className)}>
         {label && (
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             {label}
@@ -275,7 +370,7 @@ export function DocumentSelectorWithUpload({
   }
 
   return (
-    <div className={cn('space-y-3', className)}>
+    <div className={cn("space-y-3", className)}>
       {label && (
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           {label}
@@ -309,10 +404,10 @@ export function DocumentSelectorWithUpload({
                 type="button"
                 onClick={() => handleSelect(doc)}
                 className={cn(
-                  'w-full text-left p-4 rounded-lg border-2 transition-all',
+                  "w-full text-left p-4 rounded-lg border-2 transition-all",
                   selectedId === doc.id
-                    ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50'
+                    ? "border-primary bg-primary/5 dark:bg-primary/10"
+                    : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50"
                 )}
               >
                 <div className="flex items-start gap-3">
@@ -329,7 +424,8 @@ export function DocumentSelectorWithUpload({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {documentTypes.find((t) => t.value === doc.type)?.label || doc.type}
+                        {documentTypes.find((t) => t.value === doc.type)
+                          ?.label || doc.type}
                       </span>
                       {getStatusBadge(doc.verificationStatus)}
                     </div>
@@ -339,11 +435,12 @@ export function DocumentSelectorWithUpload({
                     <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
                       {doc.fileName} • {formatFileSize(doc.fileSize)}
                     </p>
-                    {doc.verificationStatus === 'rejected' && doc.rejectionReason && (
-                      <p className="text-xs text-red-600 dark:text-red-400 mt-1">
-                        {doc.rejectionReason}
-                      </p>
-                    )}
+                    {doc.verificationStatus === "rejected" &&
+                      doc.rejectionReason && (
+                        <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                          {doc.rejectionReason}
+                        </p>
+                      )}
                   </div>
 
                   <a
@@ -379,13 +476,15 @@ export function DocumentSelectorWithUpload({
       {showForm && onUpload && (
         <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="font-medium text-gray-900 dark:text-white">Upload Document</h4>
+            <h4 className="font-medium text-gray-900 dark:text-white">
+              Upload Document
+            </h4>
             <button
               type="button"
               onClick={() => {
                 setShowForm(false);
                 setSelectedFile(null);
-                setDocumentNumber('');
+                setDocumentNumber("");
               }}
               className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             >
@@ -395,7 +494,9 @@ export function DocumentSelectorWithUpload({
 
           <select
             value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value as typeof selectedType)}
+            onChange={(e) =>
+              setSelectedType(e.target.value as typeof selectedType)
+            }
             className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
           >
             {documentTypes.map((type) => (
@@ -422,7 +523,8 @@ export function DocumentSelectorWithUpload({
 
           {selectedFile && (
             <p className="text-xs text-gray-600 dark:text-gray-400">
-              Selected: {selectedFile.name} ({formatFileSize(selectedFile.size)})
+              Selected: {selectedFile.name} ({formatFileSize(selectedFile.size)}
+              )
             </p>
           )}
 
@@ -431,13 +533,13 @@ export function DocumentSelectorWithUpload({
             onClick={handleUpload}
             disabled={!selectedFile || !documentNumber.trim() || uploading}
             className={cn(
-              'w-full px-4 py-2 rounded-lg font-medium transition-colors',
+              "w-full px-4 py-2 rounded-lg font-medium transition-colors",
               !selectedFile || !documentNumber.trim() || uploading
-                ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                : 'bg-primary text-white hover:bg-primary/90'
+                ? "bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-primary/90"
             )}
           >
-            {uploading ? 'Uploading...' : 'Upload Document'}
+            {uploading ? "Uploading..." : "Upload Document"}
           </button>
         </div>
       )}

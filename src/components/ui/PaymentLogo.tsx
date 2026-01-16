@@ -1,9 +1,9 @@
 /**
  * PaymentLogo Component
- * 
+ *
  * Framework-agnostic payment logo display with fallback to text.
  * Requires injectable logo fetcher.
- * 
+ *
  * @example
  * ```tsx
  * <PaymentLogo
@@ -14,7 +14,7 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
 export interface PaymentLogoProps {
   /** Logo URL */
@@ -37,7 +37,7 @@ export interface PaymentLogoProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export function PaymentLogo({
@@ -45,7 +45,7 @@ export function PaymentLogo({
   name,
   showName = false,
   isLoading = false,
-  className = '',
+  className = "",
   width = 50,
   height = 20,
   onError,
@@ -60,7 +60,10 @@ export function PaymentLogo({
   if (isLoading) {
     return (
       <div
-        className={cn('animate-pulse bg-gray-200 dark:bg-gray-700 rounded', className)}
+        className={cn(
+          "animate-pulse bg-gray-200 dark:bg-gray-700 rounded",
+          className
+        )}
         style={{ width: `${width}px`, height: `${height}px` }}
       />
     );
@@ -68,7 +71,12 @@ export function PaymentLogo({
 
   if (!logoUrl || imageError) {
     return showName ? (
-      <span className={cn('text-xs text-gray-600 dark:text-gray-400 font-medium', className)}>
+      <span
+        className={cn(
+          "text-xs text-gray-600 dark:text-gray-400 font-medium",
+          className
+        )}
+      >
         {name}
       </span>
     ) : null;
@@ -80,7 +88,7 @@ export function PaymentLogo({
       alt={name}
       width={width}
       height={height}
-      className={cn('object-contain', className)}
+      className={cn("object-contain", className)}
       onError={handleImageError}
     />
   );

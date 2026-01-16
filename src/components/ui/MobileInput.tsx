@@ -1,9 +1,9 @@
 /**
  * MobileInput Component
- * 
+ *
  * Framework-agnostic mobile number input with country code picker.
  * Supports validation and formatting.
- * 
+ *
  * @example
  * ```tsx
  * <MobileInput
@@ -15,7 +15,7 @@
  * ```
  */
 
-import React, { useState, forwardRef } from 'react';
+import React, { forwardRef, useState } from "react";
 
 export interface CountryCode {
   code: string;
@@ -59,15 +59,15 @@ export interface MobileInputProps {
 
 // Default country codes
 const DEFAULT_COUNTRY_CODES: CountryCode[] = [
-  { code: '+91', name: 'India', flag: '🇮🇳', maxLength: 10 },
-  { code: '+1', name: 'USA', flag: '🇺🇸', maxLength: 10 },
-  { code: '+44', name: 'UK', flag: '🇬🇧', maxLength: 10 },
-  { code: '+971', name: 'UAE', flag: '🇦🇪', maxLength: 9 },
+  { code: "+91", name: "India", flag: "🇮🇳", maxLength: 10 },
+  { code: "+1", name: "USA", flag: "🇺🇸", maxLength: 10 },
+  { code: "+44", name: "UK", flag: "🇬🇧", maxLength: 10 },
+  { code: "+971", name: "UAE", flag: "🇦🇪", maxLength: 9 },
 ];
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icon
@@ -95,16 +95,16 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
     {
       value,
       onChange,
-      countryCode = '+91',
+      countryCode = "+91",
       onCountryCodeChange,
       countryCodes = DEFAULT_COUNTRY_CODES,
       disabled = false,
       required = false,
       error,
-      label = 'Mobile Number',
-      placeholder = '9876543210',
-      className = '',
-      inputClassName = '',
+      label = "Mobile Number",
+      placeholder = "9876543210",
+      className = "",
+      inputClassName = "",
       id,
       name,
       ChevronDownIcon = DefaultChevronDownIcon,
@@ -117,7 +117,9 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
       countryCodes.find((c) => c.code === countryCode) || countryCodes[0];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value.replace(/\D/g, '').slice(0, selectedCountry.maxLength);
+      const newValue = e.target.value
+        .replace(/\D/g, "")
+        .slice(0, selectedCountry.maxLength);
       onChange(newValue);
     };
 
@@ -126,10 +128,10 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
       setShowCountryPicker(false);
     };
 
-    const inputId = id || name || 'mobile-input';
+    const inputId = id || name || "mobile-input";
 
     return (
-      <div className={cn('space-y-1', className)}>
+      <div className={cn("space-y-1", className)}>
         {label && (
           <label
             htmlFor={inputId}
@@ -145,21 +147,25 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
           <div className="relative">
             <button
               type="button"
-              onClick={() => !disabled && setShowCountryPicker(!showCountryPicker)}
+              onClick={() =>
+                !disabled && setShowCountryPicker(!showCountryPicker)
+              }
               disabled={disabled}
               className={cn(
-                'flex items-center gap-2 px-3 py-2 rounded-lg',
-                'border border-gray-300 dark:border-gray-600',
-                'bg-white dark:bg-gray-800',
-                'text-gray-700 dark:text-gray-300',
-                'hover:bg-gray-50 dark:hover:bg-gray-700',
-                'transition-colors',
-                disabled && 'opacity-50 cursor-not-allowed',
-                error && 'border-red-500'
+                "flex items-center gap-2 px-3 py-2 rounded-lg",
+                "border border-gray-300 dark:border-gray-600",
+                "bg-white dark:bg-gray-800",
+                "text-gray-700 dark:text-gray-300",
+                "hover:bg-gray-50 dark:hover:bg-gray-700",
+                "transition-colors",
+                disabled && "opacity-50 cursor-not-allowed",
+                error && "border-red-500"
               )}
             >
               <span className="text-lg">{selectedCountry.flag}</span>
-              <span className="text-sm font-medium">{selectedCountry.code}</span>
+              <span className="text-sm font-medium">
+                {selectedCountry.code}
+              </span>
               <ChevronDownIcon className="w-4 h-4" />
             </button>
 
@@ -172,10 +178,11 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
                     type="button"
                     onClick={() => handleCountrySelect(country.code)}
                     className={cn(
-                      'w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left',
-                      'hover:bg-gray-100 dark:hover:bg-gray-700',
-                      'transition-colors',
-                      country.code === countryCode && 'bg-gray-50 dark:bg-gray-700/50'
+                      "w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left",
+                      "hover:bg-gray-100 dark:hover:bg-gray-700",
+                      "transition-colors",
+                      country.code === countryCode &&
+                        "bg-gray-50 dark:bg-gray-700/50"
                     )}
                   >
                     <span className="text-lg">{country.flag}</span>
@@ -201,15 +208,15 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
             disabled={disabled}
             required={required}
             className={cn(
-              'flex-1 px-4 py-2 rounded-lg',
-              'border border-gray-300 dark:border-gray-600',
-              'bg-white dark:bg-gray-800',
-              'text-gray-900 dark:text-white',
-              'placeholder-gray-400 dark:placeholder-gray-500',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500',
-              'transition-colors',
-              disabled && 'opacity-50 cursor-not-allowed',
-              error && 'border-red-500 focus:ring-red-500',
+              "flex-1 px-4 py-2 rounded-lg",
+              "border border-gray-300 dark:border-gray-600",
+              "bg-white dark:bg-gray-800",
+              "text-gray-900 dark:text-white",
+              "placeholder-gray-400 dark:placeholder-gray-500",
+              "focus:outline-none focus:ring-2 focus:ring-blue-500",
+              "transition-colors",
+              disabled && "opacity-50 cursor-not-allowed",
+              error && "border-red-500 focus:ring-red-500",
               inputClassName
             )}
           />
@@ -224,7 +231,9 @@ export const MobileInput = forwardRef<HTMLInputElement, MobileInputProps>(
 
         {/* Validation status */}
         {!error && value.length === selectedCountry.maxLength && (
-          <p className="text-sm text-green-600 dark:text-green-400">✓ Valid phone number</p>
+          <p className="text-sm text-green-600 dark:text-green-400">
+            ✓ Valid phone number
+          </p>
         )}
       </div>
     );

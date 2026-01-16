@@ -1,9 +1,9 @@
 /**
  * SmartLink Component
- * 
+ *
  * Framework-agnostic smart link that automatically handles internal/external links.
  * Shows icons for external and download links.
- * 
+ *
  * @example
  * ```tsx
  * <SmartLink href="/products">Internal Link</SmartLink>
@@ -12,9 +12,10 @@
  * ```
  */
 
-import React from 'react';
+import React from "react";
 
-export interface SmartLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+export interface SmartLinkProps
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
   /** Link destination */
   href: string;
   /** Link children */
@@ -43,7 +44,7 @@ export interface SmartLinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnch
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -87,11 +88,19 @@ function DefaultDownloadIcon({ className }: { className?: string }) {
 
 // Helper functions
 function isExternalUrl(href: string): boolean {
-  return /^https?:\/\//.test(href) || href.startsWith('//');
+  return /^https?:\/\//.test(href) || href.startsWith("//");
 }
 
 function isDownloadableLink(href: string): boolean {
-  const downloadableExtensions = ['.pdf', '.zip', '.doc', '.docx', '.xls', '.xlsx', '.csv'];
+  const downloadableExtensions = [
+    ".pdf",
+    ".zip",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".csv",
+  ];
   return downloadableExtensions.some((ext) => href.toLowerCase().endsWith(ext));
 }
 
@@ -105,7 +114,7 @@ export function SmartLink({
   download,
   rel: customRel,
   target: customTarget,
-  className = '',
+  className = "",
   ExternalIcon = DefaultExternalIcon,
   DownloadIcon = DefaultDownloadIcon,
   ...props
@@ -119,15 +128,15 @@ export function SmartLink({
   if (customRel) {
     relParts.push(customRel);
   } else if (isExternal) {
-    relParts.push('noopener', 'noreferrer');
+    relParts.push("noopener", "noreferrer");
   }
-  const rel = relParts.length > 0 ? relParts.join(' ') : undefined;
+  const rel = relParts.length > 0 ? relParts.join(" ") : undefined;
 
   // Build target attribute
-  const target = customTarget ?? (shouldOpenNewTab ? '_blank' : undefined);
+  const target = customTarget ?? (shouldOpenNewTab ? "_blank" : undefined);
 
   // Build download attribute
-  const downloadAttr = download === true ? '' : download || undefined;
+  const downloadAttr = download === true ? "" : download || undefined;
 
   return (
     <a
@@ -135,7 +144,7 @@ export function SmartLink({
       rel={rel}
       target={target}
       download={downloadAttr}
-      className={cn('inline-flex items-center gap-1', className)}
+      className={cn("inline-flex items-center gap-1", className)}
       {...props}
     >
       {children}

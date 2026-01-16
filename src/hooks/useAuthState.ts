@@ -1,14 +1,14 @@
 /**
  * Generic Auth State Hook
- * 
+ *
  * Framework-agnostic hook for accessing authentication state.
  * Requires an AuthContext to be provided by the consumer.
- * 
+ *
  * @example
  * ```tsx
  * // In your app, create and provide context:
  * const AuthContext = createContext<AuthState | undefined>(undefined);
- * 
+ *
  * // Then use the hook:
  * const { user, loading, isAuthenticated } = useAuthState(AuthContext);
  * ```
@@ -41,7 +41,9 @@ export interface AuthState {
 /**
  * Create a useAuthState hook with a specific context
  */
-export function createUseAuthState(AuthContext: Context<AuthState | undefined>) {
+export function createUseAuthState(
+  AuthContext: Context<AuthState | undefined>
+) {
   return function useAuthState(): AuthState {
     const context = useContext(AuthContext);
 

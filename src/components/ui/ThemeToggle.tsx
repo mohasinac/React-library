@@ -1,9 +1,9 @@
 /**
  * ThemeToggle Component
- * 
+ *
  * Framework-agnostic theme toggle button with button and dropdown variants.
  * Requires injectable theme handler.
- * 
+ *
  * @example
  * ```tsx
  * <ThemeToggle
@@ -14,9 +14,9 @@
  * ```
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 export interface ThemeToggleProps {
   /** Current active theme */
@@ -24,11 +24,11 @@ export interface ThemeToggleProps {
   /** Theme change callback */
   onThemeChange: (theme: Theme) => void;
   /** Variant style */
-  variant?: 'button' | 'dropdown';
+  variant?: "button" | "dropdown";
   /** Show label text */
   showLabel?: boolean;
   /** Size of the toggle */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   /** Additional CSS classes */
   className?: string;
   /** Custom Sun icon */
@@ -39,7 +39,7 @@ export interface ThemeToggleProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -88,10 +88,10 @@ function DefaultMoonIcon({ className }: { className?: string }) {
 export function ThemeToggle({
   currentTheme,
   onThemeChange,
-  variant = 'button',
+  variant = "button",
   showLabel = false,
-  size = 'md',
-  className = '',
+  size = "md",
+  className = "",
   SunIcon = DefaultSunIcon,
   MoonIcon = DefaultMoonIcon,
 }: ThemeToggleProps) {
@@ -99,65 +99,74 @@ export function ThemeToggle({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const themeOptions = [
-    { value: 'light' as Theme, label: 'Light', icon: SunIcon },
-    { value: 'dark' as Theme, label: 'Dark', icon: MoonIcon },
+    { value: "light" as Theme, label: "Light", icon: SunIcon },
+    { value: "dark" as Theme, label: "Dark", icon: MoonIcon },
   ];
 
   // Close dropdown on outside click
   useEffect(() => {
-    if (variant !== 'dropdown') return;
+    if (variant !== "dropdown") return;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, variant]);
 
   const sizeClasses = {
-    sm: 'p-1.5 text-sm',
-    md: 'p-2 text-base',
-    lg: 'p-3 text-lg',
+    sm: "p-1.5 text-sm",
+    md: "p-2 text-base",
+    lg: "p-3 text-lg",
   };
 
   const iconSizes = {
-    sm: 'w-3 h-3',
-    md: 'w-4 h-4',
-    lg: 'w-5 h-5',
+    sm: "w-3 h-3",
+    md: "w-4 h-4",
+    lg: "w-5 h-5",
   };
 
-  if (variant === 'button') {
+  if (variant === "button") {
     const toggleTheme = () => {
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      const newTheme = currentTheme === "light" ? "dark" : "light";
       onThemeChange(newTheme);
     };
 
-    const currentOption = themeOptions.find((opt) => opt.value === currentTheme)!;
+    const currentOption = themeOptions.find(
+      (opt) => opt.value === currentTheme
+    )!;
     const Icon = currentOption.icon;
 
     return (
       <button
         onClick={toggleTheme}
         className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg',
-          'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-          'hover:bg-gray-200 dark:hover:bg-gray-700',
-          'transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500',
+          "inline-flex items-center justify-center gap-2 rounded-lg",
+          "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+          "hover:bg-gray-200 dark:hover:bg-gray-700",
+          "transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500",
           sizeClasses[size],
           className
         )}
-        aria-label={`Switch to ${currentTheme === 'light' ? 'dark' : 'light'} mode`}
+        aria-label={`Switch to ${
+          currentTheme === "light" ? "dark" : "light"
+        } mode`}
       >
         <Icon className={iconSizes[size]} />
-        {showLabel && <span className="font-medium">{currentOption.label}</span>}
+        {showLabel && (
+          <span className="font-medium">{currentOption.label}</span>
+        )}
       </button>
     );
   }
@@ -167,23 +176,29 @@ export function ThemeToggle({
   const CurrentIcon = currentOption.icon;
 
   return (
-    <div ref={dropdownRef} className={cn('relative', className)}>
+    <div ref={dropdownRef} className={cn("relative", className)}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg',
-          'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-          'hover:bg-gray-200 dark:hover:bg-gray-700',
-          'transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500',
+          "inline-flex items-center justify-center gap-2 rounded-lg",
+          "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+          "hover:bg-gray-200 dark:hover:bg-gray-700",
+          "transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500",
           sizeClasses[size]
         )}
         aria-label="Select theme"
         aria-expanded={isOpen}
       >
         <CurrentIcon className={iconSizes[size]} />
-        {showLabel && <span className="font-medium">{currentOption.label}</span>}
+        {showLabel && (
+          <span className="font-medium">{currentOption.label}</span>
+        )}
         <svg
-          className={cn(iconSizes[size], 'transition-transform', isOpen && 'rotate-180')}
+          className={cn(
+            iconSizes[size],
+            "transition-transform",
+            isOpen && "rotate-180"
+          )}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
@@ -210,10 +225,10 @@ export function ThemeToggle({
                   setIsOpen(false);
                 }}
                 className={cn(
-                  'w-full flex items-center gap-3 px-4 py-2.5 text-sm',
-                  'hover:bg-gray-100 dark:hover:bg-gray-700',
-                  'transition-colors text-left',
-                  isActive && 'bg-gray-50 dark:bg-gray-700/50'
+                  "w-full flex items-center gap-3 px-4 py-2.5 text-sm",
+                  "hover:bg-gray-100 dark:hover:bg-gray-700",
+                  "transition-colors text-left",
+                  isActive && "bg-gray-50 dark:bg-gray-700/50"
                 )}
               >
                 <Icon className="w-4 h-4" />

@@ -1,9 +1,9 @@
 /**
  * InlineImageUpload Component
- * 
+ *
  * Framework-agnostic inline image upload with preview and remove.
  * Requires injectable upload handler.
- * 
+ *
  * @example
  * ```tsx
  * <InlineImageUpload
@@ -15,7 +15,7 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface InlineImageUploadProps {
   /** Current image URL */
@@ -50,7 +50,7 @@ export interface InlineImageUploadProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -147,12 +147,12 @@ export function InlineImageUpload({
   onChange,
   onUpload,
   onRemove,
-  accept = 'image/*',
+  accept = "image/*",
   size = 64,
   maxSizeMB = 5,
   loading: externalLoading,
   disabled,
-  className = '',
+  className = "",
   UploadIcon = DefaultUploadIcon,
   XIcon = DefaultXIcon,
   LoaderIcon = DefaultLoaderIcon,
@@ -168,8 +168,8 @@ export function InlineImageUpload({
     if (!file) return;
 
     // Validate file type
-    if (!file.type.startsWith('image/')) {
-      setError('Please select an image file');
+    if (!file.type.startsWith("image/")) {
+      setError("Please select an image file");
       return;
     }
 
@@ -186,8 +186,8 @@ export function InlineImageUpload({
       const url = await onUpload(file);
       onChange(url);
     } catch (err) {
-      console.error('Upload failed:', err);
-      setError('Failed to upload image');
+      console.error("Upload failed:", err);
+      setError("Failed to upload image");
     } finally {
       setUploading(false);
     }
@@ -197,13 +197,13 @@ export function InlineImageUpload({
     if (onRemove) {
       onRemove();
     } else {
-      onChange('');
+      onChange("");
     }
     setError(null);
   };
 
   return (
-    <div className={cn('flex flex-col gap-1', className)}>
+    <div className={cn("flex flex-col gap-1", className)}>
       <div
         className="relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700"
         style={{ width: size, height: size }}
@@ -238,9 +238,11 @@ export function InlineImageUpload({
           /* Upload Button */
           <label
             className={cn(
-              'cursor-pointer flex flex-col items-center justify-center w-full h-full',
-              disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200 dark:hover:bg-gray-700',
-              'transition-colors'
+              "cursor-pointer flex flex-col items-center justify-center w-full h-full",
+              disabled
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-200 dark:hover:bg-gray-700",
+              "transition-colors"
             )}
           >
             <input

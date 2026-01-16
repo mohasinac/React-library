@@ -1,9 +1,9 @@
 /**
  * ConfirmDialog Component
- * 
+ *
  * Framework-agnostic confirmation dialog for destructive or important actions.
  * Supports different variants (danger, warning, info) with async actions.
- * 
+ *
  * @example
  * ```tsx
  * <ConfirmDialog
@@ -17,7 +17,7 @@
  * ```
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 export interface ConfirmDialogProps {
   /** Dialog open state */
@@ -37,7 +37,7 @@ export interface ConfirmDialogProps {
   /** Cancel button label */
   cancelLabel?: string;
   /** Dialog variant */
-  variant?: 'danger' | 'warning' | 'info';
+  variant?: "danger" | "warning" | "info";
   /** External loading state */
   isLoading?: boolean;
   /** Additional CSS classes */
@@ -46,7 +46,7 @@ export interface ConfirmDialogProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export function ConfirmDialog({
@@ -56,11 +56,11 @@ export function ConfirmDialog({
   title,
   description,
   children,
-  confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel',
-  variant = 'danger',
+  confirmLabel = "Confirm",
+  cancelLabel = "Cancel",
+  variant = "danger",
   isLoading = false,
-  className = '',
+  className = "",
 }: ConfirmDialogProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -68,19 +68,19 @@ export function ConfirmDialog({
   // ESC key and body scroll lock
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !isProcessing) {
+      if (e.key === "Escape" && !isProcessing) {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, isProcessing, onClose]);
 
@@ -90,7 +90,7 @@ export function ConfirmDialog({
       await onConfirm();
       onClose();
     } catch (error) {
-      console.error('Confirm action failed:', error);
+      console.error("Confirm action failed:", error);
     } finally {
       setIsProcessing(false);
     }
@@ -100,16 +100,16 @@ export function ConfirmDialog({
 
   const variantStyles = {
     danger: {
-      button: 'bg-red-600 hover:bg-red-700 focus:ring-red-500',
-      icon: '⚠️',
+      button: "bg-red-600 hover:bg-red-700 focus:ring-red-500",
+      icon: "⚠️",
     },
     warning: {
-      button: 'bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500',
-      icon: '⚡',
+      button: "bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500",
+      icon: "⚡",
     },
     info: {
-      button: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500',
-      icon: 'ℹ️',
+      button: "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500",
+      icon: "ℹ️",
     },
   };
 
@@ -129,8 +129,8 @@ export function ConfirmDialog({
         <div
           ref={dialogRef}
           className={cn(
-            'relative bg-white dark:bg-gray-800 rounded-lg shadow-xl',
-            'max-w-md w-full p-6',
+            "relative bg-white dark:bg-gray-800 rounded-lg shadow-xl",
+            "max-w-md w-full p-6",
             className
           )}
         >
@@ -143,13 +143,12 @@ export function ConfirmDialog({
           </h3>
 
           {/* Description or children */}
-          {children || (
-            description && (
+          {children ||
+            (description && (
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
                 {description}
               </p>
-            )
-          )}
+            ))}
 
           {/* Actions */}
           <div className="flex gap-3 justify-end mt-6">
@@ -158,12 +157,12 @@ export function ConfirmDialog({
               onClick={onClose}
               disabled={loading}
               className={cn(
-                'px-4 py-2 text-sm font-medium rounded-lg',
-                'text-gray-700 dark:text-gray-300',
-                'bg-gray-100 dark:bg-gray-700',
-                'hover:bg-gray-200 dark:hover:bg-gray-600',
-                'transition-colors',
-                loading && 'opacity-50 cursor-not-allowed'
+                "px-4 py-2 text-sm font-medium rounded-lg",
+                "text-gray-700 dark:text-gray-300",
+                "bg-gray-100 dark:bg-gray-700",
+                "hover:bg-gray-200 dark:hover:bg-gray-600",
+                "transition-colors",
+                loading && "opacity-50 cursor-not-allowed"
               )}
             >
               {cancelLabel}
@@ -173,14 +172,14 @@ export function ConfirmDialog({
               onClick={handleConfirm}
               disabled={loading}
               className={cn(
-                'px-4 py-2 text-sm font-medium rounded-lg',
-                'text-white transition-colors',
-                'focus:outline-none focus:ring-2 focus:ring-offset-2',
+                "px-4 py-2 text-sm font-medium rounded-lg",
+                "text-white transition-colors",
+                "focus:outline-none focus:ring-2 focus:ring-offset-2",
                 style.button,
-                loading && 'opacity-50 cursor-not-allowed'
+                loading && "opacity-50 cursor-not-allowed"
               )}
             >
-              {loading ? 'Processing...' : confirmLabel}
+              {loading ? "Processing..." : confirmLabel}
             </button>
           </div>
         </div>

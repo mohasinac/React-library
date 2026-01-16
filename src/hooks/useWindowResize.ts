@@ -1,16 +1,16 @@
 /**
  * useWindowResize Hook
- * 
+ *
  * Framework-agnostic window resize hook with debounce support.
  * Provides current window dimensions and breakpoint detection.
- * 
+ *
  * @example
  * ```tsx
  * const { width, height, isDesktop, isMobile } = useWindowResize();
- * 
+ *
  * // With custom debounce
  * const { width, height } = useWindowResize({ debounceMs: 500 });
- * 
+ *
  * // With custom breakpoints
  * const { isMobile, isTablet } = useWindowResize({
  *   mobileBreakpoint: 640,
@@ -19,7 +19,7 @@
  * ```
  */
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
 export interface WindowSize {
   /** Window width in pixels */
@@ -53,7 +53,7 @@ export interface UseWindowResizeReturn extends WindowSize {
 }
 
 function getWindowSize(): WindowSize {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return { width: 0, height: 0 };
   }
   return {
@@ -89,14 +89,14 @@ export function useWindowResize(
       timeoutId = setTimeout(handleResize, debounceMs);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', debouncedHandleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", debouncedHandleResize);
     }
 
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', debouncedHandleResize);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", debouncedHandleResize);
       }
     };
   }, [debounceMs, handleResize]);

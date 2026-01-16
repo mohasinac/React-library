@@ -1,9 +1,9 @@
 /**
  * UploadProgress Component
- * 
+ *
  * Framework-agnostic upload progress display (fixed bottom-right).
  * Shows active uploads with progress bars.
- * 
+ *
  * @example
  * ```tsx
  * <UploadProgress
@@ -14,12 +14,12 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface Upload {
   id: string;
   filename: string;
-  status: 'pending' | 'uploading' | 'success' | 'failed';
+  status: "pending" | "uploading" | "success" | "failed";
   progress?: number;
   error?: string;
 }
@@ -49,12 +49,19 @@ export interface UploadProgressProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons (simplified for brevity)
 function DefaultLoaderIcon({ className }: { className?: string }) {
-  return <div className={cn('w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin', className)} />;
+  return (
+    <div
+      className={cn(
+        "w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin",
+        className
+      )}
+    />
+  );
 }
 
 function DefaultCheckIcon({ className }: { className?: string }) {
@@ -87,7 +94,7 @@ export function UploadProgress({
   onRetry,
   onClearCompleted,
   onClearFailed,
-  className = '',
+  className = "",
   LoaderIcon = DefaultLoaderIcon,
   CheckIcon = DefaultCheckIcon,
   AlertIcon = DefaultAlertIcon,
@@ -99,15 +106,20 @@ export function UploadProgress({
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  const pendingCount = uploads.filter((u) => u.status === 'pending').length;
-  const uploadingCount = uploads.filter((u) => u.status === 'uploading').length;
-  const successCount = uploads.filter((u) => u.status === 'success').length;
-  const failedCount = uploads.filter((u) => u.status === 'failed').length;
+  const pendingCount = uploads.filter((u) => u.status === "pending").length;
+  const uploadingCount = uploads.filter((u) => u.status === "uploading").length;
+  const successCount = uploads.filter((u) => u.status === "success").length;
+  const failedCount = uploads.filter((u) => u.status === "failed").length;
 
   if (uploads.length === 0 || isMinimized) return null;
 
   return (
-    <div className={cn('fixed bottom-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)]', className)}>
+    <div
+      className={cn(
+        "fixed bottom-4 right-4 z-50 w-96 max-w-[calc(100vw-2rem)]",
+        className
+      )}
+    >
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         {/* Header */}
         <div className="bg-blue-600 text-white p-3 flex items-center justify-between">
@@ -119,9 +131,13 @@ export function UploadProgress({
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="p-1 hover:bg-blue-700 rounded transition-colors"
-              aria-label={isExpanded ? 'Collapse' : 'Expand'}
+              aria-label={isExpanded ? "Collapse" : "Expand"}
             >
-              {isExpanded ? <ChevronDownIcon className="w-4 h-4" /> : <ChevronUpIcon className="w-4 h-4" />}
+              {isExpanded ? (
+                <ChevronDownIcon className="w-4 h-4" />
+              ) : (
+                <ChevronUpIcon className="w-4 h-4" />
+              )}
             </button>
             <button
               onClick={() => setIsMinimized(true)}
@@ -137,10 +153,22 @@ export function UploadProgress({
         {isExpanded && (
           <div className="bg-gray-50 dark:bg-gray-900 px-3 py-2 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
-              {uploadingCount > 0 && <span className="text-blue-600">Uploading: {uploadingCount}</span>}
-              {pendingCount > 0 && <span className="text-gray-600 dark:text-gray-400">Pending: {pendingCount}</span>}
-              {successCount > 0 && <span className="text-green-600">Success: {successCount}</span>}
-              {failedCount > 0 && <span className="text-red-600">Failed: {failedCount}</span>}
+              {uploadingCount > 0 && (
+                <span className="text-blue-600">
+                  Uploading: {uploadingCount}
+                </span>
+              )}
+              {pendingCount > 0 && (
+                <span className="text-gray-600 dark:text-gray-400">
+                  Pending: {pendingCount}
+                </span>
+              )}
+              {successCount > 0 && (
+                <span className="text-green-600">Success: {successCount}</span>
+              )}
+              {failedCount > 0 && (
+                <span className="text-red-600">Failed: {failedCount}</span>
+              )}
             </div>
             <div className="flex items-center gap-2">
               {successCount > 0 && onClearCompleted && (
@@ -174,10 +202,18 @@ export function UploadProgress({
                 <div className="flex items-center gap-3">
                   {/* Status Icon */}
                   <div className="flex-shrink-0">
-                    {upload.status === 'uploading' && <LoaderIcon className="w-5 h-5 text-blue-600" />}
-                    {upload.status === 'success' && <CheckIcon className="text-green-600 text-xl" />}
-                    {upload.status === 'failed' && <AlertIcon className="text-red-600 text-xl" />}
-                    {upload.status === 'pending' && <span className="text-gray-400 text-sm">⏳</span>}
+                    {upload.status === "uploading" && (
+                      <LoaderIcon className="w-5 h-5 text-blue-600" />
+                    )}
+                    {upload.status === "success" && (
+                      <CheckIcon className="text-green-600 text-xl" />
+                    )}
+                    {upload.status === "failed" && (
+                      <AlertIcon className="text-red-600 text-xl" />
+                    )}
+                    {upload.status === "pending" && (
+                      <span className="text-gray-400 text-sm">⏳</span>
+                    )}
                   </div>
 
                   {/* Filename & Progress */}
@@ -185,27 +221,30 @@ export function UploadProgress({
                     <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                       {upload.filename}
                     </p>
-                    {upload.status === 'uploading' && upload.progress !== undefined && (
-                      <div className="mt-1">
-                        <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-blue-600 transition-all duration-300"
-                            style={{ width: `${upload.progress}%` }}
-                          />
+                    {upload.status === "uploading" &&
+                      upload.progress !== undefined && (
+                        <div className="mt-1">
+                          <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-blue-600 transition-all duration-300"
+                              style={{ width: `${upload.progress}%` }}
+                            />
+                          </div>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                            {upload.progress}%
+                          </p>
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                          {upload.progress}%
-                        </p>
-                      </div>
-                    )}
+                      )}
                     {upload.error && (
-                      <p className="text-xs text-red-600 dark:text-red-400 mt-1">{upload.error}</p>
+                      <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                        {upload.error}
+                      </p>
                     )}
                   </div>
 
                   {/* Actions */}
                   <div className="flex items-center gap-1">
-                    {upload.status === 'failed' && onRetry && (
+                    {upload.status === "failed" && onRetry && (
                       <button
                         onClick={() => onRetry(upload.id)}
                         className="p-1.5 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded hover:bg-gray-100 dark:hover:bg-gray-700"

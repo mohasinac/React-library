@@ -1,9 +1,9 @@
 /**
  * GPSButton Component
- * 
+ *
  * Framework-agnostic GPS/geolocation button with status indicators.
  * Uses browser Geolocation API with injectable reverse geocoding.
- * 
+ *
  * @example
  * ```tsx
  * <GPSButton
@@ -15,7 +15,7 @@
  * ```
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from "react";
 
 export interface GeoCoordinates {
   latitude: number;
@@ -28,7 +28,7 @@ export interface GeoCoordinates {
 }
 
 export interface GeolocationError {
-  code: 'PERMISSION_DENIED' | 'POSITION_UNAVAILABLE' | 'TIMEOUT' | 'UNKNOWN';
+  code: "PERMISSION_DENIED" | "POSITION_UNAVAILABLE" | "TIMEOUT" | "UNKNOWN";
   message: string;
 }
 
@@ -44,9 +44,9 @@ export interface GPSButtonProps {
   /** Disabled state */
   disabled?: boolean;
   /** Button variant */
-  variant?: 'button' | 'icon' | 'text';
+  variant?: "button" | "icon" | "text";
   /** Button size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   /** Show status messages */
   showStatus?: boolean;
   /** Additional CSS classes */
@@ -61,11 +61,11 @@ export interface GPSButtonProps {
   XCircleIcon?: React.ComponentType<{ className?: string }>;
 }
 
-type Status = 'idle' | 'loading' | 'success' | 'error';
+type Status = "idle" | "loading" | "success" | "error";
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -162,43 +162,45 @@ export function GPSButton({
   onError,
   reverseGeocode,
   disabled = false,
-  variant = 'button',
-  size = 'md',
+  variant = "button",
+  size = "md",
   showStatus = true,
-  className = '',
+  className = "",
   MapPinIcon = DefaultMapPinIcon,
   LoaderIcon = DefaultLoaderIcon,
   CheckCircleIcon = DefaultCheckCircleIcon,
   XCircleIcon = DefaultXCircleIcon,
 }: GPSButtonProps) {
-  const [status, setStatus] = useState<Status>('idle');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleClick = useCallback(async () => {
-    if (disabled || status === 'loading' || !navigator.geolocation) {
+    if (disabled || status === "loading" || !navigator.geolocation) {
       if (!navigator.geolocation) {
         const error: GeolocationError = {
-          code: 'POSITION_UNAVAILABLE',
-          message: 'Geolocation is not supported by this browser',
+          code: "POSITION_UNAVAILABLE",
+          message: "Geolocation is not supported by this browser",
         };
-        setStatus('error');
+        setStatus("error");
         setErrorMessage(error.message);
         onError?.(error);
       }
       return;
     }
 
-    setStatus('loading');
-    setErrorMessage('');
+    setStatus("loading");
+    setErrorMessage("");
 
     try {
-      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0,
-        });
-      });
+      const position = await new Promise<GeolocationPosition>(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0,
+          });
+        }
+      );
 
       const coords: GeoCoordinates = {
         latitude: position.coords.latitude,
@@ -220,88 +222,98 @@ export function GPSButton({
             onAddressDetected(address);
           }
         } catch (geocodeError) {
-          console.warn('Reverse geocode failed:', geocodeError);
+          console.warn("Reverse geocode failed:", geocodeError);
         }
       }
 
-      setStatus('success');
+      setStatus("success");
 
       // Reset to idle after 3 seconds
-      setTimeout(() => setStatus('idle'), 3000);
+      setTimeout(() => setStatus("idle"), 3000);
     } catch (error: any) {
       let geoError: GeolocationError;
 
       if (error.code === 1) {
         geoError = {
-          code: 'PERMISSION_DENIED',
-          message: 'Location permission denied. Please enable in browser settings.',
+          code: "PERMISSION_DENIED",
+          message:
+            "Location permission denied. Please enable in browser settings.",
         };
       } else if (error.code === 2) {
         geoError = {
-          code: 'POSITION_UNAVAILABLE',
-          message: 'Location information is unavailable.',
+          code: "POSITION_UNAVAILABLE",
+          message: "Location information is unavailable.",
         };
       } else if (error.code === 3) {
         geoError = {
-          code: 'TIMEOUT',
-          message: 'Location request timed out.',
+          code: "TIMEOUT",
+          message: "Location request timed out.",
         };
       } else {
         geoError = {
-          code: 'UNKNOWN',
-          message: error.message || 'Failed to get location',
+          code: "UNKNOWN",
+          message: error.message || "Failed to get location",
         };
       }
 
-      setStatus('error');
+      setStatus("error");
       setErrorMessage(geoError.message);
       onError?.(geoError);
 
       // Reset to idle after 5 seconds on error
       setTimeout(() => {
-        setStatus('idle');
-        setErrorMessage('');
+        setStatus("idle");
+        setErrorMessage("");
       }, 5000);
     }
-  }, [disabled, status, onLocationDetected, onAddressDetected, onError, reverseGeocode]);
+  }, [
+    disabled,
+    status,
+    onLocationDetected,
+    onAddressDetected,
+    onError,
+    reverseGeocode,
+  ]);
 
   const getIcon = () => {
     switch (status) {
-      case 'loading':
-        return <LoaderIcon className={cn(iconSizes[size], 'animate-spin')} />;
-      case 'success':
-        return <CheckCircleIcon className={cn(iconSizes[size], 'text-green-500')} />;
-      case 'error':
-        return <XCircleIcon className={cn(iconSizes[size], 'text-red-500')} />;
+      case "loading":
+        return <LoaderIcon className={cn(iconSizes[size], "animate-spin")} />;
+      case "success":
+        return (
+          <CheckCircleIcon className={cn(iconSizes[size], "text-green-500")} />
+        );
+      case "error":
+        return <XCircleIcon className={cn(iconSizes[size], "text-red-500")} />;
       default:
         return <MapPinIcon className={iconSizes[size]} />;
     }
   };
 
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-5 py-3 text-lg',
+    sm: "px-3 py-1.5 text-sm",
+    md: "px-4 py-2 text-base",
+    lg: "px-5 py-3 text-lg",
   };
 
   const iconSizes = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6',
+    sm: "w-4 h-4",
+    md: "w-5 h-5",
+    lg: "w-6 h-6",
   };
 
-  if (variant === 'icon') {
+  if (variant === "icon") {
     return (
       <button
         onClick={handleClick}
-        disabled={disabled || status === 'loading'}
+        disabled={disabled || status === "loading"}
         className={cn(
-          'inline-flex items-center justify-center rounded-lg',
-          'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300',
-          'hover:bg-gray-200 dark:hover:bg-gray-700',
-          'transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500',
-          size === 'sm' ? 'w-8 h-8' : size === 'lg' ? 'w-12 h-12' : 'w-10 h-10',
-          (disabled || status === 'loading') && 'opacity-50 cursor-not-allowed',
+          "inline-flex items-center justify-center rounded-lg",
+          "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+          "hover:bg-gray-200 dark:hover:bg-gray-700",
+          "transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500",
+          size === "sm" ? "w-8 h-8" : size === "lg" ? "w-12 h-12" : "w-10 h-10",
+          (disabled || status === "loading") && "opacity-50 cursor-not-allowed",
           className
         )}
         aria-label="Detect location"
@@ -311,20 +323,20 @@ export function GPSButton({
     );
   }
 
-  if (variant === 'text') {
+  if (variant === "text") {
     return (
       <button
         onClick={handleClick}
-        disabled={disabled || status === 'loading'}
+        disabled={disabled || status === "loading"}
         className={cn(
-          'inline-flex items-center gap-2 font-medium',
-          'text-blue-600 dark:text-blue-400 hover:underline',
-          (disabled || status === 'loading') && 'opacity-50 cursor-not-allowed',
+          "inline-flex items-center gap-2 font-medium",
+          "text-blue-600 dark:text-blue-400 hover:underline",
+          (disabled || status === "loading") && "opacity-50 cursor-not-allowed",
           className
         )}
       >
         {getIcon()}
-        {status === 'loading' ? 'Detecting...' : 'Use Current Location'}
+        {status === "loading" ? "Detecting..." : "Use Current Location"}
       </button>
     );
   }
@@ -334,23 +346,25 @@ export function GPSButton({
     <div className={className}>
       <button
         onClick={handleClick}
-        disabled={disabled || status === 'loading'}
+        disabled={disabled || status === "loading"}
         className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
-          'bg-blue-600 text-white hover:bg-blue-700',
-          'transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500',
+          "inline-flex items-center justify-center gap-2 rounded-lg font-medium",
+          "bg-blue-600 text-white hover:bg-blue-700",
+          "transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500",
           sizeClasses[size],
-          (disabled || status === 'loading') && 'opacity-50 cursor-not-allowed'
+          (disabled || status === "loading") && "opacity-50 cursor-not-allowed"
         )}
       >
         {getIcon()}
-        {status === 'loading' && 'Detecting...'}
-        {status === 'success' && 'Location Detected'}
-        {status === 'error' && 'Try Again'}
-        {status === 'idle' && 'Use Current Location'}
+        {status === "loading" && "Detecting..."}
+        {status === "success" && "Location Detected"}
+        {status === "error" && "Try Again"}
+        {status === "idle" && "Use Current Location"}
       </button>
       {showStatus && errorMessage && (
-        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+          {errorMessage}
+        </p>
       )}
     </div>
   );

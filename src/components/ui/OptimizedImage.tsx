@@ -1,9 +1,9 @@
 /**
  * OptimizedImage Component
- * 
+ *
  * Framework-agnostic image component with error handling and loading states.
  * Supports focus point for smart cropping.
- * 
+ *
  * @example
  * ```tsx
  * <OptimizedImage
@@ -17,7 +17,7 @@
  * ```
  */
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export interface OptimizedImageProps {
   /** Image source URL */
@@ -31,7 +31,7 @@ export interface OptimizedImageProps {
   /** Additional CSS classes */
   className?: string;
   /** Image fit mode */
-  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
   /** Focus point X (0-100, percentage from left) */
   focusX?: number;
   /** Focus point Y (0-100, percentage from top) */
@@ -43,14 +43,14 @@ export interface OptimizedImageProps {
   /** Fallback image URL */
   fallbackSrc?: string;
   /** Loading state (lazy/eager) */
-  loading?: 'lazy' | 'eager';
+  loading?: "lazy" | "eager";
   /** Image quality (for services that support it) */
   quality?: number;
 }
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export function OptimizedImage({
@@ -58,14 +58,14 @@ export function OptimizedImage({
   alt,
   width,
   height,
-  className = '',
-  objectFit = 'cover',
+  className = "",
+  objectFit = "cover",
   focusX = 50,
   focusY = 50,
   onLoad,
   onError,
-  fallbackSrc = '/images/placeholder.png',
-  loading = 'lazy',
+  fallbackSrc = "/images/placeholder.png",
+  loading = "lazy",
   quality = 85,
 }: OptimizedImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
@@ -84,16 +84,18 @@ export function OptimizedImage({
   };
 
   // If no src provided, show placeholder
-  if (!src || src === '') {
+  if (!src || src === "") {
     return (
       <div
         className={cn(
-          'bg-gray-200 dark:bg-gray-700 flex items-center justify-center',
+          "bg-gray-200 dark:bg-gray-700 flex items-center justify-center",
           className
         )}
         style={{ width, height }}
       >
-        <span className="text-gray-400 dark:text-gray-500 text-sm">No image</span>
+        <span className="text-gray-400 dark:text-gray-500 text-sm">
+          No image
+        </span>
       </div>
     );
   }
@@ -101,7 +103,7 @@ export function OptimizedImage({
   return (
     <img
       src={imgSrc}
-      alt={alt || 'Image'}
+      alt={alt || "Image"}
       width={width}
       height={height}
       loading={loading}
@@ -109,9 +111,9 @@ export function OptimizedImage({
       onLoad={handleLoad}
       className={cn(
         className,
-        !isLoaded && 'opacity-0',
-        isLoaded && 'opacity-100 transition-opacity duration-300',
-        isError && 'opacity-50'
+        !isLoaded && "opacity-0",
+        isLoaded && "opacity-100 transition-opacity duration-300",
+        isError && "opacity-50"
       )}
       style={{
         objectFit,

@@ -1,9 +1,9 @@
 /**
  * useHeaderStats Hook
- * 
+ *
  * Framework-agnostic hook for fetching and managing header statistics.
  * Uses polling for real-time updates (cart count, notifications, etc).
- * 
+ *
  * @example
  * ```tsx
  * const {
@@ -62,12 +62,7 @@ const defaultStats: HeaderStats = {
 export function useHeaderStats(
   options: UseHeaderStatsOptions
 ): UseHeaderStatsReturn {
-  const {
-    enabled = true,
-    pollInterval = 30000,
-    fetchStats,
-    onError,
-  } = options;
+  const { enabled = true, pollInterval = 30000, fetchStats, onError } = options;
 
   const [stats, setStats] = useState<HeaderStats>(defaultStats);
   const [isLoading, setIsLoading] = useState(false);
@@ -100,7 +95,8 @@ export function useHeaderStats(
         const data = await fetchStats();
         setStats(data);
       } catch (err) {
-        const error = err instanceof Error ? err : new Error("Failed to fetch stats");
+        const error =
+          err instanceof Error ? err : new Error("Failed to fetch stats");
         setError(error);
         onError?.(error);
         // Keep previous stats on error
@@ -133,7 +129,7 @@ export function useHeaderStats(
 
   // Refresh on window focus
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const handleFocus = () => {
       if (enabledRef.current) {

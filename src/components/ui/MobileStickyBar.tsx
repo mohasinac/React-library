@@ -1,9 +1,9 @@
 /**
  * MobileStickyBar Component
- * 
+ *
  * Framework-agnostic mobile sticky bar for product/auction pages.
  * Shows price/bid and action buttons at bottom of screen on mobile.
- * 
+ *
  * @example
  * ```tsx
  * <MobileStickyBar
@@ -17,11 +17,11 @@
  * ```
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export interface MobileStickyBarProps {
   /** Bar type */
-  type?: 'product' | 'auction';
+  type?: "product" | "auction";
   /** Product price */
   price?: number;
   /** Original price (for discount display) */
@@ -58,7 +58,7 @@ export interface MobileStickyBarProps {
 
 // Inline cn utility
 function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 // Default inline SVG icons
@@ -126,11 +126,11 @@ function DefaultGavelIcon({ className }: { className?: string }) {
 }
 
 export function MobileStickyBar({
-  type = 'product',
+  type = "product",
   price,
   originalPrice,
   currentBid,
-  currencySymbol = '₹',
+  currencySymbol = "₹",
   onAddToCart,
   onBuyNow,
   onPlaceBid,
@@ -139,7 +139,7 @@ export function MobileStickyBar({
   isActive = true,
   disabled = false,
   mobileOnly = true,
-  className = '',
+  className = "",
   HeartIcon = DefaultHeartIcon,
   CartIcon = DefaultCartIcon,
   GavelIcon = DefaultGavelIcon,
@@ -156,7 +156,7 @@ export function MobileStickyBar({
     try {
       await onAddToCart();
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error("Error adding to cart:", error);
     } finally {
       setIsAdding(false);
     }
@@ -165,10 +165,10 @@ export function MobileStickyBar({
   return (
     <div
       className={cn(
-        'fixed bottom-0 left-0 right-0 z-40',
-        'bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700',
-        'shadow-lg',
-        mobileOnly && 'md:hidden',
+        "fixed bottom-0 left-0 right-0 z-40",
+        "bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700",
+        "shadow-lg",
+        mobileOnly && "md:hidden",
         className
       )}
     >
@@ -176,7 +176,7 @@ export function MobileStickyBar({
         <div className="flex items-center gap-3">
           {/* Price/Bid Display */}
           <div className="flex-1 min-w-0">
-            {type === 'product' ? (
+            {type === "product" ? (
               <div>
                 <div className="flex items-baseline gap-2">
                   <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -189,12 +189,16 @@ export function MobileStickyBar({
                   )}
                 </div>
                 {!inStock && (
-                  <p className="text-xs text-red-600 dark:text-red-400">Out of Stock</p>
+                  <p className="text-xs text-red-600 dark:text-red-400">
+                    Out of Stock
+                  </p>
                 )}
               </div>
             ) : (
               <div>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Current Bid</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">
+                  Current Bid
+                </p>
                 <span className="text-xl font-bold text-gray-900 dark:text-white">
                   {formatPrice(currentBid || 0)}
                 </span>
@@ -203,18 +207,18 @@ export function MobileStickyBar({
           </div>
 
           {/* Action Buttons */}
-          {type === 'product' ? (
+          {type === "product" ? (
             <>
               {onAddToWishlist && (
                 <button
                   onClick={onAddToWishlist}
                   disabled={disabled}
                   className={cn(
-                    'p-3 rounded-lg border border-gray-300 dark:border-gray-600',
-                    'text-gray-700 dark:text-gray-300',
-                    'hover:bg-gray-100 dark:hover:bg-gray-700',
-                    'transition-colors',
-                    disabled && 'opacity-50 cursor-not-allowed'
+                    "p-3 rounded-lg border border-gray-300 dark:border-gray-600",
+                    "text-gray-700 dark:text-gray-300",
+                    "hover:bg-gray-100 dark:hover:bg-gray-700",
+                    "transition-colors",
+                    disabled && "opacity-50 cursor-not-allowed"
                   )}
                   aria-label="Add to wishlist"
                 >
@@ -226,14 +230,15 @@ export function MobileStickyBar({
                   onClick={handleAddToCart}
                   disabled={disabled || !inStock || isAdding}
                   className={cn(
-                    'flex-1 py-3 px-4 rounded-lg font-medium',
-                    'bg-blue-600 text-white hover:bg-blue-700',
-                    'transition-colors inline-flex items-center justify-center gap-2',
-                    (disabled || !inStock || isAdding) && 'opacity-50 cursor-not-allowed'
+                    "flex-1 py-3 px-4 rounded-lg font-medium",
+                    "bg-blue-600 text-white hover:bg-blue-700",
+                    "transition-colors inline-flex items-center justify-center gap-2",
+                    (disabled || !inStock || isAdding) &&
+                      "opacity-50 cursor-not-allowed"
                   )}
                 >
                   <CartIcon className="w-5 h-5" />
-                  {isAdding ? 'Adding...' : 'Add to Cart'}
+                  {isAdding ? "Adding..." : "Add to Cart"}
                 </button>
               )}
               {onBuyNow && (
@@ -241,10 +246,10 @@ export function MobileStickyBar({
                   onClick={onBuyNow}
                   disabled={disabled || !inStock}
                   className={cn(
-                    'flex-1 py-3 px-4 rounded-lg font-medium',
-                    'bg-green-600 text-white hover:bg-green-700',
-                    'transition-colors',
-                    (disabled || !inStock) && 'opacity-50 cursor-not-allowed'
+                    "flex-1 py-3 px-4 rounded-lg font-medium",
+                    "bg-green-600 text-white hover:bg-green-700",
+                    "transition-colors",
+                    (disabled || !inStock) && "opacity-50 cursor-not-allowed"
                   )}
                 >
                   Buy Now
@@ -258,10 +263,10 @@ export function MobileStickyBar({
                   onClick={onPlaceBid}
                   disabled={disabled || !isActive}
                   className={cn(
-                    'flex-1 py-3 px-4 rounded-lg font-medium',
-                    'bg-orange-600 text-white hover:bg-orange-700',
-                    'transition-colors inline-flex items-center justify-center gap-2',
-                    (disabled || !isActive) && 'opacity-50 cursor-not-allowed'
+                    "flex-1 py-3 px-4 rounded-lg font-medium",
+                    "bg-orange-600 text-white hover:bg-orange-700",
+                    "transition-colors inline-flex items-center justify-center gap-2",
+                    (disabled || !isActive) && "opacity-50 cursor-not-allowed"
                   )}
                 >
                   <GavelIcon className="w-5 h-5" />

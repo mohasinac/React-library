@@ -1,9 +1,9 @@
 /**
  * useNavigationGuard Hook
- * 
+ *
  * Framework-agnostic navigation guard to prevent leaving pages with unsaved changes.
  * Works with browser back/forward, route changes, and page refreshes.
- * 
+ *
  * @example
  * ```tsx
  * useNavigationGuard({
@@ -16,7 +16,7 @@
  * ```
  */
 
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export interface NavigationGuardOptions {
   /** Whether to enable the navigation guard */
@@ -66,7 +66,7 @@ export function useNavigationGuard(options: NavigationGuardOptions): void {
       return message;
     };
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.addEventListener("beforeunload", handleBeforeUnload);
 
       return () => {
@@ -79,7 +79,7 @@ export function useNavigationGuard(options: NavigationGuardOptions): void {
    * Handle history/router navigation
    */
   useEffect(() => {
-    if (!enabled || typeof window === 'undefined') return;
+    if (!enabled || typeof window === "undefined") return;
 
     const handlePopState = async (e: PopStateEvent) => {
       if (isNavigatingRef.current) return;
