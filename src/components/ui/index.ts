@@ -8,6 +8,22 @@ export type { CardProps, CardSectionProps } from "./Card";
 export { BaseCard } from "./BaseCard";
 export type { ActionButton, Badge, BaseCardProps } from "./BaseCard";
 
+export { SectionCard } from "./SectionCard";
+export type { SectionCardProps } from "./SectionCard";
+
+export { SliderControl } from "./SliderControl";
+export type { SliderControlProps } from "./SliderControl";
+
+export { RipLimitStatsCards } from "./RipLimitStatsCards";
+export type {
+  RipLimitStats,
+  RipLimitStatsCardsProps,
+} from "./RipLimitStatsCards";
+
+export { LoadingSpinner } from "./LoadingSpinner";
+
+export { ToggleSwitch } from "./ToggleSwitch";
+
 // Dialogs & Messages
 export { ConfirmDialog } from "./ConfirmDialog";
 export type { ConfirmDialogProps } from "./ConfirmDialog";
@@ -103,3 +119,7 @@ export type {
   ToastProviderProps,
   ToastVariant,
 } from "./Toast";
+
+// Form Actions (deprecated - use forms/FormSection's FormActions with children)
+export { FormActions } from "./FormActions";
+export type { FormActionsProps } from "./FormActions";

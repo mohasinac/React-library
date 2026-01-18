@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import FAQItem from "./FAQItem";
-import {
-  getFAQsByCategory,
-  FAQ_CATEGORIES,
-  type FAQCategory,
-} from "@/constants/faq";
 import * as Icons from "lucide-react";
+import { useState } from "react";
+import { FAQ_CATEGORIES, getFAQsByCategory } from "../../constants/faq";
+import FAQItem from "./FAQItem";
 
 interface FAQSectionProps {
   title?: string;
@@ -104,7 +100,7 @@ export default function FAQSection({
                   : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
               }`}
             >
-              {getIcon(category.icon)}
+              {category.icon && getIcon(category.icon)}
               {category.name}
             </button>
           ))}

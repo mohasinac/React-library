@@ -9,3 +9,15 @@ export type { Review, ReviewListProps, ReviewStats } from "./ReviewList";
 
 export { ReviewForm } from "./ReviewForm";
 export type { MediaFile, ReviewFormProps } from "./ReviewForm";
+
+export { SellerProducts } from "./SellerProducts";
+export type { SellerProductsProps } from "./SellerProducts";
+
+export { SimilarProducts } from "./SimilarProducts";
+export type { SimilarProductsProps } from "./SimilarProducts";
+
+export { ProductVariants } from "./ProductVariants";
+export type { ProductVariantsProps } from "./ProductVariants";
+
+export { ProductInfo } from "./ProductInfo";
+export type { ProductInfoProps } from "./ProductInfo";

@@ -35,9 +35,6 @@ export * from "./selectors";
 // Wrapper & Layout Components (Task 19.3)
 export * from "./wrappers";
 
-// Skeleton Components (Phase 1 Migration)
-export * from "./skeletons";
-
 // FAQ Components (Phase 1 Migration)
 export * from "./faq";
 
@@ -88,3 +85,18 @@ export * from "./cart";
 
 // Checkout Components (Phase 3 Migration)
 export * from "./checkout";
+
+// User Components (Phase 3 Migration)
+export * from "./user";
+
+// Auth Components (Phase 3 Migration)
+export * from "./auth";
+
+// Wizard Components (Phase 4 Migration)
+export * from "./wizards";
+
+// Admin Components (Phase 4 Migration)
+export * from "./admin";
+
+// Seller Components (Phase 4 Migration)
+export * from "./seller";
