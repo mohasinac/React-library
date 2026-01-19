@@ -1,16 +1,16 @@
 /**
  * Wrapper Component
- * 
+ *
  * Generic wrapper component for grouping content with optional styling.
  * More flexible than Container, without max-width constraints.
- * 
+ *
  * Features:
  * - Flexible layout direction (horizontal/vertical)
  * - Optional padding and gap
  * - Alignment control
  * - Dark mode support
  * - Can be used for flexbox or grid layouts
- * 
+ *
  * @example
  * ```tsx
  * <Wrapper direction="vertical" gap="md" align="center">
@@ -85,7 +85,7 @@ const paddingClasses: Record<NonNullable<WrapperProps["padding"]>, string> = {
 
 /**
  * Wrapper - Flexible layout container
- * 
+ *
  * Use for grouping content with flexbox layout. More flexible than
  * Container component as it doesn't enforce max-width.
  */

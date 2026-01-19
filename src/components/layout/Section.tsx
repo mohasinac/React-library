@@ -1,16 +1,16 @@
 /**
  * Section Component
- * 
+ *
  * Semantic section wrapper with consistent spacing and styling.
  * Used for major page sections with optional backgrounds and borders.
- * 
+ *
  * Features:
  * - Semantic HTML5 <section> element
  * - Consistent vertical padding
  * - Optional background colors
  * - Dark mode support
  * - Responsive spacing
- * 
+ *
  * @example
  * ```tsx
  * <Section variant="default" spacing="lg">
@@ -53,7 +53,7 @@ const spacingClasses: Record<NonNullable<SectionProps["spacing"]>, string> = {
 
 /**
  * Section - Semantic section wrapper with consistent spacing
- * 
+ *
  * Use for major page sections to maintain consistent vertical rhythm
  * and proper semantic HTML structure.
  */
