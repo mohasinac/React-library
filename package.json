@@ -57,9 +57,7 @@
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "npm run lint && npm run type-check && npm test && npm run build",
-    "preversion": "npm run lint && npm run type-check && npm test",
-    "postversion": "git push && git push --tags"
+    "prepublishOnly": "npm run lint && npm run type-check && npm test && npm run build"
   },
   "repository": {
     "type": "git",
