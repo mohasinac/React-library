@@ -39,7 +39,7 @@ import React from "react";
 import { cn } from "../../utils/cn";
 
 export interface HeaderLogo {
-  /** Logo image source */
+  /** Logo image source (supports .svg, .png, .jpg, etc.) */
   src: string;
   /** Logo alt text */
   alt: string;
@@ -49,6 +49,8 @@ export interface HeaderLogo {
   width?: number;
   /** Logo height (default: 40) */
   height?: number;
+  /** Force use of SVG component instead of img tag (for inline SVG) */
+  isSvg?: boolean;
 }
 
 export interface HeaderUser {
@@ -178,13 +180,36 @@ export const Header: React.FC<HeaderProps> = ({
             href={logo.href}
             className="flex items-center flex-shrink-0"
           >
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width || 120}
-              height={logo.height || 40}
-              className="h-8 md:h-10 w-auto object-contain"
-            />
+            {logo.isSvg || logo.src.endsWith(".svg") ? (
+              <object
+                data={logo.src}
+                type="image/svg+xml"
+                aria-label={logo.alt}
+                className="h-8 md:h-10 w-auto object-contain"
+                style={{
+                  width: logo.width || 120,
+                  height: logo.height || 40,
+                  maxHeight: "100%",
+                }}
+              >
+                {/* Fallback for browsers that don't support object tag */}
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width || 120}
+                  height={logo.height || 40}
+                  className="h-8 md:h-10 w-auto object-contain"
+                />
+              </object>
+            ) : (
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width || 120}
+                height={logo.height || 40}
+                className="h-8 md:h-10 w-auto object-contain"
+              />
+            )}
           </LinkComponent>
 
           {/* Desktop Navigation */}
