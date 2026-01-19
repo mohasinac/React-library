@@ -109,7 +109,7 @@ function highlightText(text: string, query: string): React.ReactNode {
       </mark>
     ) : (
       part
-    )
+    ),
   );
 }
 
@@ -147,13 +147,13 @@ export function SearchSuggestions({
         case "ArrowDown":
           e.preventDefault();
           setSelectedIndex((prev) =>
-            prev < displayedSuggestions.length - 1 ? prev + 1 : 0
+            prev < displayedSuggestions.length - 1 ? prev + 1 : 0,
           );
           break;
         case "ArrowUp":
           e.preventDefault();
           setSelectedIndex((prev) =>
-            prev > 0 ? prev - 1 : displayedSuggestions.length - 1
+            prev > 0 ? prev - 1 : displayedSuggestions.length - 1,
           );
           break;
         case "Enter":
