@@ -1,5 +1,5 @@
 /**
- * ProductGallery - Wrapper for MediaGallery
+ * AuctionGallery - Wrapper for MediaGallery
  *
  * @deprecated Use MediaGallery from @letitrip/react-library/media instead
  */
@@ -13,11 +13,11 @@ export interface GalleryMedia {
   alt?: string;
 }
 
-export interface ProductGalleryProps
+export interface AuctionGalleryProps
   extends Omit<MediaGalleryProps, "resourceName"> {
-  productName: string;
+  auctionName: string;
 }
 
-export function ProductGallery({ productName, ...props }: ProductGalleryProps) {
-  return <MediaGallery resourceName={productName} {...props} />;
+export function AuctionGallery({ auctionName, ...props }: AuctionGalleryProps) {
+  return <MediaGallery resourceName={auctionName} {...props} />;
 }
