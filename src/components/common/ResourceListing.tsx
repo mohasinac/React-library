@@ -26,7 +26,7 @@ export interface ResourceListingProps<T = any> {
   onItemClick?: (item: T) => void;
   onItemAction?: (itemId: string, action: string) => void;
   // Injected components
-  ItemCardComponent?: React.ComponentType<any>;
+  ItemCardComponent: React.ComponentType<any>;
   FiltersComponent?: React.ComponentType<any>;
   EmptyStateComponent?: React.ComponentType<{
     title: string;
@@ -408,7 +408,7 @@ export function ResourceListing<T extends { id: string }>({
 
         {/* Items Grid/List */}
         <div className="flex-1">
-          {view === "grid" && ItemCardComponent ? (
+          {view === "grid" ? (
             <DefaultCardGrid>
               {items.map((item) => (
                 <ItemCardComponent
