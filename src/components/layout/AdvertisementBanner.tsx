@@ -47,9 +47,9 @@
  * ```
  */
 
+import { X } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import React, { useState } from "react";
-import { X } from "lucide-react";
 import { cn } from "../../utils/cn";
 
 export interface AdvertisementBannerProps {
