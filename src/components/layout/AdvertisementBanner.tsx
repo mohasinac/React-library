@@ -93,7 +93,7 @@ export const AdvertisementBanner: React.FC<AdvertisementBannerProps> = ({
   ctaText,
   ctaHref,
   href,
-  backgroundColor = "#1e3a8a",
+  backgroundColor = "#C41E3A", // Brand secondary red
   backgroundImage,
   textColor,
   isDismissible = false,

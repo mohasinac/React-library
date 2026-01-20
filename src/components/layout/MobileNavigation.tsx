@@ -92,8 +92,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
     <nav
       className={cn(
         "fixed bottom-0 left-0 right-0 z-40",
-        "bg-white dark:bg-gray-900",
-        "border-t border-gray-200 dark:border-gray-800",
+        "bg-white dark:bg-black",
+        "border-t border-slate-200 dark:border-neutral-800",
         "safe-area-inset-bottom", // For iOS notch support
         hideOnDesktop && "lg:hidden",
         className,
@@ -113,10 +113,10 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               className={cn(
                 "flex flex-col items-center justify-center flex-1 min-w-0 relative",
                 "transition-colors duration-200",
-                "focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary",
                 isActive
-                  ? "text-blue-600 dark:text-blue-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white",
+                  ? "text-primary dark:text-primary-400"
+                  : "text-slate-600 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white",
               )}
               aria-label={item.label}
               aria-current={isActive ? "page" : undefined}
@@ -134,7 +134,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                 {/* Badge Count */}
                 {item.badge !== undefined && item.badge > 0 && (
                   <span
-                    className="absolute -top-2 -right-2 h-5 min-w-[1.25rem] px-1 flex items-center justify-center text-xs font-bold text-white bg-blue-600 rounded-full"
+                    className="absolute -top-2 -right-2 h-5 min-w-[1.25rem] px-1 flex items-center justify-center text-xs font-bold text-white bg-secondary rounded-full"
                     aria-label={`${item.badge} items`}
                   >
                     {item.badge > 99 ? "99+" : item.badge}
@@ -163,7 +163,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               {/* Active Indicator */}
               {isActive && (
                 <span
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-blue-600 dark:bg-blue-400 rounded-b-full"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-primary dark:bg-primary-400 rounded-b-full"
                   aria-hidden="true"
                 />
               )}

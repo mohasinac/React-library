@@ -116,11 +116,9 @@ export function FAQAccordion({
   className = "",
   emptyMessage = "No FAQs found. Try a different search term or category.",
 }: FAQAccordionProps) {
-  const [openIds, setOpenIds] = useState<Set<string>>(
-    new Set(defaultOpenIds)
-  );
+  const [openIds, setOpenIds] = useState<Set<string>>(new Set(defaultOpenIds));
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    defaultCategory || null
+    defaultCategory || null,
   );
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -135,7 +133,7 @@ export function FAQAccordion({
     filteredFaqs = filteredFaqs.filter(
       (faq) =>
         faq.question.toLowerCase().includes(lowerQuery) ||
-        faq.answer.toLowerCase().includes(lowerQuery)
+        faq.answer.toLowerCase().includes(lowerQuery),
     );
   }
 

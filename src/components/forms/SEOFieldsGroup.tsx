@@ -41,8 +41,8 @@
  * ```
  */
 
-import { useEffect, useState } from "react";
 import { AlertCircle, CheckCircle, Info } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export interface SEOFieldsValues {
   /** SEO page title (recommended: 50-60 characters) */
@@ -108,7 +108,7 @@ function generateSlug(text: string): string {
 function getCountStatus(
   length: number,
   min: number,
-  max: number
+  max: number,
 ): "good" | "warning" | "error" {
   if (length === 0) return "error";
   if (length < min) return "warning";
@@ -163,7 +163,7 @@ export function SEOFieldsGroup({
   const removeKeyword = (keyword: string) => {
     onChange(
       "seoKeywords",
-      (values.seoKeywords || []).filter((k) => k !== keyword)
+      (values.seoKeywords || []).filter((k) => k !== keyword),
     );
   };
 
@@ -249,8 +249,8 @@ export function SEOFieldsGroup({
                       titleStatus === "good"
                         ? "text-green-600 dark:text-green-400"
                         : titleStatus === "warning"
-                          ? "text-yellow-600 dark:text-yellow-400"
-                          : "text-red-600 dark:text-red-400"
+                        ? "text-yellow-600 dark:text-yellow-400"
+                        : "text-red-600 dark:text-red-400"
                     }`}
                   >
                     {titleLength}/{TITLE_MAX} characters
@@ -280,10 +280,12 @@ export function SEOFieldsGroup({
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
                 <Info className="w-3 h-3" />
                 {titleLength < TITLE_MIN
-                  ? `Add ${TITLE_MIN - titleLength} more characters for optimal length`
+                  ? `Add ${
+                      TITLE_MIN - titleLength
+                    } more characters for optimal length`
                   : titleLength > TITLE_MAX
-                    ? `Reduce by ${titleLength - TITLE_MAX} characters`
-                    : "Perfect length for search results"}
+                  ? `Reduce by ${titleLength - TITLE_MAX} characters`
+                  : "Perfect length for search results"}
               </p>
             )}
           </div>
@@ -305,8 +307,8 @@ export function SEOFieldsGroup({
                       descStatus === "good"
                         ? "text-green-600 dark:text-green-400"
                         : descStatus === "warning"
-                          ? "text-yellow-600 dark:text-yellow-400"
-                          : "text-red-600 dark:text-red-400"
+                        ? "text-yellow-600 dark:text-yellow-400"
+                        : "text-red-600 dark:text-red-400"
                     }`}
                   >
                     {descLength}/{DESC_MAX} characters
@@ -338,8 +340,8 @@ export function SEOFieldsGroup({
                 {descLength < DESC_MIN
                   ? `Add ${DESC_MIN - descLength} more characters`
                   : descLength > DESC_MAX
-                    ? `Reduce by ${descLength - DESC_MAX} characters`
-                    : "Perfect length for meta description"}
+                  ? `Reduce by ${descLength - DESC_MAX} characters`
+                  : "Perfect length for meta description"}
               </p>
             )}
           </div>

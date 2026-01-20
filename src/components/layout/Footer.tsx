@@ -110,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer
       className={cn(
-        "w-full bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800",
+        "w-full bg-white dark:bg-black border-t border-slate-200 dark:border-neutral-800",
         className,
       )}
     >
@@ -120,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {linkSections.map((section) => (
               <div key={section.title}>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <li key={link.href}>
                       <LinkComponent
                         href={link.href}
-                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-sm text-slate-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary-400 transition-colors"
                         {...(link.external && {
                           target: "_blank",
                           rel: "noopener noreferrer",
@@ -146,17 +146,17 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Row 2: Partner Logos */}
         {partnerLogos.length > 0 && (
-          <div className="py-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="py-8 border-t border-slate-200 dark:border-neutral-800">
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
               {partnerLogos.map((partner) => {
                 const Icon = partner.icon;
                 const content = (
                   <div className="flex flex-col items-center gap-2 group">
                     <Icon
-                      className="h-8 w-8 text-gray-400 dark:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors"
+                      className="h-8 w-8 text-slate-400 dark:text-neutral-600 group-hover:text-primary dark:group-hover:text-primary-400 transition-colors"
                       aria-hidden="true"
                     />
-                    <span className="text-xs text-gray-500 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                    <span className="text-xs text-slate-500 dark:text-neutral-500 group-hover:text-slate-700 dark:group-hover:text-neutral-300 transition-colors">
                       {partner.label}
                     </span>
                   </div>
@@ -184,8 +184,8 @@ export const Footer: React.FC<FooterProps> = ({
         )}
 
         {/* Row 3: Copyright */}
-        <div className="py-6 border-t border-gray-200 dark:border-gray-800">
-          <p className="text-sm text-center text-gray-600 dark:text-gray-400">
+        <div className="py-6 border-t border-slate-200 dark:border-neutral-800">
+          <p className="text-sm text-center text-slate-600 dark:text-neutral-400">
             {copyright}
           </p>
         </div>
